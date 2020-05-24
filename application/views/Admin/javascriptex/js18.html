@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+	<title>jquery-Ajax基础方法</title>
+</head>
+<body>
+jquery-Ajax之：
+<p>jQueryDom.load()</p>
+<p>$.get()</p>
+<p>$.post()</p>
+<p>$.ajax()</p>
+<hr>
+<input type="button" name="" value='加载'>
+<div class="load" style="background: yellow; width: 600px; height: 100px;"></div>
+
+ <script>
+
+function getRootPath() {
+//获得根目录
+var strFullPath = window.document.location.href;
+var strPath = window.document.location.pathname;
+var pos = strFullPath.indexOf(strPath); 
+var prePath = strFullPath.substring(0, pos); 
+var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1); 
+   return (prePath + postPath);
+}
+var ps=getRootPath();
+document.write(ps+'为当前站点的根目录');
+
+
+ 	$('input[type=button]').click(function(){
+ 		//$('.load').load(url,data,callback);
+ 		//\application\views\Admin\ajaxtest.txt
+ 		//alert('异步加载文本文件内容');
+ 		$('.load').css('background','lightblue')
+ 		//$('.load').load("<?php echo base_url('demoa.txt');?>");
+ 		//$('.load').load("<?php echo base_url('/Public/test.txt');?>");
+ 		//$('.load').load("<?php echo base_url('/Ajax/demoa.txt');?>");
+ 		//$('.load').load("<?php echo base_url('Ajax/test.html #four');?>");
+ 		//$('.load').load("<?php echo base_url('Ajax/test.html? #go');?>");
+ 		$('.load').load("/QC/Ajax/test.html #go");//测试OK
+
+ 	});
+
+ </script>
+
+
+</body>
+</html>

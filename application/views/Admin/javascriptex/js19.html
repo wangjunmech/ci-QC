@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+	<title>jq-Ajax用户验证</title>
+</head>
+<body>
+jquery-Ajax之用户验证：
+<hr>
+Load方法/Get方法<br>
+<input type="text" name="username" id=''>
+<input type="button" id='uvarify' value='发送数据检验用户'><div id='winfo' style="color:red">0</div>
+
+<hr>
+Get方法<br>
+<input type="button" id='gtdt' value='用get加载'>
+<div id='getdata' style="color:blue">0</div>
+
+处理json格式的数组数据<br>
+<input type="button" id='fmtbt' value='Ajax请求数组数据'>
+<div id='fmtdiv' style="color:red">
+<img src="\QC\Public\images\ajax-loader.gif" id='loading' style="display: none">
+<ul></ul></div>
+
+加载文本文件要注意文档的编码格式：<br>
+<input type="button" id='tcode' value='文档的编码格式测试'>
+<div id='tc' style="color:red">
+<img src="\QC\Public\images\ajax-loader.gif" id='loading' style="display: none">
+</div>
+ <script>
+//D:\WWW\QC\Ajax
+
+//LOAD方法****************************************************
+ 	// $('input[type=button]').click(function(){
+ 	// 	//alert('异步加载文本文件内容');
+ 	// 	//$('#winfo').css('color','lightblue')
+ 	// 	var send = {'username':$('input[type=text]').val()}; //发送的格式必须是json格式的
+ 	// 	//alert(send);
+ 	// 	$('#winfo').load('http://127.0.0.1/qc/Ajax/process.php',send,function(ResponseText){
+ 	// 		//alert(ResponseText)
+ 	// 	});
+ 	// });
+
+// //GET方法，不加参数不能处理缓存****************************************************
+//  	$('#gtdt').click(function(){
+//  		$.get('/QC/Ajax/demoa.txt',function(data){
+//  			$('#getdata').html(data);
+//  		})
+//  	});
+
+// //GET方法，加上参数可以处理缓存问题****************************************************
+//  	$('#gtdt').click(function(){
+//  		$.get('/QC/Ajax/demoa.txt?data='+Math.random(),function(data){
+//  			$('#getdata').html(data);
+//  		})
+//  	});
+
+// //get方法与php交互****************************************************
+// //语法：$.get(发送地址,发送的数据,回调函数)
+//  	$('input[type=button]').click(function(){
+//  		// alert('异步加载文本文件内容');
+//  		// $('#winfo').css('color','lightblue')
+//  		var url='http://127.0.0.1/qc/Ajax/process.php';
+//  		var sendData={'username':$('input[type=text]').val()};
+//  		$.get(url,sendData,function(data){
+//  			//alert(data);
+//  			$('#winfo').html(data);
+//  		}) ; //发送的格式必须是json格式的
+//  		});
+
+// //ajax方法与php交互**************************************----$.ajax()
+//  	$('input[type=button]').click(function(){
+//  		var url='http://127.0.0.1/qc/Ajax/process.php';
+//  		var sendData={'username':$('input[type=text]').val()};
+
+//  		$.ajax({
+//  			url:url,
+//  			type:'get',
+//  			data:sendData,
+//  			success:function(data){ 				
+//  			$('#winfo').html(data); 			
+//  		}}) ; 
+//  		});
+
+// //ajax处理数组格式的数据******************----$.ajax()
+ 	$('#fmtbt').click(function(){
+ 		//$('#loading').show();
+ 		$.ajax({
+ 			url:'http://127.0.0.1/qc/Ajax/ajaxdemo.php?'+Math.random(),
+ 			type:'get',
+ 			success:function(data){ 
+ 				//$('#loading').hide();
+ 			var resultarr = eval(data);	//返回的data为string类型，用eval函数转为对象				
+ 			// $('#fmtdiv').html(resultarr[0].title);//然后就可用数组下标的形式获取数据
+ 			// $('#fmtdiv ul').append('<li>'+resultarr[0].title+'</li>');
+			//循环处理数据示例
+ 			// alert(typeof(data));
+ 		for(var i = 0; i < resultarr.length; i++){
+ 				 $('#fmtdiv ul').append('<li>'+resultarr[i].title+'====='+resultarr[i].ptime+'</li>');
+ 										};
+ 								}
+ 	}); 			});
+
+// $(document).ajaxStart(function(){ $('#loading').show();	});
+// $(document).ajaxStop(function(){ $('#loading').hide();	});
+
+
+// //ajax处理文本文件时时框注意编码问题******************
+ 	$('#tcode').click(function(){
+ 		$.get('/QC/Ajax/codea.txt',function(data){
+
+ 			
+ 			$('#tc').html(data);
+
+ 		})
+ 	});
+ </script>
+<?php
+//echo file_put_contents(base_url("QC/Ajax/test.txt"),"Hello World. Testing!中英文内容测试！");
+//$counter_file = 'test.txt ';//文件名及路径,在当前目录下新建文件 
+echo __file__;
+$counter_file = 'Ajax/test.txt';
+$fopen = fopen($counter_file, 'wb ');//新建文件命令 
+fputs($fopen,' aaaaaa测试一下行不行 ');//向文件中写入内容; 
+fclose($fopen); 
+?>
+
+
+</body>
+</html>

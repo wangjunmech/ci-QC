@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery</title>
+<style type="text/css">
+.table{
+		width:500px;
+		border: 1px solid red;
+		border-collapse: collapse;
+	}
+.table td{
+	border: 2px solid red;
+}
+</style>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+
+</head>
+<body>
+<form>
+	<input type="text" name="inval[0]" id='' value="第1个input的值">
+	<input type="text" name="inval[1]" id='' value="第2个input的值">
+	<input type="text" name="inval[2]" id='' value="第3个input的值">
+	<input type="text" name="inval[3]" id='' value="第4个input的值">
+</form>
+<table class="table" id='tb'>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+	<tr><td>1111</td><td>2222</td><td>3333</td><td>4444</td></tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+
+
+//隔行换色------原生js代码
+var otb=document.getElementById('tb');
+var atr=otb.getElementsByTagName('tr');
+//alert(atr.length);
+
+for(var i=0;i<atr.length;i++){
+	if(i%2==0){
+	atr[i].style.background="lightgreen";
+	}else{
+	atr[i].style.background="lightblue";
+	}
+}
+
+
+//隔行换色------jQuery代码
+// $('.table tr:even').css('background','yellow');
+// $('.table tr:odd').css('background','green');
+//隔行换色------jQuery代码之filter
+$('.table tr').filter(':even').css('background','lightgreen').end().filter(':odd').css('background','lightblue');
+
+//遍历查找之each示例
+var arr = $('input').each(function(index, el) {
+		console.log($(this).val());
+	document.write($(this).val())+'<br>';
+	document.write('<br>');
+	
+});
+
+$('input[name=inval\\[1\\]]').click(function(event) {
+	alert($(this).val());
+});
+
+
+
+
+</script>
+
+</body>
+</html>

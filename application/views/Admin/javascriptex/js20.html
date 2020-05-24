@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+ <script src="<?php echo base_url('Public/js/jquery.table.customize.js')?>"></script>
+	<title>jQuery插件编写测试</title>
+<style type="text/css">
+/*控制表格*/
+	table{width: 100%;border: 1px solid #abcdef;border-collapse: collapse;	}
+	th,tr,td{height: 30px;border: 1px solid #abcdef;text-align: center}
+	.oddRow1{background: #09f}
+	.evenRow1{background: #38a38a}
+	.currRow1{background: yellow}
+/*控制tabs*/
+#tabname li{
+	list-style-type: none;
+	border: 2px solid #abcdef;
+	border-bottom: none;
+	width: 200px;
+	display:inline;
+	    /* li 不换行，宽度根据内容自适应，通过 float 实现 */  
+    margin: 0px;
+    padding: 0px;
+    float:left;
+    background-color: #ccd;
+    margin: 0px 20px 10px 0px;
+    line-height: 50px;
+    text-align: center;
+} 
+
+#content div{
+	border: 2px solid #abcdef;
+	width: 600px;
+	/*display:inline;*/
+	/* li 不换行，宽度根据内容自适应，通过 float 实现 */  
+    margin: 0px;
+    padding: 0px;
+    /*float:left;*/
+    background-color: #d323eb;
+    /*margin: 0px 20px 10px 0px;*/
+    /*line-height: 50px;*/
+    text-align: center;
+} 
+
+
+</style>	
+</head>
+<body>
+jQuery插件编写测试：
+<hr>
+1.类级插件开发的3种写法：<br>
+<div id='posdiv' style="background:lightblue;width: 20px;height: 50px;">0</div>
+
+2.对象级插件开发：<br>
+
+<table id='tb1'>
+	<tr>
+		<td>A</td><td>C</td><td>D</td><td>F</td>
+	</tr>
+	<tr>
+		<td>A1</td><td>C</td><td>D</td><td>F</td>
+	</tr>
+	<tr>
+		<td>A2</td><td>C</td><td>D</td><td>F</td>
+	</tr>
+	<tr>
+		<td>A3</td><td>C</td><td>D</td><td>F</td>
+	</tr>
+	<tr>
+		<td>A4</td><td>C</td><td>D</td><td>F</td>
+	</tr>
+	<tr>
+		<td>A5</td><td>C</td><td>D</td><td>F</td>
+	</tr>
+	<tr>
+		<td>A6</td><td>C</td><td>D</td><td>F</td>
+	</tr>
+	<tr>
+		<td>A7</td><td>C</td><td>D</td><td>F</td>
+	</tr>
+	<tr>
+		<td>A8</td><td>C</td><td>D</td><td>F</td>
+	</tr>
+</table>
+<div id ='tabdiv'>
+	<ul id= 'tabname'>
+		<li>aaa</li>
+		<li>bbb</li>
+		<li>ccc</li>
+	</ul>
+	<div id = 'content'>
+	<div>111</div>
+	<div>222</div>
+	<div>333</div>
+	</div>
+</div>
+
+ <script>
+var div=$('#posdiv');
+div.css({
+	'top':($(window).height()-div.height())/2,
+	'left':($(window).width()-div.width())/2,
+	'position':'relative'
+});
+
+
+$(function(){
+$('#tb1').table({
+	oddRowClass:'oddRow1',
+	evenRowClass:'evenRow1',
+	currRowClass:'currRow1',
+	etype:'click',
+	etype2:'dblclick'
+});
+
+})
+ </script>
+
+
+</body>
+</html>

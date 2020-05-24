@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery</title>
+
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+
+</head>
+<body>
+<!-- 
+<div id="test-jquery">
+    <p id="para-1" class="color-red">JavaScript</p>
+    <p id="para-2" class="color-green">Haskell</p>
+    <p class="color-red color-green">Erlang</p>
+    <p name="name" class="color-black">Python</p>
+    <form class="test-form" target="_blank" action="#0" onsubmit="return false;">
+        <legend>注册新用户</legend>
+        <fieldset>
+            <p><label>名字: <input name="name"></label></p>
+            <p><label>邮件: <input name="email"></label></p>
+            <p><label>口令: <input name="password" type="password"></label></p>
+            <p><button type="submit">注册</button></p>
+        </fieldset>
+    </form>
+</div> -->
+<!-- <div class="test-selector">
+    <ul class="test-lang">
+        <li class="lang-javascript">JavaScript</li>
+        <li class="lang-python">Python</li>
+        <li class="lang-lua">Lua</li>
+    </ul>
+    <ol class="test-lang">
+        <li class="lang-swift">Swift</li>
+        <li class="lang-java">Java</li>
+        <li class="lang-c">C</li>
+    </ol>
+    <ul class="lang">
+        <li class="js dy">JavaScript</li>
+        <li class="dy">Python</li>
+        <li id="swift">Swift</li>
+        <li class="dy">Scheme</li>
+        <li name="haskell">Haskell</li>
+</ul>
+</div> -->
+<!-- <form id="test-form" action="<?=site_url('/admin/javascriptex/js3');?>" onsubmit="return false;"> 
+<form id="test-form" action="#" method="post" onsubmit="return false;">
+    <p><label>Name: <input name="name"></label></p>
+    <p><label>Email: <input name="email"></label></p>
+    <p><label>Password: <input name="password" type="password"></label></p>
+    <p>Gender: <label><input name="gender" type="radio" value="m" checked> Male</label> <label><input name="gender" type="radio" value="f"> Female</label></p>
+    <p><label>City: <select name="city">
+        <option value="BJ" selected>Beijing</option>
+        <option value="SH">Shanghai</option>
+        <option value="CD">Chengdu</option>
+        <option value="XM">Xiamen</option>
+    </select></label></p>
+    <p><button type="submit">Submit</button></p>
+</form>
+-->
+<script type="text/javascript">
+'use strict';
+
+var selected = null;
+
+
+//仅选择JavaScript
+var selected=$('#para-1');
+console.log(selected);
+// alert(selected);
+//仅选择Erlang
+selected=$(".color-red,color-green");
+console.log(selected);
+//选择JavaScript和Erlang
+selected=$('.color-red');
+console.log(selected);
+//选择所有编程语言
+selected=$('p.color');
+console.log(selected);
+//选择名字input
+selected=$('input[name=name]');
+console.log(selected);
+//选择邮件和名字input
+selected=$('input[name=email],input[name=password]');
+console.log(selected);
+
+//alert('jQuery版本：' + $.fn.jquery);
+//*****************
+
+// 高亮结果:
+// if (!(selected instanceof jQuery)) {
+//     return alert('不是有效的jQuery对象!');
+// }
+// $('#test-jquery').find('*').css('background-color', '');
+// selected.css('background-color', '#ffd351');
+console.log('---descendent---')
+// var descendent=$('ul.test-lang li.lang-javascript'); 
+var descendent=$('ul.test-lang li:first-child'); 
+var lilist=$('ul li'); 
+var olilist=$('ol li'); 
+var oli1st=$('ol li:last-child'); 
+var li2nd=$('ol li.lang-java'); 
+var ul=$('ul.lang');
+var uldy=ul.find('.dy');
+var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+var arr = langs.map(function () {
+    return this.innerHTML;
+}).get(); // 用get()拿到包含string的Array：['JavaScript', 'Python', 'Swift', 'Scheme', 'Haskell']
+
+console.log(arr);
+var xiaoming = {
+    name: '小明',
+    age: 14,
+    gender: true,
+    height: 1.65,
+    grade: null,
+    'middle-school': '\"W3C\" Middle School',
+    skills: ['JavaScript', 'Java', 'Python', 'Lisp']
+};
+
+var jjj=JSON.stringify(xiaoming,null,'>>>>');
+console.log(jjj);
+
+
+</script>
+<!-- HTML结构 -->
+<ul id="test-ul">
+    <li class="js">JavaScript</li>
+    <li name="book">Java &amp; JavaScript</li>
+</ul>
+
+<script type="text/javascript">
+// var aaa=$('#test-ul li.js').text("DDDDDDDD"); // 'Java & JavaScript'
+// var bbb=$('#test-ul li[name=book]').html(); // 'Java &amp; JavaScript'
+// alert(aaa);
+// alert(bbb);  
+//  // aaa.text('AAAAAAA'); 
+// aaa.html('<span style="color: red">JWWWW</span>');
+// nodes=$('#test-ul li').text('Both');
+
+</script>
+<!-- 修改CSS
+
+jQuery对象有“批量操作”的特点，这用于修改CSS实在是太方便了。考虑下面的HTML结构：
+ -->
+<!-- HTML结构 -->
+<!-- <ul id="test-css">
+    <li class="lang dy"><span>JavaScript</span></li>
+    <li class="lang"><span>Java</span></li>
+    <li class="lang dy"><span>Python</span></li>
+    <li class="lang"><span>Swift</span></li>
+    <li class="lang dy"><span>Scheme</span></li>
+</ul> -->
+<script>
+// 要高亮显示动态语言，调用jQuery对象的css('name', 'value')方法，我们用一行语句实现：
+
+'use strict';
+$('#test-css li.dy>span').css('background-color', '#ffd351').css('color', 'red');
+</script>
+***************************************
+<!-- <div id="test-abc">
+    <ul>
+        <li><span>AAAAAAAA</span></li>
+        <li><span>BBBBBBBB</span></li>
+        <li><span>CCCCCCCC</span></li>
+    </ul>
+</div>
+
+<div id="test-div">
+    <ul>
+        <li><span>JavaScript</span></li>
+        <li><span>Python</span></li>
+        <li><span>Swift</span></li>
+    </ul>
+</div> -->
+<script>
+//插入DOM对象
+'use strict';
+
+var s=$('#test-div li>span').map(function () {
+    return this.innerHTML;
+}).get().concat(['Pascal','Ruby','Lua']).sort();
+$('#test-div li').remove();
+s.forEach(function (val,key) {
+    $('#test-div ul').append(`<li><span>${val}</span></li>`);
+})
+
+</script>
+
+<p>鼠标效果实测：</p>
+<p><p>mousemove: <span id="testMouseMoveSpan"></span></p></p>
+<div id="testMouseMoveDiv" style="display: block; width: 300px; height: 120px; border: 1px solid #ccc; background-color: lightblue">在此区域移动鼠标试试</div>
+<script>
+// $(function () {
+//     $('#testMouseMoveDiv').mousemove(function (e) {
+//         $('#testMouseMoveSpan').text('pageX = ' + e.pageX + ', pageY = ' + e.pageY);
+//     });
+// });
+
+
+
+// $('#test-form').on('submit', function () {
+//     alert('点击提交!1111111');
+// });
+
+// $(document).ready(function () {
+//     alert('页面加载完毕！！！！！');
+//     //on('submit', function)也可以简化:
+//     $('#test-form').submit(function () {
+//          alert('点击提交!2222222');
+//     });
+// });
+
+// $(function () {
+//     // init...
+//     alert('页面加载完毕222！！！！！');
+// });
+
+</script>
+
+
+<form id="selectest" action="#">
+    <legend>请选择想要学习的编程语言：</legend>
+    <fieldset>
+        <p><label class="selectAll"><input type="checkbox"> <span class="selectAll">全选</span><span class="deselectAll">全不选</span></label> <a href="#0" class="invertSelect">反选</a></p>
+        <p><label><input type="checkbox" name="lang" value="javascript"> JavaScript</label></p>
+        <p><label><input type="checkbox" name="lang" value="python"> Python</label></p>
+        <p><label><input type="checkbox" name="lang" value="ruby"> Ruby</label></p>
+        <p><label><input type="checkbox" name="lang" value="haskell"> Haskell</label></p>
+        <p><label><input type="checkbox" name="lang" value="scheme"> Scheme</label></p>
+        <p><button type="submit">Submit</button></p>
+    </fieldset>
+</form>
+
+<script>
+   'use strict';
+
+var
+    form = $('#selectest'),
+    langs = form.find('[name=lang]'),
+    selectAll = form.find('label.selectAll :checkbox'),
+    selectAllLabel = form.find('label.selectAll span.selectAll'),
+    deselectAllLabel = form.find('label.selectAll span.deselectAll'),
+    invertSelect = form.find('a.invertSelect');
+
+// 重置初始化状态:
+form.find('*').show().off();
+form.find(':checkbox').prop('checked', false).off();
+deselectAllLabel.hide();
+// 拦截form提交事件:
+form.off().submit(function (e) {
+    e.preventDefault();
+    alert(form.serialize());
+}); 
+
+// TODO:绑定事件
+function updateLabel(){
+  var allChecked = langs.filter(':checked').length === langs.length;
+  selectAll.prop('checked',allChecked);
+  if(allChecked){
+      selectAllLabel.hide()
+      deselectAllLabel.show()
+  }else{
+      selectAllLabel.show()
+      deselectAllLabel.hide()
+  }
+}
+selectAll.change(function(e){
+    langs.prop('checked',$(this).is(':checked'));
+    updateLabel();
+});
+
+invertSelect.click(function(e){
+    langs.click();
+});
+langs.change(updateLabel);
+
+</script>
+<button type="submit" id='testb' style="color:red">测试按钮</button>
+<p id='str'>测试文本ABCDEFGHIJKLMN</p>
+<input type="text" id="str1" value="测试文本ABCDEFGHIJKLMN">
+<div id='da' style="background-color:yellow ;width:300px; height:100px">
+<div id='db' style="background-color:green ;width:100px; height:50px"><strong></strong></div>
+</div>
+
+<script>
+// #获取元素
+var bt = $('#testb');
+var ttt = $('#str1');
+// #设置函数
+function ck() {
+    alert('点击了测试按钮8888！');
+};
+// #绑定元素和函数
+bt.bind('click',ck);
+
+//另一种把函数直接写在事件后
+// bt.click(function() {
+//     alert('点击了测试按钮！');
+// });
+
+// bt.on({
+//     "mouseover":function(){
+//         alert('移进来！');
+//     },
+//     "mouseout":function(){
+//         alert('移出去！');
+//     }    
+// });
+
+// bt.off('mouseover');
+function min(){ alert('移入！')}
+function mout(){ alert('移出！')}
+
+// bt.on('mouseover',min);
+// bt.on('mouseout',mout);
+
+// bt.mousedown(function() {
+//     alert('鼠标左键下来了！');
+// });
+bt.mouseup(function() {
+    alert('鼠标左键放掉了！');
+});
+
+
+$(window).resize(function(){
+    alert('调整大小');
+})
+
+//ttt.selected(function(){alert('选择文本')});
+ttt.select(function() {
+    alert('选择文本');
+});
+
+$('#da').mouseout(function(){
+    $('strong').text(function(index,value){
+        return value +'1';
+    });
+});
+
+// mouseenter mouseover
+// mouseleave mouseout
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

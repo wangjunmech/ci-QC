@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<title>用户注册</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="<?php echo base_url('Public/styles/general.css');?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url('Public/styles/main.css');?>" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body {
+  color: white;
+}
+</style>
+
+</head>
+<body style="background: #119299 ">
+<form id='form' method="post" action="<?php echo site_url('register');?>" name='theForm'>
+  <table cellspacing="10" cellpadding="0" style="margin-top: 100px" align="center">
+  <tr>
+    <td>
+    </td>
+    <td style="padding-left: 50px">
+      
+      <tr>
+        <td>登录用户名：</td>
+        <td><input type="text" name="username" /><td><?php echo form_error('username');?></td>
+      </tr>
+      <tr>
+        <td>姓名：</td>
+        <td><input type="text" name="uname" /><td><?php echo $username;?></td>
+      </tr>      
+      <tr>
+        <td>用户密码：</td>
+        <td><input type="password" name="password" /></td><td><?php echo form_error('password');?></td>
+      </tr>
+      <tr>
+        <td>再次确认密码：</td>
+        <td><input type="password" name="password" /></td><td><?php echo form_error('password');?></td>
+      </tr> 
+        <tr>
+        <td>邮箱地址：</td>
+        <td><input type="text" name="mail" /></td><td><?php echo form_error('mail');?></td>
+      </tr>     
+      <tr>
+        <td>验证码：</td>
+        <td><input type="text" name="captcha" class="capital" /><td><?php echo form_error('captcha');?></td>
+      </tr>
+      <tr>
+      <!--  验证码 -->
+      <td colspan="2" align="right">   
+        <img src="<?php echo site_url().'/admin/login/code';?>" alt="" onclick= this.src="<?php echo site_url('/admin/login/code').'/'?>"+Math.random() style="cursor: pointer;" title="看不清？点击更换另一个验证码。"/>
+      </td>
+      </tr>
+      </table> 
+      <div style="width: 800px;height:100px;background: lightblue;alignment-baseline: central;margin-left: auto;margin-right: auto;"><span><a href="" style="color:red">注册条款,请认真阅读……</a></span></div>
+      <p style="width: 800px;height:100px;alignment-baseline: central;margin-left: auto;margin-right: auto;text-align: center">  
+      <input type="submit" value="注册" class="button" id='submit' />
+<!--       <div id='smtt' style="width: 100px;height: 30px;background: yellow"></div>
+ -->
+      <a href="../" style="color:blue"><br>已有用户名直接登录</a>
+      </p>
+ </form>
+    <script>
+    // //阻止提交按钮的默认提交事件
+    //     window.onload=function(){
+    //         var mysubmit=document.getElementById('submit');
+    //         mysubmit.onclick=function(event){
+    //            event.preventDefault();               
+    //         }
+    //     }
+    </script>
+ <script type="text/javascript">
+   $('#submit').click(function(event) {
+    alert('提交');
+    return false;
+    var sendData = $('#form').serialize();
+    var url = <?php echo site_url('register');?>
+    $.ajax({
+      url:url,
+      data:sendData;
+      type:'post',
+      success:function(data){ 
+
+                }
+  }); 
+   
+});
+
+
+
+ </script>
+
+</body>

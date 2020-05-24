@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>keycode</title>
+<meta charset="utf-8">
+</head>
+<body onLoad="init()">
+   
+<script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<script src="<?php echo base_url('Public/zeroclipboard-2.2.0/dist/ZeroClipboard.js')?>"></script>
+<style type="text/css">
+	table{border:2px solid;
+		margin-top:10px;
+		width:800
+	}
+	tr{ border:1px solid;
+		border-color: blue;
+
+	}	
+	td{ border:1px solid;
+		border-color: red;
+
+	}
+</style>
+<p>键盘按键代码表</p><br>
+
+
+
+    <STYLE TYPE="text/css">   
+    TD {text-align:center}   
+    </STYLE>   
+    <SCRIPT LANGUAGE="JavaScript">   
+    function init() {   
+        document.onkeydown = showKeyDown   
+        document.onkeyup = showKeyUp   
+        document.onkeypress = showKeyPress   
+    }   
+      
+    function showKeyDown(evt) {   
+        evt = (evt) ? evt : window.event   
+        document.getElementById("pressKeyCode").innerHTML = 0   
+        document.getElementById("upKeyCode").innerHTML = 0   
+        document.getElementById("pressCharCode").innerHTML = 0   
+        document.getElementById("upCharCode").innerHTML = 0   
+        restoreModifiers("")   
+        restoreModifiers("Down")   
+        restoreModifiers("Up")   
+        document.getElementById("downKeyCode").innerHTML = evt.keyCode   
+        if (evt.charCode) {   
+            document.getElementById("downCharCode").innerHTML = evt.charCode   
+        }   
+        showModifiers("Down", evt)   
+    }   
+    function showKeyUp(evt) {   
+        evt = (evt) ? evt : window.event   
+        document.getElementById("upKeyCode").innerHTML = evt.keyCode   
+        if (evt.charCode) {   
+            document.getElementById("upCharCode").innerHTML = evt.charCode   
+        }   
+        showModifiers("Up", evt)   
+        return false   
+    }   
+    function showKeyPress(evt) {   
+        evt = (evt) ? evt : window.event   
+        document.getElementById("pressKeyCode").innerHTML = evt.keyCode   
+        if (evt.charCode) {   
+            document.getElementById("pressCharCode").innerHTML = evt.charCode   
+        }   
+        showModifiers("", evt)   
+        return false   
+    }   
+    function showModifiers(ext, evt) {   
+        restoreModifiers(ext)   
+        if (evt.shiftKey) {   
+            document.getElementById("shift" + ext).style.backgroundColor ="#ff0000"   
+        }   
+        if (evt.ctrlKey) {   
+            document.getElementById("ctrl" + ext).style.backgroundColor = "#00ff00"   
+        }   
+        if (evt.altKey) {   
+            document.getElementById("alt" + ext).style.backgroundColor = "#0000ff"   
+        }   
+    }   
+    function restoreModifiers(ext) {   
+        document.getElementById("shift" + ext).style.backgroundColor = "#ffffff"   
+        document.getElementById("ctrl" + ext).style.backgroundColor = "#ffffff"   
+        document.getElementById("alt" + ext).style.backgroundColor = "#ffffff"   
+    }   
+    </SCRIPT>   
+   
+      
+ 
+    <H1>Keyboard Event Handler Lab</H1>   
+    <H2>按按键直接显示代码：</H2>       
+    <FORM>   
+    <TABLE BORDER=2 CELLPADDING=2>   
+    <TR><TH></TH><TH>onKeyDown</TH><TH>onKeyPress</TH><TH>onKeyUp</TH></TR>   
+    <TR><TH>Key Codes</TH>   
+        <TD ID="downKeyCode">0</TD>   
+        <TD ID="pressKeyCode">0</TD>   
+        <TD ID="upKeyCode">0</TD>   
+    </TR>   
+    <TR><TH>Char Codes (IE5/Mac; NN6)</TH>   
+        <TD ID="downCharCode">0</TD>   
+        <TD ID="pressCharCode">0</TD>   
+        <TD ID="upCharCode">0</TD>   
+    </TR>   
+    <TR><TH ROWSPAN=3>Modifier Keys</TH>   
+        <TD><SPAN ID="shiftDown">Shift</SPAN></TD>   
+        <TD><SPAN ID="shift">Shift</SPAN></TD>   
+        <TD><SPAN ID="shiftUp">Shift</SPAN></TD>   
+    </TR>   
+    <TR>   
+        <TD><SPAN ID="ctrlDown">Ctrl</SPAN></TD>   
+        <TD><SPAN ID="ctrl">Ctrl</SPAN></TD>   
+        <TD><SPAN ID="ctrlUp">Ctrl</SPAN></TD>   
+    </TR>   
+    <TR>   
+        <TD><SPAN ID="altDown">Alt</SPAN></TD>   
+        <TD><SPAN ID="alt">Alt</SPAN></TD>   
+        <TD><SPAN ID="altUp">Alt</SPAN></TD>   
+    </TR>   
+    </TABLE>   
+    </FORM>   
+
+
+
+<H2>键盘代码图片：</H2>  
+<img src="<?php echo base_url('public/images/keyboard-keycode.jpg')?>">
+<HR> 
+<H2>键盘代码对照表：</H2> 
+<div>
+<table class="filament_table   " border="0" rules="cols" cellspacing="0" width="700">
+<thead>
+<tr>
+<th colspan="8">字母和数字键的键码&#20540;(keyCode)</th>
+</tr>
+<tr>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>65</td>
+<td>J</td>
+<td>74</td>
+<td>S</td>
+<td>83</td>
+<td>1</td>
+<td>49</td>
+</tr>
+<tr>
+<td>B</td>
+<td>66</td>
+<td>K</td>
+<td>75</td>
+<td>T</td>
+<td>84</td>
+<td>2</td>
+<td>50</td>
+</tr>
+<tr>
+<td>C</td>
+<td>67</td>
+<td>L</td>
+<td>76</td>
+<td>U</td>
+<td>85</td>
+<td>3</td>
+<td>51</td>
+</tr>
+<tr>
+<td>D</td>
+<td>68</td>
+<td>M</td>
+<td>77</td>
+<td>V</td>
+<td>86</td>
+<td>4</td>
+<td>52</td>
+</tr>
+<tr>
+<td>E</td>
+<td>69</td>
+<td>N</td>
+<td>78</td>
+<td>W</td>
+<td>87</td>
+<td>5</td>
+<td>53</td>
+</tr>
+<tr>
+<td>F</td>
+<td>70</td>
+<td>O</td>
+<td>79</td>
+<td>X</td>
+<td>88</td>
+<td>6</td>
+<td>54</td>
+</tr>
+<tr>
+<td>G</td>
+<td>71</td>
+<td>P</td>
+<td>80</td>
+<td>Y</td>
+<td>89</td>
+<td>7</td>
+<td>55</td>
+</tr>
+<tr>
+<td>H</td>
+<td>72</td>
+<td>Q</td>
+<td>81</td>
+<td>Z</td>
+<td>90</td>
+<td>8</td>
+<td>56</td>
+</tr>
+<tr>
+<td>I</td>
+<td>73</td>
+<td>R</td>
+<td>82</td>
+<td>0</td>
+<td>48</td>
+<td>9</td>
+<td>57</td>
+</tr>
+</tbody>
+</table>
+<table class="filament_table   " border="0" rules="cols" cellspacing="0" width="700">
+<thead>
+<tr>
+<th colspan="4">数字键盘上的键的键码&#20540;(keyCode)</th>
+<th colspan="4">功能键键码&#20540;(keyCode)</th>
+</tr>
+<tr>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>96</td>
+<td>8</td>
+<td>104</td>
+<td>F1</td>
+<td>112</td>
+<td>F7</td>
+<td>118</td>
+</tr>
+<tr>
+<td>1</td>
+<td>97</td>
+<td>9</td>
+<td>105</td>
+<td>F2</td>
+<td>113</td>
+<td>F8</td>
+<td>119</td>
+</tr>
+<tr>
+<td>2</td>
+<td>98</td>
+<td>*</td>
+<td>106</td>
+<td>F3</td>
+<td>114</td>
+<td>F9</td>
+<td>120</td>
+</tr>
+<tr>
+<td>3</td>
+<td>99</td>
+<td>&#43;</td>
+<td>107</td>
+<td>F4</td>
+<td>115</td>
+<td>F10</td>
+<td>121</td>
+</tr>
+<tr>
+<td>4</td>
+<td>100</td>
+<td>Enter</td>
+<td>108</td>
+<td>F5</td>
+<td>116</td>
+<td>F11</td>
+<td>122</td>
+</tr>
+<tr>
+<td>5</td>
+<td>101</td>
+<td>-</td>
+<td>109</td>
+<td>F6</td>
+<td>117</td>
+<td>F12</td>
+<td>123</td>
+</tr>
+<tr>
+<td>6</td>
+<td>102</td>
+<td>.</td>
+<td>110</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>7</td>
+<td>103</td>
+<td>/</td>
+<td>111</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;
+<table class="filament_table   " border="0" rules="cols" cellspacing="0" width="700">
+<thead>
+<tr>
+<th colspan="8">控制键键码&#20540;(keyCode)</th>
+</tr>
+<tr>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+<th style="color:#003399">按键</th>
+<th style="color:#996600">键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BackSpace</td>
+<td>8</td>
+<td>Esc</td>
+<td>27</td>
+<td>Right Arrow</td>
+<td>39</td>
+<td>-_</td>
+<td>189</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>9</td>
+<td>Spacebar</td>
+<td>32</td>
+<td>Down Arrow</td>
+<td>40</td>
+<td>.&gt;</td>
+<td>190</td>
+</tr>
+<tr >
+<td>Clear</td>
+<td>12</td>
+<td>Page Up</td>
+<td>33</td>
+<td>Insert</td>
+<td>45</td>
+<td>/?</td>
+<td>191</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>13</td>
+<td>Page Down</td>
+<td>34</td>
+<td>Delete</td>
+<td>46</td>
+<td>`~</td>
+<td>192</td>
+</tr>
+<tr >
+<td>Shift</td>
+<td>16</td>
+<td>End</td>
+<td>35</td>
+<td>Num Lock</td>
+<td>144</td>
+<td>[{</td>
+<td>219</td>
+</tr>
+<tr>
+<td>Control</td>
+<td>17</td>
+<td>Home</td>
+<td>36</td>
+<td>;:</td>
+<td>186</td>
+<td>/|</td>
+<td>220</td>
+</tr>
+<tr >
+<td>Alt</td>
+<td>18</td>
+<td>Left Arrow</td>
+<td>37</td>
+<td>=&#43;</td>
+<td>187</td>
+<td>]}</td>
+<td>221</td>
+</tr>
+<tr>
+<td>Cape Lock</td>
+<td>20</td>
+<td>Up A</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<div>
+
+<h2>ASCII（American Standard Code for Information Interchange，美国信息交换标准代码）</h2>
+<p>
+ 在计算机中，所有的数据在存储和运算时都要使用二进制数表示（因为计算机用高电平和低电平分别表示1和0），例如，像a、b、c、d这样的52个字母（包括大写）、以及0、1等数字还有一些常用的符号（例如*、#、@等）在计算机中存储时也要使用二进制数来表示，而具体用哪些二进制数字表示哪个符号，当然每个人都可以约定自己的一套（这就叫编码），而大家如果要想互相通信而不造成混乱，那么大家就必须使用相同的编码规则，于是美国有关的标准化组织就出台了ASCII编码，统一规定了上述常用符号用哪些二进制数来表示。
+美国标准信息交换代码是由美国国家标准学会(American National Standard Institute , ANSI )制定的，标准的单字节字符编码方案，用于基于文本的数据。起始于50年代后期，在1967年定案。它最初是美国国家标准，供不同计算机在相互通信时用作共同遵守的西文字符编码标准，它已被国际标准化组织（International Organization for Standardization, ISO）定为国际标准，称为ISO 646标准。适用于所有拉丁文字字母。   
+</p>  
+<h4>表述方式:</h4>  
+<p>ASCII 码使用指定的7 位或8 位二进制数组合来表示128 或256 种可能的字符。标准ASCII 码也叫基础ASCII码，使用7 位二进制数（剩下的1位二进制为0）来表示所有的大写和小写字母，数字0 到9、标点符号， 以及在美式英语中使用的特殊控制字符。其中：
+0～31及127(共33个)是控制字符或通信专用字符（其余为可显示字符），如控制符：LF（换行）、CR（回车）、FF（换页）、DEL（删除）、BS（退格)、BEL（响铃）等；通信专用字符：SOH（文头）、EOT（文尾）、ACK（确认）等；ASCII值为8、9、10 和13 分别转换为退格、制表、换行和回车字符。它们并没有特定的图形显示，但会依不同的应用程序，而对文本显示有不同的影响。
+32～126(共95个)是字符(32是空格），其中48～57为0到9十个阿拉伯数字。
+65～90为26个大写英文字母，97～122号为26个小写英文字母，其余为一些标点符号、运算符号等。
+同时还要注意，在标准ASCII中，其最高位(b7)用作奇偶校验位。所谓奇偶校验，是指在代码传送过程中用来检验是否出现错误的一种方法，一般分奇校验和偶校验两种。奇校验规定：正确的代码一个字节中1的个数必须是奇数，若非奇数，则在最高位b7添1；偶校验规定：正确的代码一个字节中1的个数必须是偶数，若非偶数，则在最高位b7添1。
+后128个称为扩展ASCII码。许多基于x86的系统都支持使用扩展（或“高”）ASCII。扩展ASCII 码允许将每个字符的第8 位用于确定附加的128 个特殊符号字符、外来语字母和图形符号。</p>
+
+<table>
+<tbody><tr><td><div >Bin(二进制)</div>
+</td><td >Oct(八进制)</td><td><div >Dec(十进制)</div>
+</td><td><div >Hex(十六进制)</div>
+</td><td><div >缩写/字符</div>
+</td><td><div >解释</div>
+</td></tr><tr><td><div >0000 0000</div>
+</td><td><div >0</div>
+</td><td><div >0</div>
+</td><td><div >00</div>
+</td><td><div >NUL(null)</div>
+</td><td><div >空字符</div>
+</td></tr><tr><td><div >0000 0001</div>
+</td><td><div >1</div>
+</td><td><div >1</div>
+</td><td><div >01</div>
+</td><td><div >SOH(start of headline)</div>
+</td><td><div >标题开始</div>
+</td></tr><tr><td><div >0000 0010</div>
+</td><td><div >2</div>
+</td><td><div >2</div>
+</td><td><div >02</div>
+</td><td><div >STX (start of text)</div>
+</td><td><div >正文开始</div>
+</td></tr><tr><td><div >0000 0011</div>
+</td><td><div >3</div>
+</td><td><div >3</div>
+</td><td><div >03</div>
+</td><td><div >ETX (end of text)</div>
+</td><td><div >正文结束</div>
+</td></tr><tr><td><div >0000 0100</div>
+</td><td><div >4</div>
+</td><td><div >4</div>
+</td><td><div >04</div>
+</td><td><div >EOT (end of transmission)</div>
+</td><td><div >传输结束</div>
+</td></tr><tr><td><div >0000 0101</div>
+</td><td><div >5</div>
+</td><td><div >5</div>
+</td><td><div >05</div>
+</td><td><div >ENQ (enquiry)</div>
+</td><td><div >请求</div>
+</td></tr><tr><td><div >0000 0110</div>
+</td><td><div >6</div>
+</td><td><div >6</div>
+</td><td><div >06</div>
+</td><td><div >ACK (acknowledge)</div>
+</td><td><div >收到通知</div>
+</td></tr><tr><td><div >0000 0111</div>
+</td><td><div >7</div>
+</td><td><div >7</div>
+</td><td><div >07</div>
+</td><td><div >BEL (bell)</div>
+</td><td><div >响铃</div>
+</td></tr><tr><td><div >0000 1000</div>
+</td><td><div >10</div>
+</td><td><div >8</div>
+</td><td><div >08</div>
+</td><td><div >BS (backspace)</div>
+</td><td><div >退格</div>
+</td></tr><tr><td><div >0000 1001</div>
+</td><td><div >11</div>
+</td><td><div >9</div>
+</td><td><div >09</div>
+</td><td><div >HT (horizontal tab)</div>
+</td><td><div >水平制表符</div>
+</td></tr><tr><td><div >0000 1010</div>
+</td><td><div >12</div>
+</td><td><div >10</div>
+</td><td><div >0A</div>
+</td><td><div >LF (NL line feed, new line)</div>
+</td><td><div >换行键</div>
+</td></tr><tr><td><div >0000 1011</div>
+</td><td><div >13</div>
+</td><td><div >11</div>
+</td><td><div >0B</div>
+</td><td><div >VT (vertical tab)</div>
+</td><td><div >垂直制表符</div>
+</td></tr><tr><td><div >0000 1100</div>
+</td><td><div >14</div>
+</td><td><div >12</div>
+</td><td><div >0C</div>
+</td><td><div >FF (NP form feed, new page)</div>
+</td><td><div >换页键</div>
+</td></tr><tr><td><div >0000 1101</div>
+</td><td><div >15</div>
+</td><td><div >13</div>
+</td><td><div >0D</div>
+</td><td><div >CR (carriage return)</div>
+</td><td><div >回车键</div>
+</td></tr><tr><td><div >0000 1110</div>
+</td><td><div >16</div>
+</td><td><div >14</div>
+</td><td><div >0E</div>
+</td><td><div >SO (shift out)</div>
+</td><td><div >不用切换</div>
+</td></tr><tr><td><div >0000 1111</div>
+</td><td><div >17</div>
+</td><td><div >15</div>
+</td><td><div >0F</div>
+</td><td><div >SI (shift in)</div>
+</td><td><div >启用切换</div>
+</td></tr><tr><td><div >0001 0000</div>
+</td><td><div >20</div>
+</td><td><div >16</div>
+</td><td><div >10</div>
+</td><td><div >DLE (data link escape)</div>
+</td><td><div >数据链路转义</div>
+</td></tr><tr><td><div >0001 0001</div>
+</td><td><div >21</div>
+</td><td><div >17</div>
+</td><td><div >11</div>
+</td><td><div >DC1 (device control 1)</div>
+</td><td><div >设备控制1</div>
+</td></tr><tr><td><div >0001 0010</div>
+</td><td><div >22</div>
+</td><td><div >18</div>
+</td><td><div >12</div>
+</td><td><div >DC2 (device control 2)</div>
+</td><td><div >设备控制2</div>
+</td></tr><tr><td><div >0001 0011</div>
+</td><td><div >23</div>
+</td><td><div >19</div>
+</td><td><div >13</div>
+</td><td><div >DC3 (device control 3)</div>
+</td><td><div >设备控制3</div>
+</td></tr><tr><td><div >0001 0100</div>
+</td><td><div >24</div>
+</td><td><div >20</div>
+</td><td><div >14</div>
+</td><td><div >DC4 (device control 4)</div>
+</td><td><div >设备控制4</div>
+</td></tr><tr><td><div >0001 0101</div>
+</td><td><div >25</div>
+</td><td><div >21</div>
+</td><td><div >15</div>
+</td><td><div >NAK (negative acknowledge)</div>
+</td><td><div >拒绝接收</div>
+</td></tr><tr><td><div >0001 0110</div>
+</td><td><div >26</div>
+</td><td><div >22</div>
+</td><td><div >16</div>
+</td><td><div >SYN (synchronous idle)</div>
+</td><td><div >同步空闲</div>
+</td></tr><tr><td><div >0001 0111</div>
+</td><td><div >27</div>
+</td><td><div >23</div>
+</td><td><div >17</div>
+</td><td><div >ETB (end of trans. block)</div>
+</td><td><div >结束传输块</div>
+</td></tr><tr><td><div >0001 1000</div>
+</td><td><div >30</div>
+</td><td><div >24</div>
+</td><td><div >18</div>
+</td><td><div >CAN (cancel)</div>
+</td><td><div >取消</div>
+</td></tr><tr><td><div >0001 1001</div>
+</td><td><div >31</div>
+</td><td><div >25</div>
+</td><td><div >19</div>
+</td><td><div >EM (end of medium)</div>
+</td><td><div >媒介结束</div>
+</td></tr><tr><td><div >0001 1010</div>
+</td><td><div >32</div>
+</td><td><div >26</div>
+</td><td><div >1A</div>
+</td><td><div >SUB (substitute)</div>
+</td><td><div >代替</div>
+</td></tr><tr><td><div >0001 1011</div>
+</td><td><div >33</div>
+</td><td><div >27</div>
+</td><td><div >1B</div>
+</td><td><div >ESC (escape)</div>
+</td><td><div >换码(溢出)</div>
+</td></tr><tr><td><div >0001 1100</div>
+</td><td><div >34</div>
+</td><td><div >28</div>
+</td><td><div >1C</div>
+</td><td><div >FS (file separator)</div>
+</td><td><div >文件分隔符</div>
+</td></tr><tr><td><div >0001 1101</div>
+</td><td><div >35</div>
+</td><td><div >29</div>
+</td><td><div >1D</div>
+</td><td><div >GS (group separator)</div>
+</td><td><div >分组符</div>
+</td></tr><tr><td><div >0001 1110</div>
+</td><td><div >36</div>
+</td><td><div >30</div>
+</td><td><div >1E</div>
+</td><td><div >RS (record separator)</div>
+</td><td><div >记录分隔符</div>
+</td></tr><tr><td><div >0001 1111</div>
+</td><td><div >37</div>
+</td><td><div >31</div>
+</td><td><div >1F</div>
+</td><td><div >US (unit separator)</div>
+</td><td><div >单元分隔符</div>
+</td></tr><tr><td><div >0010 0000</div>
+</td><td><div >40</div>
+</td><td><div >32</div>
+</td><td><div >20</div>
+</td><td><div >(space)</div>
+</td><td><div >空格</div>
+</td></tr><tr><td><div >0010 0001</div>
+</td><td><div >41</div>
+</td><td><div >33</div>
+</td><td><div >21</div>
+</td><td><div >!</div>
+</td><td>叹号</td></tr><tr><td><div >0010 0010</div>
+</td><td><div >42</div>
+</td><td><div >34</div>
+</td><td><div >22</div>
+</td><td><div >"</div>
+</td><td>双引号</td></tr><tr><td><div >0010 0011</div>
+</td><td><div >43</div>
+</td><td><div >35</div>
+</td><td><div >23</div>
+</td><td><div >#</div>
+</td><td>井号</td></tr><tr><td><div >0010 0100</div>
+</td><td><div >44</div>
+</td><td><div >36</div>
+</td><td><div >24</div>
+</td><td><div >$</div>
+</td><td>美元符</td></tr><tr><td><div >0010 0101</div>
+</td><td><div >45</div>
+</td><td><div >37</div>
+</td><td><div >25</div>
+</td><td><div >%</div>
+</td><td>百分号</td></tr><tr><td><div >0010 0110</div>
+</td><td><div >46</div>
+</td><td><div >38</div>
+</td><td><div >26</div>
+</td><td><div >&amp;</div>
+</td><td>和号</td></tr><tr><td><div >0010 0111</div>
+</td><td><div >47</div>
+</td><td><div >39</div>
+</td><td><div >27</div>
+</td><td><div >'</div>
+</td><td>闭单引号</td></tr><tr><td><div >0010 1000</div>
+</td><td><div >50</div>
+</td><td><div >40</div>
+</td><td><div >28</div>
+</td><td><div >(</div>
+</td><td><div >开括号</div>
+</td></tr><tr><td><div >0010 1001</div>
+</td><td><div >51</div>
+</td><td><div >41</div>
+</td><td><div >29</div>
+</td><td><div >)</div>
+</td><td><div >闭括号</div>
+</td></tr><tr><td><div >0010 1010</div>
+</td><td><div >52</div>
+</td><td><div >42</div>
+</td><td><div >2A</div>
+</td><td><div >*</div>
+</td><td>星号</td></tr><tr><td><div >0010 1011</div>
+</td><td><div >53</div>
+</td><td><div >43</div>
+</td><td><div >2B</div>
+</td><td><div >+</div>
+</td><td>加号</td></tr><tr><td><div >0010 1100</div>
+</td><td><div >54</div>
+</td><td><div >44</div>
+</td><td><div >2C</div>
+</td><td><div >,</div>
+</td><td>逗号</td></tr><tr><td><div >0010 1101</div>
+</td><td><div >55</div>
+</td><td><div >45</div>
+</td><td><div >2D</div>
+</td><td><div >-</div>
+</td><td>减号/破折号</td></tr><tr><td><div >0010 1110</div>
+</td><td><div >56</div>
+</td><td><div >46</div>
+</td><td><div >2E</div>
+</td><td><div >.</div>
+</td><td>句号</td></tr><tr><td><div >00101111</div>
+</td><td><div >57</div>
+</td><td><div >47</div>
+</td><td><div >2F</div>
+</td><td><div >/</div>
+</td><td>斜杠</td></tr><tr><td><div >00110000</div>
+</td><td><div >60</div>
+</td><td><div >48</div>
+</td><td><div >30</div>
+</td><td><div >0</div>
+</td><td>数字0</td></tr><tr><td><div >00110001</div>
+</td><td><div >61</div>
+</td><td><div >49</div>
+</td><td><div >31</div>
+</td><td><div >1</div>
+</td><td>数字1</td></tr><tr><td><div >00110010</div>
+</td><td><div >62</div>
+</td><td><div >50</div>
+</td><td><div >32</div>
+</td><td><div >2</div>
+</td><td>数字2</td></tr><tr><td><div >00110011</div>
+</td><td><div >63</div>
+</td><td><div >51</div>
+</td><td><div >33</div>
+</td><td><div >3</div>
+</td><td>数字3</td></tr><tr><td><div >00110100</div>
+</td><td><div >64</div>
+</td><td><div >52</div>
+</td><td><div >34</div>
+</td><td><div >4</div>
+</td><td>数字4</td></tr><tr><td><div >00110101</div>
+</td><td><div >65</div>
+</td><td><div >53</div>
+</td><td><div >35</div>
+</td><td><div >5</div>
+</td><td>数字5</td></tr><tr><td><div >00110110</div>
+</td><td><div >66</div>
+</td><td><div >54</div>
+</td><td><div >36</div>
+</td><td><div >6</div>
+</td><td>数字6</td></tr><tr><td><div >00110111</div>
+</td><td><div >67</div>
+</td><td><div >55</div>
+</td><td><div >37</div>
+</td><td><div >7</div>
+</td><td>数字7</td></tr><tr><td><div >00111000</div>
+</td><td><div >70</div>
+</td><td><div >56</div>
+</td><td><div >38</div>
+</td><td><div >8</div>
+</td><td>数字8</td></tr><tr><td><div >00111001</div>
+</td><td><div >71</div>
+</td><td><div >57</div>
+</td><td><div >39</div>
+</td><td><div >9</div>
+</td><td>数字9</td></tr><tr><td><div >00111010</div>
+</td><td><div >72</div>
+</td><td><div >58</div>
+</td><td><div >3A</div>
+</td><td><div >:</div>
+</td><td>冒号</td></tr><tr><td><div >00111011</div>
+</td><td><div >73</div>
+</td><td><div >59</div>
+</td><td><div >3B</div>
+</td><td><div >;</div>
+</td><td>分号</td></tr><tr><td><div >00111100</div>
+</td><td><div >74</div>
+</td><td><div >60</div>
+</td><td><div >3C</div>
+</td><td><div >&lt;</div>
+</td><td>小于</td></tr><tr><td><div >00111101</div>
+</td><td><div >75</div>
+</td><td><div >61</div>
+</td><td><div >3D</div>
+</td><td><div >=</div>
+</td><td>等号</td></tr><tr><td><div >00111110</div>
+</td><td><div >76</div>
+</td><td><div >62</div>
+</td><td><div >3E</div>
+</td><td><div >&gt;</div>
+</td><td>大于</td></tr><tr><td><div >00111111</div>
+</td><td><div >77</div>
+</td><td><div >63</div>
+</td><td><div >3F</div>
+</td><td><div >?</div>
+</td><td>问号</td></tr><tr><td><div >01000000</div>
+</td><td><div >100</div>
+</td><td><div >64</div>
+</td><td><div >40</div>
+</td><td><div >@</div>
+</td><td>电子邮件符号</td></tr><tr><td><div >01000001</div>
+</td><td><div >101</div>
+</td><td><div >65</div>
+</td><td><div >41</div>
+</td><td><div >A</div>
+</td><td>大写字母A　</td></tr><tr><td><div >01000010</div>
+</td><td><div >102</div>
+</td><td><div >66</div>
+</td><td><div >42</div>
+</td><td><div >B</div>
+</td><td>大写字母B</td></tr><tr><td><div >01000011</div>
+</td><td><div >103</div>
+</td><td><div >67</div>
+</td><td><div >43</div>
+</td><td><div >C</div>
+</td><td>大写字母C</td></tr><tr><td><div >01000100</div>
+</td><td><div >104</div>
+</td><td><div >68</div>
+</td><td><div >44</div>
+</td><td><div >D</div>
+</td><td>大写字母D</td></tr><tr><td><div >01000101</div>
+</td><td><div >105</div>
+</td><td><div >69</div>
+</td><td><div >45</div>
+</td><td><div >E</div>
+</td><td>大写字母E</td></tr><tr><td><div >01000110</div>
+</td><td><div >106</div>
+</td><td><div >70</div>
+</td><td><div >46</div>
+</td><td><div >F</div>
+</td><td>大写字母F</td></tr><tr><td><div >01000111</div>
+</td><td><div >107</div>
+</td><td><div >71</div>
+</td><td><div >47</div>
+</td><td><div >G</div>
+</td><td>大写字母G</td></tr><tr><td><div >01001000</div>
+</td><td><div >110</div>
+</td><td><div >72</div>
+</td><td><div >48</div>
+</td><td><div >H</div>
+</td><td>大写字母H</td></tr><tr><td><div >01001001</div>
+</td><td><div >111</div>
+</td><td><div >73</div>
+</td><td><div >49</div>
+</td><td><div >I</div>
+</td><td>大写字母I</td></tr><tr><td><div >01001010</div>
+</td><td><div >112</div>
+</td><td><div >74</div>
+</td><td><div >4A</div>
+</td><td><div >J</div>
+</td><td>大写字母J</td></tr><tr><td><div >01001011</div>
+</td><td><div >113</div>
+</td><td><div >75</div>
+</td><td><div >4B</div>
+</td><td><div >K</div>
+</td><td>大写字母K</td></tr><tr><td><div >01001100</div>
+</td><td><div >114</div>
+</td><td><div >76</div>
+</td><td><div >4C</div>
+</td><td><div >L</div>
+</td><td>大写字母L</td></tr><tr><td><div >01001101</div>
+</td><td><div >115</div>
+</td><td><div >77</div>
+</td><td><div >4D</div>
+</td><td><div >M</div>
+</td><td>大写字母M</td></tr><tr><td><div >01001110</div>
+</td><td><div >116</div>
+</td><td><div >78</div>
+</td><td><div >4E</div>
+</td><td><div >N</div>
+</td><td>大写字母N</td></tr><tr><td><div >01001111</div>
+</td><td><div >117</div>
+</td><td><div >79</div>
+</td><td><div >4F</div>
+</td><td><div >O</div>
+</td><td>大写字母O</td></tr><tr><td><div >01010000</div>
+</td><td><div >120</div>
+</td><td><div >80</div>
+</td><td><div >50</div>
+</td><td><div >P</div>
+</td><td>大写字母P</td></tr><tr><td><div >01010001</div>
+</td><td><div >121</div>
+</td><td><div >81</div>
+</td><td><div >51</div>
+</td><td><div >Q</div>
+</td><td>大写字母Q</td></tr><tr><td><div >01010010</div>
+</td><td><div >122</div>
+</td><td><div >82</div>
+</td><td><div >52</div>
+</td><td><div >R</div>
+</td><td>大写字母R</td></tr><tr><td><div >01010011</div>
+</td><td><div >123</div>
+</td><td><div >83</div>
+</td><td><div >53</div>
+</td><td><div >S</div>
+</td><td>大写字母S</td></tr><tr><td><div >01010100</div>
+</td><td><div >124</div>
+</td><td><div >84</div>
+</td><td><div >54</div>
+</td><td><div >T</div>
+</td><td>大写字母T</td></tr><tr><td><div >01010101</div>
+</td><td><div >125</div>
+</td><td><div >85</div>
+</td><td><div >55</div>
+</td><td><div >U</div>
+</td><td>大写字母U</td></tr><tr><td><div >01010110</div>
+</td><td><div >126</div>
+</td><td><div >86</div>
+</td><td><div >56</div>
+</td><td><div >V</div>
+</td><td>大写字母V</td></tr><tr><td><div >01010111</div>
+</td><td><div >127</div>
+</td><td><div >87</div>
+</td><td><div >57</div>
+</td><td><div >W</div>
+</td><td>大写字母W</td></tr><tr><td><div >01011000</div>
+</td><td><div >130</div>
+</td><td><div >88</div>
+</td><td><div >58</div>
+</td><td><div >X</div>
+</td><td>大写字母X</td></tr><tr><td><div >01011001</div>
+</td><td><div >131</div>
+</td><td><div >89</div>
+</td><td><div >59</div>
+</td><td><div >Y</div>
+</td><td>大写字母Y</td></tr><tr><td><div >01011010</div>
+</td><td><div >132</div>
+</td><td><div >90</div>
+</td><td><div >5A</div>
+</td><td><div >Z</div>
+</td><td>大写字母Z</td></tr><tr><td><div >01011011</div>
+</td><td><div >133</div>
+</td><td><div >91</div>
+</td><td><div >5B</div>
+</td><td><div >[</div>
+</td><td>开方括号</td></tr><tr><td><div >01011100</div>
+</td><td><div >134</div>
+</td><td><div >92</div>
+</td><td><div >5C</div>
+</td><td><div >\</div>
+</td><td>反斜杠</td></tr><tr><td><div >01011101</div>
+</td><td><div >135</div>
+</td><td><div >93</div>
+</td><td><div >5D</div>
+</td><td><div >]</div>
+</td><td>闭方括号</td></tr><tr><td><div >01011110</div>
+</td><td><div >136</div>
+</td><td><div >94</div>
+</td><td><div >5E</div>
+</td><td><div >^</div>
+</td><td>脱字符</td></tr><tr><td><div >01011111</div>
+</td><td><div >137</div>
+</td><td><div >95</div>
+</td><td><div >5F</div>
+</td><td><div >_</div>
+</td><td>下划线</td></tr><tr><td><div >01100000</div>
+</td><td><div >140</div>
+</td><td><div >96</div>
+</td><td><div >60</div>
+</td><td><div >`</div>
+</td><td>开单引号</td></tr><tr><td><div >01100001</div>
+</td><td><div >141</div>
+</td><td><div >97</div>
+</td><td><div >61</div>
+</td><td><div >a</div>
+</td><td>小写字母a　</td></tr><tr><td><div >01100010</div>
+</td><td><div >142</div>
+</td><td><div >98</div>
+</td><td><div >62</div>
+</td><td><div >b</div>
+</td><td>小写字母b</td></tr><tr><td><div >01100011</div>
+</td><td><div >143</div>
+</td><td><div >99</div>
+</td><td><div >63</div>
+</td><td><div >c</div>
+</td><td>小写字母c</td></tr><tr><td><div >01100100</div>
+</td><td><div >144</div>
+</td><td><div >100</div>
+</td><td><div >64</div>
+</td><td><div >d</div>
+</td><td>小写字母d</td></tr><tr><td><div >01100101</div>
+</td><td><div >145</div>
+</td><td><div >101</div>
+</td><td><div >65</div>
+</td><td><div >e</div>
+</td><td>小写字母e</td></tr><tr><td><div >01100110</div>
+</td><td><div >146</div>
+</td><td><div >102</div>
+</td><td><div >66</div>
+</td><td><div >f</div>
+</td><td>小写字母f</td></tr><tr><td><div >01100111</div>
+</td><td><div >147</div>
+</td><td><div >103</div>
+</td><td><div >67</div>
+</td><td><div >g</div>
+</td><td>小写字母g</td></tr><tr><td><div >01101000</div>
+</td><td><div >150</div>
+</td><td><div >104</div>
+</td><td><div >68</div>
+</td><td><div >h</div>
+</td><td>小写字母h</td></tr><tr><td><div >01101001</div>
+</td><td><div >151</div>
+</td><td><div >105</div>
+</td><td><div >69</div>
+</td><td><div >i</div>
+</td><td>小写字母i</td></tr><tr><td><div >01101010</div>
+</td><td><div >152</div>
+</td><td><div >106</div>
+</td><td><div >6A</div>
+</td><td><div >j</div>
+</td><td>小写字母j</td></tr><tr><td><div >01101011</div>
+</td><td><div >153</div>
+</td><td><div >107</div>
+</td><td><div >6B</div>
+</td><td><div >k</div>
+</td><td>小写字母k</td></tr><tr><td><div >01101100</div>
+</td><td><div >154</div>
+</td><td><div >108</div>
+</td><td><div >6C</div>
+</td><td><div >l</div>
+</td><td>小写字母l</td></tr><tr><td><div >01101101</div>
+</td><td><div >155</div>
+</td><td><div >109</div>
+</td><td><div >6D</div>
+</td><td><div >m</div>
+</td><td>小写字母m</td></tr><tr><td><div >01101110</div>
+</td><td><div >156</div>
+</td><td><div >110</div>
+</td><td><div >6E</div>
+</td><td><div >n</div>
+</td><td>小写字母n</td></tr><tr><td><div >01101111</div>
+</td><td><div >157</div>
+</td><td><div >111</div>
+</td><td><div >6F</div>
+</td><td><div >o</div>
+</td><td>小写字母o</td></tr><tr><td><div >01110000</div>
+</td><td><div >160</div>
+</td><td><div >112</div>
+</td><td><div >70</div>
+</td><td><div >p</div>
+</td><td>小写字母p</td></tr><tr><td><div >01110001</div>
+</td><td><div >161</div>
+</td><td><div >113</div>
+</td><td><div >71</div>
+</td><td><div >q</div>
+</td><td>小写字母q</td></tr><tr><td><div >01110010</div>
+</td><td><div >162</div>
+</td><td><div >114</div>
+</td><td><div >72</div>
+</td><td><div >r</div>
+</td><td>小写字母r</td></tr><tr><td><div >01110011</div>
+</td><td><div >163</div>
+</td><td><div >115</div>
+</td><td><div >73</div>
+</td><td><div >s</div>
+</td><td>小写字母s</td></tr><tr><td><div >01110100</div>
+</td><td><div >164</div>
+</td><td><div >116</div>
+</td><td><div >74</div>
+</td><td><div >t</div>
+</td><td>小写字母t</td></tr><tr><td><div >01110101</div>
+</td><td><div >165</div>
+</td><td><div >117</div>
+</td><td><div >75</div>
+</td><td><div >u</div>
+</td><td>小写字母u</td></tr><tr><td><div >01110110</div>
+</td><td><div >166</div>
+</td><td><div >118</div>
+</td><td><div >76</div>
+</td><td><div >v</div>
+</td><td>小写字母v</td></tr><tr><td><div >01110111</div>
+</td><td><div >167</div>
+</td><td><div >119</div>
+</td><td><div >77</div>
+</td><td><div >w</div>
+</td><td>小写字母w</td></tr><tr><td><div >01111000</div>
+</td><td><div >170</div>
+</td><td><div >120</div>
+</td><td><div >78</div>
+</td><td><div >x</div>
+</td><td>小写字母x</td></tr><tr><td><div >01111001</div>
+</td><td><div >171</div>
+</td><td><div >121</div>
+</td><td><div >79</div>
+</td><td><div >y</div>
+</td><td>小写字母y</td></tr><tr><td><div >01111010</div>
+</td><td><div >172</div>
+</td><td><div >122</div>
+</td><td><div >7A</div>
+</td><td><div >z</div>
+</td><td>小写字母z</td></tr><tr><td><div >01111011</div>
+</td><td><div >173</div>
+</td><td><div >123</div>
+</td><td><div >7B</div>
+</td><td><div >{</div>
+</td><td>开花括号</td></tr><tr><td><div >01111100</div>
+</td><td><div >174</div>
+</td><td><div >124</div>
+</td><td><div >7C</div>
+</td><td><div >|</div>
+</td><td>垂线</td></tr><tr><td><div >01111101</div>
+</td><td><div >175</div>
+</td><td><div >125</div>
+</td><td><div >7D</div>
+</td><td><div >}</div>
+</td><td>闭花括号</td></tr><tr><td><div >01111110</div>
+</td><td><div >176</div>
+</td><td><div >126</div>
+</td><td><div >7E</div>
+</td><td><div >~</div>
+</td><td>波浪号</td></tr><tr><td><div >01111111</div>
+</td><td><div >177</div>
+</td><td><div >127</div>
+</td><td><div >7F</div>
+</td><td><div >DEL (delete)</div>
+</td><td><div >删除</div>
+</td></tr></tbody></table>
+
+<h4>大小规则</h4>
+<p>
+1）数字0~9比字母要小。如"7"<"F"；
+2）数字0比数字9要小，并按0到9顺序递增。如"3"<"8"
+3）字母A比字母Z要小，并按A到Z顺序递增。如"A"<"Z"
+4）同个字母的大写字母比小写字母要小。如"A"<"a"。
+记住几个常见字母的ASCII码大小：
+“换行LF”为0x0A；“回车CR”为0x0D；空格为0x20；"0"为0x30； "A"为0x41；"a"为0x61。
+另外还有128-255的ASCII字符。
+查询ASCII技巧，方便查询ASCII码对应的字符：新建一个文本文档，按住ALT+要查询的码值（注意，这里是十进制），松开即可显示出对应字符。例如：按住ALT+97,则会显示出'a'。
+</p>
+
+
+<div class="para-title level-2" label-module="para-title">
+<h2 class="title-text"><span class="title-prefix">ASCII</span>虚拟ASCII值</h2>
+</div>
+<div >ESC键VK_ESCAPE (27)</div>
+<div >回车键：VK_RETURN (13)</div>
+<div >TAB键：VK_TAB (9)</div>
+<div >Caps Lock键：VK_CAPITAL (20)</div>
+<div >Shift键：VK_SHIFT (16)</div>
+<div >Ctrl键：VK_CONTROL (17)</div>
+<div >Alt键：VK_MENU (18)</div>
+<div >空格键：VK_SPACE (32)</div>
+<div >退格键：VK_BACK (8)</div>
+<div >左徽标键：VK_LWIN (91)</div>
+<div >右徽标键：VK_RWIN (92)</div>
+<div >鼠标右键快捷键：VK_APPS (93)</div>
+<div >Insert键：VK_INSERT (45)</div>
+<div >Home键：VK_HOME (36)</div>
+<div >Page Up：VK_PRIOR (33)</div>
+<div >PageDown：VK_NEXT (34)</div>
+<div >End键：VK_END (35)</div>
+<div >Delete键：VK_DELETE (46)</div>
+<div >方向键(←)：VK_LEFT (37)</div>
+<div >方向键(↑)：VK_UP (38)</div>
+<div >方向键(→)：VK_RIGHT (39)</div>
+<div >方向键(↓)：VK_DOWN (40)</div>
+<div >F1键：VK_F1 (112)</div>
+<div >F2键：VK_F2 (113)</div>
+<div >F3键：VK_F3 (114)</div>
+<div >F4键：VK_F4 (115)</div>
+<div >F5键：VK_F5 (116)</div>
+<div >F6键：VK_F6 (117)</div>
+<div >F7键：VK_F7 (118)</div>
+<div >F8键：VK_F8 (119)</div>
+<div >F9键：VK_F9 (120)</div>
+<div >F10键：VK_F10 (121)</div>
+<div >F11键：VK_F11 (122)</div>
+<div >F12键：VK_F12 (123)</div>
+<div >Num Lock键：VK_NUMLOCK (144)</div>
+<div >小键盘0：VK_NUMPAD0 (96)</div>
+<div >小键盘1：VK_NUMPAD1 (97)</div>
+<div >小键盘2：VK_NUMPAD2 (98)</div>
+<div >小键盘3：VK_NUMPAD3 (99)</div>
+<div >小键盘4：VK_NUMPAD4 (100)</div>
+<div >小键盘5：VK_NUMPAD5 (101)</div>
+<div >小键盘6：VK_NUMPAD6 (102)</div>
+<div >小键盘7：VK_NUMPAD7 (103)</div>
+<div >小键盘8：VK_NUMPAD8 (104)</div>
+<div >小键盘9：VK_NUMPAD9 (105)</div>
+<div >小键盘。：VK_DECIMAL (110)</div>
+<div >小键盘*：VK_MULTIPLY (106)</div>
+<div >小键盘+：VK_ADD (107)</div>
+<div >小键盘-：VK_SUBTRACT (109)</div>
+<div >小键盘/：VK_DIVIDE (111)</div>
+<div ><a target="_blank" href="/item/Pause%20Break%E9%94%AE">Pause Break键</a>：VK_PAUSE (19)</div>
+<div >Scroll Lock键：VK_SCROLL (145)</div>
+</div>
+</body>
+</html>

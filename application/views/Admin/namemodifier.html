@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>批量修改文件名称</title>
+
+<style type="text/css">
+input[type="text"]  
+    {  
+        background-color:#6F9;
+    }  
+	
+.a1 {
+	color: #F00;
+	}
+</style>
+
+
+
+</head>
+<body>
+程序功能----本程序将对同一目录下的所有文件名进行相同的批量操作。对同一目录下面的所有文件（不含文件夹）进行操作，如，在所有文件名前加上相同的前缀，去掉相同的前缀，加上相同的后缀，去掉相同的后缀。
+使用方法：<br>
+1.填写路径指定文件夹位置，将可以对该文件夹内的所有文件的文件名进行操作.<br>
+2.增加或删除框内填入相应内容.<br>
+3.扩展名如果不填写，增加前缀或后缀操作将针对所有文件名进行操作，如果填写了扩展名则只对该类型的文件进行操作。<br>
+补充说明：删除前缀或后缀只对文件前缀或后缀名能匹配到的文件进行操作，不会对其它文件造成任何影响。<br>
+<font color="red">待改进：<br>
+1.选择目录</font>
+<pre>
+	
+</pre>
+<form id="form" action="<?php echo site_url().'/admin/progs/namemodifier'; ?>" method="post" enctype="multipart/form-data" >
+		<fieldset>
+			<legend>文件名批量修改程序：</legend>
+			<p><label for="path">填入文件夹路径：</label>
+			  <input type="text" name="path" id="path" value="<?php echo $_POST['path']?>"/>
+			  如：D:\project\foder，最好是复制粘贴以保证操作性。</p>
+
+		 	<!--  <p><label for="path">填入文件夹路径：</label>
+			  <input type="file" name="path" id="path" value="<?php echo $_POST['path']?>"/>
+			  如：D:\project\foder，最好是复制粘贴以保证操作性。</p> -->
+
+            
+<label for="da" >删除相同前缀 </label>
+<input type="text" name="da" id='da' value="<?php if($_POST['da']!=''){echo $_POST['da'];}?>"/>
+如：<span class="a1"><s>AAAA</s></span>-name1.txt
+</li>
+<br />
+				
+<label for="aa" >增加相同前缀 </label>
+<input type="text" name="aa" id="aa" border="2" value="<?php if($_POST['aa']!=''){echo $_POST['aa'];}?>"/></li>
+<label for="label">如：<span class="a1">AAAA</span>-name1.txt
+</li>
+<br />
+			      
+                  
+                  
+                  
+<label for="db">删除相同后缀</label>
+<input type="text" name="db" id="db"  value="<?php if($_POST['db']!=''){echo $_POST['db'];}?>"/>
+<label for="label">如：name1-<span class="a1"><s>AAAA</s></span>.txt
+</li>
+<br />
+
+<label for="ab">增加相同后缀</label>
+<input type="text" name="ab" id="ab" value="<?php if($_POST['ab']!=''){echo $_POST['ab'];}?>"/>
+如：name1-<span class="a1">AAAA</span>.txt 
+</li>
+<br />
+
+
+
+<label for="m">删除文件名中间指定字符</label>
+		  <input type="text" name="m" id="m" value="<?php if($_POST['m']!=''){echo $_POST['m'];}?>" border="2" />
+			 
+                  <label for="label">如：name-<span class="a1"><s>AAAA</s></span>-bbb.txt
+                  
+
+</li>
+          </p>
+				  <p><label for="ext">筛选仅对扩展名为</label>
+				    <input type="text" name="ext" id="ext" value="<?php if($_POST['ext']!=''){echo $_POST['ext'];}?>" />
+				    的文执行！不需要输入点.如上面的求示例扩展名为txt</p>
+		    <p>&nbsp;</p>
+			
+          <p>
+	          <label for="">&nbsp;&nbsp;</label>
+	          
+	          <input type="submit" name="btn" value="执行操作"/>
+	          
+	          <input type="hidden" name="act" value="submit" /></p>
+
+		</fieldset>
+  <div></div>
+  <div></div>
+  
+    <p>&nbsp;</p>
+</form>
+
+<form action="#" method="post">
+<fieldset>
+  	<legend>创建和删除目录</legend>
+  	<p>选择文件测试<input type="file"></p>
+  	<p><input type="file" webkitdirectory directory multiple/></p>
+  	<p><input type="file" webkitdirectory directory /></p>
+  	<p><input type="button"  value="选择路径" onclick="getPath();"/>JS选择测试 </p>
+  	<p></p>
+  	<div>
+  	</div>
+
+  	<p><label for="mdir">输入路径创建文件夹</label>
+				    <input type="text" name="mdir" id="mdir" value="<?php if($_POST['mdir']!=''){echo $_POST['mdir'];}?>" />
+				    <input type="submit" name="submit" value="创建目录"/>
+				    <span>例如："D:/a/b/c/d/e/f/g/h/j/k/l"</span>
+				    </p>
+  	<p><label for="ddir">输入路径删除文件夹</label>
+			  		<inpu type="hidden" name="flag" id="flag"></inpu>
+				    <input type="text" name="ddir" id="ddir" />
+				    <input type="submit" name="dsubmit" onclick="disp_confirm()" value="删除目录"/>
+				    <span>例如："D:/a/b/c/d/e/"</span>
+				    </p>
+	
+
+  </fieldset>
+  </form>
+<span class="">
+<?php
+if($resultinfo != ''){
+	echo $resultinfo;
+}
+
+
+/*********递归练习,创建目录函数***********/
+/**
+ * @param $dir 文件路径目录
+ */
+function folderMaker($dir){   
+    if(file_exists($dir)){  
+        return ;  
+    }  
+    if(!is_dir(dirname($dir))){            
+                folderMaker(dirname($dir));  
+    }  
+        mkdir($dir); 
+}  
+
+
+/*********递归练习,删除目录函数***********/  
+/**
+ * @param $dir 文件路径目录
+ * @param $lev=1,目录层数;
+ * @param $force,是否强制删除，如果为1表示强制删除，为0时若文件目录被打开则不能删除;
+ */
+function folderKiller($dir,$lev=1,$force=0){    
+    if(!file_exists($dir)){  
+        // echo $dir.'目录不存在<br>';  //先判断是否存在  
+        return ;   
+    }  
+    if(!is_dir($dir)){ //再判断是否为文件夹，写两个if（!）比写ifelse 嵌套看起来简洁多了    
+        // echo '不是文件夹';  
+        return ;  
+    }    
+    $fh=opendir($dir);  //来到这里说明已经验证过存在并且是文件夹  
+		    while(($dirfile = readdir($fh))!==false){   
+		        $files = $dir . '/' . $dirfile; //以后的判断都是这个而不是$dirfile   
+		        if($dirfile == '.' || $dirfile == '..'){  
+		            continue; //如果是.和..则略过    
+		        }    
+		        if(is_file($files)){  //判断是否为文件，是则删除文件
+		            unlink($files);  //unlink删除文件
+		            echo '删除 ' . str_repeat('-',$lev) . $files . '文件 成功<br>';  
+		        }    
+		        if(is_dir($files)){  //判断是否为文件夹，是则调用递归  
+		            folderKiller($files,$lev+1);		               
+		        }  
+		    } 
+		    closedir($fh);//删除前 先关闭资源  		   
+	    if(@rmdir($dir)){
+	    	 echo '删除 ' . str_repeat('--',$lev) . $dir . '目录 成功<br>';
+	    }
+	    if($force=1){
+	    	folderKiller($dir); 
+	    } 	    
+    
+}  
+
+ 
+  
+// 如果有值POST过来则创建
+
+if(($_POST['mdir']) && (isset($_POST['submit']))){
+    $mdirname = $_POST['mdir'];
+    echo '<script type="text/javascript">alert("创建目录'.$mdirname.'成功！");</script>';
+    folderMaker($mdirname); 
+}
+
+// 如果有值POST过来则删除
+if(($_POST['ddir']) && (isset($_POST['dsubmit']))){
+    $ddirname = $_POST['ddir'];
+    echo $ddirname;
+
+}
+
+
+
+?>
+</span>
+</body>
+<script type="text/javascript">
+function disp_confirm(){
+  // ddir = '<?php echo $ddirname; ?>'; 
+  // console.log('ddir');
+  var dname,ddir;
+      dname = document.getElementById("ddir");
+  	  ddir = dname.value;
+  	  // alert(ddir);
+  if(ddir!=''){
+  // alert (ddir);
+  // flag = getElementById('flag');
+  var r=confirm("JS确定要删除'."+ddir+".'目录吗？删除后不可恢复，请谨慎操作！？")
+  if (r==true)
+    {     
+    var Y='<?php echo folderKiller($ddirname);?>';
+    alert(Y);
+    }
+  else
+    {
+    alert ('放弃删除');
+    }
+	}else{
+	alert('请输出要删除的目录！');
+	}
+  }
+
+</script>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script src="<?=base_url();?>views/js/jquery.js" type="text/javascript"></script>
+<meta charset="UTF-8">
+<title>客户列表</title>
+<link rel="stylesheet" href="<?php echo base_url('Public/admin/css/pagelinks.css')?>">
+<script type="text/javascript" src="<?php echo base_url('Public/admin/js/jquery-3.1.1.min.js')?>"></script>
+<?php // echo base_url('Public/admin/css/login.css')?>
+<script src="<?=base_url();?>public/js/wl.js" type="text/javascript"></script>
+
+<!--formValidator插件相关-->
+<script src="<?=base_url();?>public/js/jquery.js" type="text/javascript"></script>
+<script src="<?=base_url();?>public/js/formValidatorRegex.js" type="text/javascript"></script>
+
+<script language="javascript" type="text/javascript" src="<?=base_url();?>public/js/formvalidator.js" charset="UTF-8"></script>
+
+<!--layer弹出层-->
+<script src="<?=base_url();?>public/layer/layer.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">  
+//全选全不选反选
+$(function(){
+	//alert("第一个测试8！！！");
+	  $('#ttt').click(function(){  
+				alert("第一个测试！！！");
+				  });
+  
+      $("#selectAll").click(function () {//全选  
+			$(":checkbox").prop("checked", true);  
+				});  
+      
+      $("#unSelect").click(function () {//全不选  
+             $(":checkbox").prop("checked",false);  
+                });  
+      $("#re").click(function(){ 
+   			 $(":checkbox").each(function(){  
+        $(this).prop("checked", !$(this).prop("checked"));  
+    });
+	allchk();
+});
+
+       $("#reverse").click(function () {//反选  
+                    $(":checkbox").each(function () {  
+                        $(this).attr("checked", !$(this).attr("checked"));  
+                    });  
+                });  
+            
+});  
+
+</script>  
+</head>
+
+<body>
+
+<form name="myform" id="myform" action="<?=site_url();?>/admin/progs/clientedit/<?=$v['client_code']?>" method="post" >
+<div class="table-list">
+    <table width="100%" border="1" bordercolor="#00CCFF" cellspacing="0">
+        <thead>
+            <tr>
+			 <th width="20">
+             
+<input type="checkbox" value="" id="chkAll" onclick="CheckAll(this.form)">
+          
+             </th>
+            <th>id</th>
+            <th>客户编号</th>
+			<th>国家</th>
+			<th>业务员</th>
+            <th>公司名</th>
+			<th>公司网站</th>
+            <th>公司产品及业务描述</th>
+            <th>录入时间</th>
+			<th>管理操作</th>
+            </tr>
+        </thead>
+<tbody>
+
+<?php 
+
+if(!empty($list)){ foreach ($list as $v){?>
+    <tr>
+		<td ><input class="inputcheckbox " name="id[]" value="<?=$v['id']?>" type="checkbox" /> </td>
+        <td ><input name="listorder[<?=$v['id']?>]" size="3" value="<?=$v['id']?>" class="input-text-c" type="text"></td>
+		<td ><?=$v['client_code']?></td>
+		<td ><?=$v['contry']?></td>
+        <td ><?=$v['sales']?></td>
+		<td ><a href="<?=site_url();?>/admin/progs/clientedit/<?=$v['client_code']?>" target="_blank"><?=$v['company']?></a></td>
+		<td ><a href="<?=$v['site']?>" target="_blank"><?=$v['site']?></a></td>
+		<td ><?=$v['des'] ?></td>
+		<td ><?=date('Y-m-d H:i:s',$v['regtime'])?></td>
+		<td >
+        
+                
+        <a href="<?=site_url();?>/admin/progs/clientedit/<?=$v['client_code']?>">【修改】</a> | <a onclick="return ConfirmDel();"  href="<?=site_url();?>/admin/progs/clientdel/<?=$v['client_code']?>" >【删除】</a></td>
+	</tr>
+
+ <?php }}else{?>
+				<tr>
+					<td colspan="8">暂无数据！
+			      <input type="hidden" name="pm" id="pm" value=" <?  $offset;?>  "></td>
+                    
+		</tr>	
+	<?php } ?> 
+    
+
+
+     </tbody>
+     </table>
+     <div class="btn">
+<!--    <input type="button" class="button" value="反选" id="chkAll" onclick="CheckAll(this.form)"/>-->
+
+         <input type="button" value="全选" class="btn" id="selectAll">  
+<input type="button" value="全不选" class="btn" id="unSelect">  
+<input type="button" value="反选" class="btn" id="re">  
+    	<input type="button" class="button" value="排序" onclick="myform.action='';myform.submit();"/>
+		<input type="button" class="button" value="删除多项" onclick="javascript:if(ConfirmDel()){myform.action='<?=site_url();?>/admin/progs/clientdelm/<?=$v['client_code']?>';myform.submit();}"/>
+    <table align="center"><tr><td>
+    	<div class="pagelist" id="pagelist">
+		<?php echo '&nbsp'.$links;//分页字符串?> 
+		</div>
+	</td></tr></table>
+</div>
+    
+
+</div>
+</form>
+</body>
+</html>

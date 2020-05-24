@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>primise</title>
+</head>
+<body>
+	<h3>primise的用法示例</h3>
+	<div>
+<h4>Promise的基本用法,<a href="https://www.imooc.com/article/23838">参考链接</a></h4>
+<div>
+<pre style="background: #ada">
+var _promise = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            var rand = Math.random();
+            if(rand<0.5){
+                resolve("resolve" + rand);
+            }else{
+                reject("reject" + rand);
+            }
+        },1000);
+
+    });`
+
+    /*运行结果:
+     *有两种情况：
+     *1)无事发生
+     *2)报错形如：d.js:7 Uncaught (in promise) reject0.9541820247347901
+     */
+</pre>
+</div>
+
+<h4>由上所示，Promise的构造函数接收一个函数作为参数，该函数接受两个额外的函数，resolve和reject，这两个函数分别代表将当前Promise置为fulfilled(解决)和rejected(拒绝)两个状态。Promise正是通过这两个状态来控制异步操作的结果。接下来我们将讨论Promise的用法，实际上Promise上的实例_promise是一个对象，不是一个函数。在声明的时候，Promise传递的参数函数会立即执行，因此Promise使用的正确姿势是在其外层再包裹一层函数。这是Promise的正常用法
+</h4>
+<div>
+	<pre style="background: #ada">
+var run = function(){
+        var _promise = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                var rand = Math.random();
+                if(rand<0.5){
+                    resolve("resolve" + rand);
+                }else{
+                    reject("reject" + rand);
+                }
+            },1000);
+        });
+        return _promise;
+    }
+    run();
+	</pre>
+</div>
+
+<h4>Promise的用处，实际上是在于多重异步操作相互依赖的情况下，对于逻辑流程的控制。Promise正是通过对两种状态的控制，以此来解决流程的控制。如果异步操作获得了我们想要的结果，那我们将调用resolve函数，在then的第一个作为参数的匿名函数中可以获取数据，如果我们得到了错误的结果，调用reject函数，在then函数的第二个作为参数的匿名函数中获取错误处理数据。 这样，一个次完整的Promise调用就结束了。对于Promise的then()方法，then总是会返回一个Promise实例，因此你可以一直调用then，形如run().then().then().then().then().then()..... 在一个then()方法调用异步处理成功的状态时，你既可以return一个确定的“值”，也可以再次返回一个Promise实例，当返回的是一个确切的值的时候，then会将这个确切的值传入一个默认的Promise实例，并且这个Promise实例会立即置为fulfilled状态，以供接下来的then方法里使用。
+
+</h4>
+<div>
+	<pre style="background: #ada">
+run().then(function(data){
+    //处理resolve的代码
+    cosnole.log("Promise被置为resolve",data);
+},function(data){
+    //处理reject的代码
+    cosnole.log("程序被置为了reject",data);
+})
+
+run().then(function(data){
+        console.log("第一次",data);
+        return data;
+    }).then(function(data){
+        console.log("第二次",data);
+        return data;
+    }).then(function(data){
+        console.log("第三次",data);
+        return data;
+    });
+    /* 异步处理成功的打印结果：
+        第一次 resolve0.49040459200760167d.js:18 
+        第二次 resolve0.49040459200760167d.js:21 
+        第三次 resolve0.49040459200760167
+        由此可知then方法可以无限调用下去。
+    */
+
+	</pre>
+</div>
+<h4>根据这个特性，我们就可以将相互依赖的多个异步逻辑，进行比较顺序的管理了。下面举一个拥有3个异步操作的例子，代码有些长。
+
+
+</h4>
+<div>
+	<pre style="background: #ada">
+//第一个异步任务
+    function run_a(){
+        return new Promise(function(resolve, reject){
+            //假设已经进行了异步操作，并且获得了数据
+            resolve("step1");
+        });
+    }
+    //第二个异步任务
+    function run_b(data_a){
+        return new Promise(function(resolve, reject){
+            //假设已经进行了异步操作，并且获得了数据
+            console.log(data_a);
+            resolve("step2");
+        });
+    }
+    //第三个异步任务
+    function run_c(data_b){
+        return new Promise(function(resolve, reject){
+            //假设已经进行了异步操作，并且获得了数据
+            console.log(data_b);
+            resolve("step3");
+        });
+    }
+
+    //连续调用
+    run_a().then(function(data){
+        return run_b(data);
+    }).then(function(data){
+        return run_c(data);
+    }).then(function(data){
+        console.log(data);
+    });
+
+    /*运行结果
+      step1
+      step2
+      step3
+    */
+
+
+
+	</pre>
+异步操作catch 拒绝及中断调用链,在调用链的末尾加上catch方法
+
+
+</h4>
+<div>
+	<pre style="background: #ada">
+//修改run_a的一步操作可能存在拒绝状态
+    function run_a(){
+        return new Promise(function(resolve, reject){
+            setTimeout(function(){
+                if(Math.random()>.5){
+                    resolve("step1");
+                }else{
+                    reject("error");
+                }
+            },1000);
+        });
+    }
+
+    //这样做不会中断
+    run_a().then(function(data){
+        return run_b(data);
+    },function(data){
+        //如果是这样处理rejected状态，并不会中断调用链
+        return data;
+    }).then(function(data){
+        return run_c(data);
+    }).then(function(data){
+        console.log(data);
+    });
+
+    //在调用链的末尾加上catch方法，当某个环节的Promise的异步处理出错时，将中断其后的调用，直接跳到最后的catch
+    run_a().then(function(data){
+        return run_b(data);
+    }).then(function(data){
+        return run_c(data);
+    }).then(function(data){
+        console.log(data);
+    }).catch(function(e){
+        //rejected的状态将直接跳到catch里，剩下的调用不会再继续
+        console.log(e);
+    });
+
+
+
+
+
+
+	</pre>
+</div>
+
+
+	</div>
+</body
+
+
+</html>

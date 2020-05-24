@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+	<title>jQuery 样式操作</title>
+<style type="text/css">
+	p{	background-color: lightblue;}
+	.bgred{
+		background-color: red;
+	}
+	.bggr{
+		background-color: lightgreen;
+	}
+	.cyellow{
+		color: yellow;
+	}
+#content{
+	position: absolute;
+	left: 100px;
+	top: 20px;
+	width: 400px;
+	height: 400px;
+	background: purple;
+}
+
+#c1{
+	position: relative;
+	left: 60px;
+	top: 20px;
+	width: 100px;
+	height: 100px;
+	background: lightblue;
+}
+
+</style>
+<body>
+jQuery样式操作
+<ul id='ul'>
+	<li class="current">PHP</li>
+	<li>Python</li>
+	<li>Ruby</li>
+</ul>
+<br>
+<div id='content'>
+<div id=c1 class="show">PHP......</div>
+<div>Python......</div>
+<div>Ruby......</div>
+</div>
+<p id='1st'>节点操作之P标签1<p>
+<p>节点操作之P标签2<p>
+<p>节点操作之P标签3 <strong>strong</strong><p>
+<span>标签span</span>
+<div>标签div</div>
+<em>标签em</em>
+<a href="#">克隆点击</a>
+<em>标签em</em>
+
+<script type="text/javascript">
+//添加样式
+$('p').first().addClass('p1st bgred cyellow');
+//删除样式
+$('p').first().removeClass('p1st');
+$('p').first().removeClass('p1st cyellow');
+//切换样式
+$('p').click(function(event) {
+   // $(this).toggleClass('bgred');//红原切换
+   // $(this).toggleClass('bgred bggr');//绿原切换
+   $(this).toggleClass('bggr bgred bggr ');//红原切换
+});
+
+//样式连接的写法
+$('ul').click(function(event) {
+   $(this).css('background-color','red').css('color','blue').css('border','12px solid green');
+});
+//样式用花括号写成数组的写法
+// $('p').css({
+// 	'background-color':'red',
+// 	'color':'blue',
+// 	'border':'2px solid green'
+// 	});
+
+//上面属性加了引号，下面属性不加引号的写法，把小横线取消后面单词首字大写
+$('p').css({
+	backgroundColor:'red',
+	color:'blue',
+	border:'2px solid lightgreen'
+	});
+
+//outerHeight()默认包含border,height包含padding,innerHeight在padding内,outerHeight(true))加上参数true得到最大外形（包含margin)
+$('ul').css('margin','15px').css('border','20px solid green').css('padding','30px');
+// alert('outerHeight+参数true='+$('ul').outerHeight(true));//包含margin=196
+// alert('outerHeight='+$('ul').outerHeight());//包含border=166，不计margin
+// alert('innerHeight='+$('ul').innerHeight());//包含padding=126，
+// alert('height='+$('ul').height());//padding最内部=66
+
+// var aa = $('#content').position();
+// alert('外面的position=='+aa.left);
+// var aaa=$('#content').offset();
+// alert('外面的offset'+aaa.left);
+// var bb = $('#c1').position();
+// alert('里面的position==relative=='+bb.left);
+// var bbb=$('#c1').offset();
+// alert('里面的offset==relative=='+bbb.left);
+
+
+alert($('p').text());
+//alert($('p').text('2222'));
+alert($('ul').text());
+alert($('ul').html());
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<title>jquery如何获取选择的文本</title>
+<style type="text/css">
+
+</style>
+
+</head> 
+<body>
+<p>jquery如何获取选择的文本</p>
+<form>
+Select text: <input type="text" value="Hello world!"
+onselect="alert('You have selected some of the text.')" />
+<br /><br />
+
+ <textarea name="textfield" cols="50" rows="6" >就是现在文本域里有一段文字，当你选种其中几个字后点击一个按钮或者链接会弹出一个对话框，对话框的信息就是你选中的文字 哪位老大能解决的呀?请多多帮忙!!!谢谢 </textarea> 
+<input type='button' value='选择字后点击我' onclick=alert('88')> 
+<input type='button' value='选择字后点击我看看' onclick=alert(document.selection.createRange().Text> </form>
+
+
+
+
+
+<script> 
+
+
+$('p').css('background','red')
+$(document).ready(function(){
+    alert('9999');
+    });
+
+
+function a(){
+    alert('AAAAAAAAAAA');
+}
+function b(){
+    alert('BBB');
+}
+
+
+
+ </script>
+   
+<br>
+<br>
+<br>            
+
+
+
+
+
+
+</body>
+</html>
+

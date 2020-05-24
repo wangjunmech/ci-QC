@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+
+
+
+
+<title>输入框组和下拉菜单以及栅格系统页面布局</title>
+
+<!-- 加载Bootstrap的层叠样式表 -->
+<link href="<?php echo base_url('Static/bootstrap-3.3.7-dist/css/bootstrap.min.css'); ?>" rel='stylesheet'>
+
+
+    <!-- Bootstrap -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!-- 加载Font Awesome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<script src="<?php echo base_url('Static/bootstrap-3.3.7-dist/js/bootstrap.js')?>"></script>
+  </head>
+  <body>
+
+  <div><p><h1 style="color:red">输入框组和下拉菜单以及栅格系统页面布局</h1></p></div>
+  <div >
+    <label class="col-sm-1 control-label">纯文本与Label标签在同一行</label>
+    <p id="e" class="form-control-static">P标签与Lable在同一行用静态控件</p>
+  </div>
+
+    <div>
+    <label class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">P标签与Lable在同一行用静态控件,email@example.com</p>
+    </div>
+  </div>
+
+<form class="form-inline">
+  <div class="form-group">
+    <label for="exampleInputName2">Name</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="exampleInputEmail2">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+  </div>
+  <button type="submit" class="btn btn-default">Send invitation</button>
+</form>
+
+<div><p><h3 style="color:red">栅格化的表单尺寸控制</h3></p></div>
+
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-3">
+      <input type="email" class="form-control" id="inputEmail3" placeholder='class="col-sm-3"'>
+      <input type="text" class="form-control" id="exampleInputName2" placeholder='class="col-sm-3"'>
+      <input type="text" class="form-control" id="exampleInputName2" placeholder='class="col-sm-3"'>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  </form>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+<hr>
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+
+<div class="col-sm-1">
+      <input type="text" id="inputcol-sm-13" placeholder="col-sm-1">
+    </div>
+</form>
+<div>&nbsp;</div>
+
+<hr style="color:red">
+<p>支持多行文本的表单控件。可根据需要改变 rows 属性。</p>
+<textarea class="form-control" rows="2"></textarea>
+<p>无样式原生的checkbox和radio</p>
+<label><input type="checkbox" value="1">888</label>
+<label><input type="checkbox" value="2">222</label>
+<label><input type="checkbox" value="3">333</label>
+
+<div class="radio"><label>
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    OptionA
+  </label>
+  </div>
+<hr style="color:red">
+
+<h3>checkbox in line--复选横排</h3>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+</label>
+<div class="checkbox">
+<h3>Label无class</h3>
+<label >
+  <input type="checkbox" id="inlineCheckbox1" value="option1"> 11
+</label>
+<label >
+  <input type="checkbox" id="inlineCheckbox2" value="option2"> 22
+</label>
+<label >
+  <input type="checkbox" id="inlineCheckbox3" value="option3"> 33
+</label>
+</div>
+<h3>radio in line--单选横排,标签格式为</h3>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+</label>
+
+
+<div class="radio" class="checkbox-inline">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+    Option one is this and that&mdash;be sure to include why it's great
+  </label>
+</div>
+<div class="radio" class="checkbox-inline">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    Option two can be something else and selecting it will deselect option one
+  </label>
+</div>
+<div class="radio disabled">
+  <label class="checkbox-inline">
+    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+    Option three is disabled
+  </label>
+</div>
+
+<div><p><h3 style="color:red">有焦点状态</h3></p></div>
+<div class="form-group">    
+<style type="text/css">
+.box-shadow-2{  
+  -webkit-box-shadow:0 0 10px #0CC;  
+  -moz-box-shadow:0 0 10px #0CC;  
+  box-shadow:0 0 10px #0CC;  
+  width: 100%;
+}   
+</style>
+
+<div class="col-sm-10">
+    <label for="inputPassword2" class="sr-only">Password</label>
+    <input type="text" class="box-shadow-2" id="inputPassword2" placeholder="text" focus="boxshadow">
+
+ </div>
+ </div>
+
+
+<div><p><h3 style="color:red">失去焦点状态</h3></p></div>
+  <div class="form-group">
+    <label for="inputPassword2" class="sr-only">Password</label>
+    <input type="text" class="form-control" id="inputPassword2" placeholder="text" focus="boxshadow">
+  </div>
+  <input type="color" name="">
+
+
+<div><p><h3 style="color:red">输入框状态提示：</h3></p></div>
+<div class="form-group has-success has-feedback">
+  <label class="control-label" for="inputSuccess2">Input with success</label>
+  <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <span id="inputSuccess2Status" class="sr-only">(success)</span>
+</div>
+
+<div class="form-group has-warning has-feedback">
+  <label class="control-label" for="inputWarning2">Input with warning</label>
+  <input type="text" class="form-control" id="inputWarning2" aria-describedby="inputWarning2Status">
+  <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+
+  <span id="inputWarning2Status" class="sr-only">(warning)</span>
+</div>
+
+<div class="form-group has-error has-feedback">
+  <label class="control-label" for="inputError2">Input with error</label>
+  <input type="text" class="form-control" id="inputError2" aria-describedby="inputError2Status">
+  <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+  <span id="inputError2Status" class="sr-only">(error)</span>
+</div>
+<div class="form-group has-success has-feedback">
+  <label class="control-label" for="inputGroupSuccess1">Input group with success</label>
+  <div class="input-group">
+    <span class="input-group-addon">@</span>
+    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+  </div>
+  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+</div>
+
+
+<form class="form-inline">
+  <div class="form-group has-success has-feedback">
+    <label class="control-label" for="inputSuccess4">Input with success</label>
+    <input type="text" class="form-control" id="inputSuccess4" aria-describedby="inputSuccess4Status">
+    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+    <span id="inputSuccess4Status" class="sr-only">(success)</span>
+  </div>
+</form>
+<form class="form-inline">
+  <div class="form-group has-success has-feedback">
+    <label class="control-label" for="inputGroupSuccess3">Input group with success</label>
+    <div class="input-group">
+      <span class="input-group-addon">@</span>
+      <input type="text" class="form-control" id="inputGroupSuccess3" aria-describedby="inputGroupSuccess3Status">
+    </div>
+    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+    <span id="inputGroupSuccess3Status" class="sr-only">(success)</span>
+  </div>
+</form>
+
+<hr>
+<div style="color: red">
+  <span class="glyphicon glyphicon-warning-sign " ></span>
+</div>
+<hr>
+<div>
+  <span class="glyphicon glyphicon-ok " ></span>
+</div>
+<hr>
+<div>
+  <span class="glyphicon glyphicon-remove" ></span>
+</div>
+
+
+<div><p><h3 style="color:red">辅助类：</h3></p></div>
+
+<div style="padding-left: 20px">
+<img class="img-rounded" src="<?php echo base_url('Public/images/imgtest.jpg'); ?>">
+<img class="img-circle pull-right" src="<?php echo base_url('Public/images/imgtest.jpg'); ?>">
+<img class="img-thumbnail" src="<?php echo base_url('Public/images/imgtest.jpg'); ?>">
+</div>
+<h3>
+<pre>快速浮动
+&lt;div class="pull-left">...&lt;/div>
+&lt;div class="pull-right">...&lt;/div> 
+</pre>
+</h3>
+<div id='closetag' style="background: #98CC05; width: 50%;padding-left: 10%; height: 200px;">
+<div>
+  <button type="button" class="close" aria-label="Close"><span aria-hidden="true" > <font size="20px" color="red">&times;</font>&times;</span></button>
+  <p>点击右上角的关闭图图标</p>
+</div>
+</div>
+
+
+<p>&nbsp;</p>
+<div style="width: 300px; height: 200px" class="center-block bg-info">中</div>
+<div style="height: 8px; background:green" class="clearfix"></div>
+<div style="width: 300px; height: 200px" class="center-block bg-info">中</div>
+<div class="clearfix"></div>
+<div style="width: 300px; height: 200px;display: block" class="pull-left bg-danger">pull-left</div>
+
+<div style="width: 300px;height: 200px" class="pull-right bg-danger">pull-right右</div>
+<div class="clearfix"></div>
+<!-- class="clearfix" 用于换行清楚前后浮动的影响 -->
+<div class="container">
+<div style="display: inline-block;" class="row">
+<div style="width: auto; height: 200px;display: inline-block;" class="col-lg-3 bg-info">block</div>
+<div style="width: auto; height: 200px;display: inline-block;" class="col-lg-3 bg-info">1</div>
+<div style="width: auto; height: 200px;display: inline-block;" class="col-lg-3 bg-info">2</div>
+<div style="width: auto; height: 200px;display: inline-block;" class="col-lg-3 bg-info">3</div>
+</div>
+</div>
+
+ <div><p><h1 style="color:red">用table布局4栏div自动宽度</h1></p></div>
+<table class="grid" cellspacing="0" style="width: 100%">
+<tr>
+  <td><div class="bg-info">
+             <p align="center" style="background: yellow">P标签center右左</p>
+             <p>电话：400-8787-390</p>
+             <p>邮箱：ruitu@oneplusone.cn</p>
+             <p>官微：ruitu01(微信号)</p>
+         </div></td>
+  <td><div class="bg-info">
+             <p>地址：北京市海淀区新中关大厦B南-5A层</p>
+             <p>电话：400-8787-390</p>
+             <p>邮箱：ruitu@oneplusone.cn</p>
+             <p>官微：ruitu01(微信号)</p>
+         </div></td>  <td><div class="bg-info">
+             <p>地址：北京市海淀区新中关大厦B南-5A层</p>
+             <p>电话：400-8787-390</p>
+             <p>邮箱：ruitu@oneplusone.cn</p>
+             <p>官微：ruitu01(微信号)</p>
+         </div></td>  <td><div class="bg-info">
+             <p>地址：北京市海淀区新中关大厦B南-5A层</p>
+             <p>电话：400-8787-390</p>
+             <p>邮箱：ruitu@oneplusone.cn</p>
+             <p>官微：ruitu01(微信号)</p>
+         </div></td>
+</tr>
+</table>
+
+
+<div class="container" >
+     <div class="row">
+         <div class="col-sm-3 bg-info">
+             <h5 class="center">联系我们</h5>
+             <p>地址：北京市海淀区新中关大厦B南-5A层</p>
+             <p>电话：400-8787-390</p>
+             <p>邮箱：ruitu@oneplusone.cn</p>
+             <p>官微：ruitu01(微信号)</p>
+         </div>
+         <div class="col-sm-3 bg-info">
+             <h5>媒体报道</h5>
+             <h5>媒体报道</h5>
+             <h5>媒体报道</h5>
+         </div>
+         <div class="col-sm-3 bg-info">
+             <h5>睿途服务</h5>
+         </div>
+         <div class="col-sm-3 bg-info">
+             <h5>睿途招聘</h5>
+         </div>
+     </div>
+</div>
+
+
+
+<div class="container color1" >
+     <div class="row">
+         <div class="col-sm-3 bg-info">
+             <h5 class="center">联系我们</h5>
+             <p>地址：北京市海淀区新中关大厦B南-5A层</p>
+             <p>电话：400-8787-390</p>
+             <p>邮箱：ruitu@oneplusone.cn</p>
+             <p>官微：ruitu01(微信号)</p>
+         </div>
+         <div class="col-sm-3 bg-info">
+             <h5>媒体报道</h5>
+             <h5>媒体报道</h5>
+             <h5>媒体报道</h5>
+         </div>
+         <div class="col-sm-3 bg-info">
+             <h5>睿途服务</h5>
+         </div>
+         <div class="col-sm-3 bg-info">
+             <h5>睿途招聘</h5>
+         </div>
+     </div>
+</div>
+
+
+<div>
+    <div class="col-xs-6">
+      <span class="visible-xs-block"><pre> <h5 style="color:red">仅在超小屏幕上显示</h5></pre></span>
+    </div>
+        <div class="col-xs-6">
+      <span class="visible-lg-block"><pre> <h3 style="color:red">仅超大屏幕上显示</h3></pre></span>
+    </div>
+    </div>
+        <div class="col-xs-6  bg-info">
+      <span class="visible-md-block visible-sm-block"><pre> <h3 style="color:red">中型屏幕上显示</h3></pre></span>
+    </div>
+  </div>
+
+
+<pre>&lt;pre&gt;快速浮动
+</pre>
+<div><p><h3 style="color:red">栅格系统100%，随窗口大小变化</h3></p></div>
+<table class="grid" cellspacing="0" style="width: 100%">
+<tbody><tr>
+  <td width="8.33%"><pre>1</pre></td>
+  <td width="8.33%"><pre>1</pre></td>    
+  <td width="8.33%"><pre>1</pre></td>
+  <td width="8.33%"><pre>1</pre></td>
+  <td width="8.33%"><pre>1</pre></td>    
+  <td width="8.33%"><pre>1</pre></td>
+  <td width="8.33%"><pre>1</pre></td>
+  <td width="8.33%"><pre>1</pre></td>    
+  <td width="8.33%"><pre>1</pre></td>
+  <td width="8.33%"><pre>1</pre></td>
+  <td width="8.33%"><pre>1</pre></td>    
+  <td width="8.33%"><pre>1</pre></td>
+</tr>
+<tr>
+  <td colspan="4"><pre>1</pre></td>
+  <td colspan="4"><pre>1</pre></td>    
+  <td colspan="4"><pre>1</pre></td>
+</tr>
+<tr>
+  <td colspan="4"><pre>4</pre></td>
+  <td colspan="8"><pre>8</pre></td>    
+</tr>
+<tr>
+  <td colspan="6"><pre>6</pre></td>
+  <td colspan="6"><pre>6</pre></td>    
+</tr>
+<tr>
+  <td colspan="12"><pre>12</pre></td>
+</tr>
+</tbody></table>
+<div><p><h3 style="color:red">声明div尺寸后，栅格系统随div尺寸变化不随窗口大小变化</h3></p></div>
+<div class="clearfix"></div>
+<div class="center-block bg-info" style="width: 1000px" >
+<table class="grid" cellspacing="0" style="width: 100%">
+<tbody><tr>
+  <td ><pre>1</pre></td>
+  <td ><pre>1</pre></td>    
+  <td ><pre>1</pre></td>
+  <td ><pre>1</pre></td>
+  <td ><pre>1</pre></td>    
+  <td ><pre>1</pre></td>
+  <td ><pre>1</pre></td>
+  <td ><pre>1</pre></td>    
+  <td ><pre>1</pre></td>
+  <td ><pre>1</pre></td>
+  <td ><pre>1</pre></td>    
+  <td ><pre>1</pre></td>
+</tr>
+<tr>
+  <td colspan="4"><pre>4</pre></td>
+  <td colspan="4"><pre>4</pre></td>    
+  <td colspan="4"><pre>4</pre></td>
+</tr>
+<tr>
+  <td colspan="4"><pre>4</pre></td>
+  <td colspan="8"><pre>8</pre></td>    
+</tr>
+<tr>
+  <td colspan="6"><pre>6</pre></td>
+  <td colspan="6"><pre>6</pre></td>    
+</tr>
+<tr>
+  <td colspan="12"><pre>12</pre></td>
+</tr>
+
+<tr>
+  <td colspan="2" ><pre>2</pre></td>
+  <td colspan="4" ><pre>4</pre></td>
+  <td colspan="6" ><pre>6</pre></td>
+</tr>
+
+</tbody></table></div>
+
+
+<div><p><h3 style="color:red">列排序，pull(往左拉)和push(往右推)的用法</h3></p></div>
+
+<div class="grid" style="width: 100%">
+  <div class="container">
+      <div class="row">
+        <div class="bg-primary col-md-3 col-md-offset-3">class="bg-primary col-md-3 col-md-offset-3"</div>
+        <div class="bg-danger col-md-3 col-md-offset-3">class="bg-primary col-md-3 col-md-offset-3"</div>    
+        <div>XXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+      </div>
+      <div class="row">
+        <div class="bg-primary col-md-9">未用push==col-md-9</div>
+        <div class="bg-warning col-md-3">未用pull==col-md-3</div>
+        <div class="bg-info col-md-9 col-md-push-3">col-md-9 col-md-push-3</div>
+        <div class="bg-danger col-md-3 col-md-pull-9">col-md-3 col-md-pulll-9,把两个div前后顺序调过来了。</div> 
+        <div class="bg-primary col-md-2">2</div>
+        <div class="bg-info col-md-2">2</div>
+        <div class="bg-primary col-md-2">2</div>
+        <div class="bg-info col-md-2">2</div>
+        <div class="bg-primary col-md-2">2</div>
+        <div class="bg-info col-md-2">2</div>  
+        <div class="bg-primary col-md-3 col-md-push-3">col-md-push-3</div>
+        <div class="bg-danger col-md-4 col-md-push-2">col-md-push-2</div> 
+      </div>
+  </div>
+</div>
+<div class="row">
+<div class="bg-primary col-lg-3" style="margin-left: 50px; width: 200px;height: 100px; border-top-right-radius: 150px;
+   border-top-left-radius: 150px"></div>
+<div class="col-lg-3"></div>   
+<div class="bg-primary col-lg-3" style="margin-left: 50px; width: 200px;height: 100px; border-top-right-radius: 150px;
+   border-top-left-radius: 150px"></div>
+</div>
+
+<div class="row">
+<div class="bg-info col-lg-3" style="margin-left: 50px; width: 200px;height: 100px; border-bottom-right-radius: 150px;
+   border-bottom-left-radius: 150px"></div>
+<div class="col-lg-3"></div>   
+<div class="bg-info col-lg-3" style="margin-left: 50px; width: 200px;height: 100px; border-bottom-right-radius: 150px;
+   border-bottom-left-radius: 150px"></div>
+</div>
+
+<a href="#">
+<div class="row">
+<div class="bg-info col-lg-3" style="margin-left: 25px; width: 250px;height: 100px; border-bottom-right-radius: 150px;
+   border-bottom-left-radius: 150px"></div>
+<div class="col-lg-3"></div> 
+<div class="bg-info col-lg-3" style="width: 250px;height: 100px; border-bottom-right-radius: 150px;
+   border-bottom-left-radius: 150px"></div>
+</div>
+</a>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+
+  </body>
+</html>

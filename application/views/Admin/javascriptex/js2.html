@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript test</title>
+
+
+</head>
+<body>
+
+<form id="test-register" action="<?=site_url('/admin/javascriptex/js2');?>"  onsubmit="return checkRegisterForm()" method='post'>
+    <p id="test-error" style="color:red"></p>
+    <p>
+        用户名: <input type="text" id="username" name="username">
+    </p>
+    <p>
+        口令: <input type="password" id="password" name="password">
+    </p>
+    <p>
+        重复口令: <input type="password" id="password-2">
+         <input type="hidden" id="md5pwd" name="md5pwd">
+    </p>
+
+    <p>
+        <button type="submit">提交</button> <button type="reset">重置</button>
+    </p>
+</form>
+
+
+<script type="text/javascript">
+
+alert("条件判断：" );
+alert(3 && 4);
+alert(true && 4);
+
+
+'use strict';
+var checkRegisterForm = function () {
+   var  user = document.getElementById('username').value,
+        psd = document.getElementById('password').value,
+        psd2 = document.getElementById('password-2').value,
+        md5pwd = document.getElementById('md5pwd');
+        //  把用户输入的明文变为MD5:
+md5pwd.value = psd.value;
+// //验证输入是否合法
+//         usertest = /^\w{3,10}$/;
+//     if(!(usertest.test(user))){
+//         alert('用户名必须是3-10位英文字母或数字');
+//         return false;
+//     } else if (psd.length>20 || psd.length<6){
+//         alert('口令必须是6-20位');
+//         return false;
+//     } else if (psd !== psd2){
+//         alert('两次输入口令必须一致');
+//          return false;
+//     } else {
+//         return true;
+//     }
+
+}
+</script>
+
+
+<form method="post" action="http://localhost/test" enctype="multipart/form-data">
+    <p>图片预览：</p>
+    <p><div id="test-image-preview" style="border: 1px solid #ccc; width: 100%; height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center center;"></div></p>
+    <p>
+        <input type="file" id="test-image-file" name="test">
+    </p>
+    <p id="test-file-info"></p>
+</form>
+
+
+<script>
+
+var
+    fileInput = document.getElementById('test-image-file'),
+    info = document.getElementById('test-file-info'),
+    preview = document.getElementById('test-image-preview');
+// 监听change事件:
+fileInput.addEventListener('change', function () {
+    // 清除背景图片:
+    preview.style.backgroundImage = '';
+    // 检查文件是否选择:
+    if (!fileInput.value) {
+        info.innerHTML = '没有选择文件';
+        return;
+    }
+    // 获取File引用:
+    var file = fileInput.files[0];
+    // 获取File信息:
+    info.innerHTML = '文件: ' + file.name + '<br>' +
+                     '大小: ' + file.size + '<br>' +
+                     '修改: ' + file.lastModifiedDate;
+    if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+        alert('不是有效的图片文件!');
+        return;
+    }
+    // 读取文件:
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        var
+            data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...'            
+        preview.style.backgroundImage = 'url(' + data + ')';
+    };
+    // 以DataURL的形式读取文件:
+    reader.readAsDataURL(file);
+});
+
+//*********************************** Promise
+// function callback() {
+//     console.log('Done');
+// }
+// console.log('before setTimeout()');
+// setTimeout(callback, 1000); // 1秒钟后调用callback函数
+// console.log('after setTimeout()');
+
+// function test(resolve, reject) {
+//     var timeOut = Math.random() * 2;
+//     log('set timeout to: ' + timeOut + ' seconds.');
+//     setTimeout(function () {
+//         if (timeOut < 1) {
+//             log('call resolve()...');
+//             resolve('200 OK');
+//         }
+//         else {
+//             log('call reject()...');
+//             reject('timeout in ' + timeOut + ' seconds.');
+//         }
+//     }, timeOut * 1000);
+// }
+
+// var p1 = new Promise(test);
+// var p2 = p1.then(function (result) {
+//     console.log('成功：' + result);
+// });
+// var p3 = p2.catch(function (reason) {
+//     console.log('失败：' + reason);
+// });
+
+// new Promise(test).then(function (result) {
+//     console.log('成功：' + result);
+// }).catch(function (reason) {
+//     console.log('失败：' + reason);
+// });
+
+
+// 'use strict';
+
+// // 清除log:
+// var logging = document.getElementById('test-promise-log');
+// while (logging.children.length > 1) {
+//     logging.removeChild(logging.children[logging.children.length - 1]);
+// }
+
+// // 输出log到页面:
+// function log(s) {
+//     var p = document.createElement('p');
+//     p.innerHTML = s;
+//     logging.appendChild(p);
+// }
+
+// new Promise(function (resolve, reject) {
+//     log('start new Promise...');
+//     var timeOut = Math.random() * 2;
+//     log('set timeout to: ' + timeOut + ' seconds.');
+//     setTimeout(function () {
+//         if (timeOut < 1) {
+//             log('call resolve()...');
+//             resolve('200 OK');
+//         }
+//         else {
+//             log('call reject()...');
+//             reject('timeout in ' + timeOut + ' seconds.');
+//         }
+//     }, timeOut * 1000);
+// }).then(function (r) {
+//     log('Done: ' + r);
+// }).catch(function (reason) {
+//     log('Failed: ' + reason);
+// });
+
+ alert(Math.random() * 20);
+// alert(Math.random() * 20);
+
+</script>
+<div id='img'>
+<canvas id="test-canvas" width="200" heigth="100">
+    <p>你的浏览器不支持Canvas</p>
+</canvas>
+<canvas id="test-canvas" width="200" heigth="100">
+    <p>你的浏览器不支持Canvas</p>
+</canvas>
+</div>
+<script '[ type="text/javascript">
+   var canvas = document.getElementById('test-canvas'); 
+   if(canvas.getContext){
+    alert('支持canvas!');
+   }else{alert('不支持新功能canvas!');}
+
+var gl = canvas.getContext("webgl");
+
+'use strict';
+var
+    canvas = document.getElementById('test-canvas'),
+    ctx = canvas.getContext('2d');
+    // ctx.clearRect(0, 0, 200, 200); // 擦除(0,0)位置大小为200x200的矩形，擦除的意思是把该区域变为透明  
+    ctx.fillStyle = '#dddddd'; // 设置颜色
+    ctx.fillRect(10, 10, 130, 130); // 把(10,10)位置大小为130x130的矩形涂色
+    // 利用Path绘制复杂路径:
+    var path=new Path2D();
+    path.arc(75, 75, 50, 0, Math.PI*2, true);
+    path.moveTo(110,75);
+    path.arc(75, 75, 35, 0, Math.PI, false);
+    path.moveTo(65, 65);
+    path.arc(60, 65, 5, 0, Math.PI*2, true);
+    path.moveTo(95, 65);
+    path.arc(90, 65, 5, 0, Math.PI*2, true);
+    ctx.strokeStyle = '#0000ff';
+    ctx.stroke(path);
+
+'arcb','body','children','document','e','f', 
+
+
+
+</script>
+</body>
+</html>

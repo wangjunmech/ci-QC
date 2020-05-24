@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="referrer" content="same-origin" />
+<title>php简单实现MVC - 乔晓峰 - 博客园</title>
+
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+
+	
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/foonsun/p/5788564.html">php简单实现MVC</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>在PHP中使用MVC越来越流行了，特别是在一些开源的框架当中。MVC足以应对大多数的情况，但还有一些情况是其不太适合的，如比较简单的个人博客，对于只有几百篇文章量级的博客，使用MVC让人觉得有些太复杂了；同样对于新浪等门户网站，使用MVC，将有大量的文件被加载，对于速度的影响是无法接受的。枫竹梦介绍MVC的基本原理及一种简单的实现。如下介绍内容适用PHP开发。</p>
+<p><strong>PHP中的MVC</strong></p>
+<p>MVC[1]在软件工程中是一种软件的架构。从php的角度来讲MVC有一些不同。</p>
+<p>Model(模型)，程序应用功能的实现，程序的逻辑的实现。在PHP中负责数据管理，数据生成。</p>
+<p>View(视图)，图形界面逻辑。在PHP中负责输出，处理如何调用模板、需要的资源文件。</p>
+<p>Controller(控制器)，负责转发请求，对请求处理。在PHP中根据请求决定调用的视图及使用的数据。</p>
+<p><strong>为什么使用MVC</strong></p>
+<p>MVC的主要作用是为了将代码分层、分类。</p>
+<p>MVC的主要目的是为了解决Web开发中分离开发与设计工作，使其工作相对独立。</p>
+<p>在这样的过程中还发现了其他的一些优点，网站的目录结构更加清晰，网站更易维护与扩展，可以实现模块的复用。</p>
+<p><strong>MVC实现</strong></p>
+<p><strong>请求URL</strong></p>
+<p>首先，约定请求页面时的URL，以如下结构进行实现：</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut41981" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code41981" class="codebody"><br />localhost/index.php?c=demo&amp;a=index&para;m=welcome</div>
+<p>&nbsp;</p>
+<p>如果想得到更加优美的URL结构，可以进行优化，为由这URL结构优化与本文关系不大，以后进行分享。</p>
+<p>从上面的参数可以看出，访问的文件是index.php，同时含有3个参数分别为c、a、param。</p>
+<p><strong>MVC目录结构</strong></p>
+<p>接着，规划MVC的目录结构如下：</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut33695" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code33695" class="codebody"><br />&nbsp;/*<br />&nbsp;├─www&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # 网站根目录<br />&nbsp;│&nbsp; ├─controller&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # 控制器目录<br />&nbsp;│&nbsp; │&nbsp; ├─democontroller.php&nbsp; # demo控制器<br />&nbsp;│&nbsp; ├─model&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # 模型目录<br />&nbsp;│&nbsp; │&nbsp; ├─model.php&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # model模型<br />&nbsp;│&nbsp; ├─view&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # 视图目录<br />&nbsp;│&nbsp; │&nbsp; ├─index.php&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # index视图<br />&nbsp;│&nbsp; ├─index.php&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # 入口文件<br />&nbsp;*/</div>
+<p>&nbsp;</p>
+<p><strong>控制器controller</strong></p>
+<p>将如下代码添加到controller/democontroller.php文件中。</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut11668" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code11668" class="codebody"><br />&nbsp;// controller/democontroller.php<br />&nbsp;class DemoController<br />&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp; public function index()<br />&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp; echo 'hello world';<br />&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;}// End of the class DemoController<br />&nbsp;// End of file democontroller.php</div>
+<p>&nbsp;</p>
+<p>在这个文件中仅仅定义了一个DemoController的类，且其只包含一个index方法，用于输出hello world。</p>
+<p>将下面代码添加到入口文件index.php文件中。</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut51189" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code51189" class="codebody"><br />&nbsp;//index.php<br />&nbsp;require('controller/democontroller.php');<br />&nbsp;$controller = new DemoController();<br />&nbsp;$controller-&gt;index();<br />&nbsp;// End of index.php</div>
+<p>&nbsp;</p>
+<p>在浏览器中使用上面的约定的URL进行访问，看到输出hello world。当然如果你请求的URL不是那样，而是如下面所示也能得到同样的输出。</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut32627" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code32627" class="codebody"><br />localhost/index.php?c=abc</div>
+<p>&nbsp;</p>
+<p>发现URL中的参数还没有任何作用。</p>
+<p>如果使用下面的URL进行访问，可以预见不会有任何输出。</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut14873" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code14873" class="codebody"><br />localhost/controller/democontroller.php</div>
+<p>&nbsp;</p>
+<p>可以看到要想访问这个网站并得到正确的结果，目前只能通过index.php来访问，这也是为什么称它为入口文件的原因。现在无论参数如何只能访问同样一个页面，那么如何来决定显示不同的结果呢？或者调用不同的控制器呢？</p>
+<p><strong>改进入口文件</strong></p>
+<p>下面利用URL中的参数来决定使用哪个控制器。</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut41576" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code41576" class="codebody"><br />&nbsp;//index.php<br />&nbsp;// get runtime controller prefix<br />&nbsp;$c_str = $_GET['c'];<br />&nbsp;// the full name of controller<br />&nbsp;$c_name = $c_str.'controller';<br />&nbsp;// the path of controller<br />&nbsp;$c_path = 'controller/'.$c_name.'.php';<br />&nbsp;// get runtime action<br />&nbsp;$method = $_GET['a'];<br />&nbsp;// load controller file<br />&nbsp;require($c_path);<br />&nbsp;// instantiate controller<br />&nbsp;$controller = new $c_name;<br />&nbsp;// run the controller&nbsp; method<br />&nbsp;$controller-&gt;$method();<br />&nbsp;// End of index.php</div>
+<p>&nbsp;</p>
+<p>同样在浏览器中使用上面的约定的URL进行访问，看到输出hello world。代码中的注释已经说明了每一步的目的。当然可以通过改变URL参数中的c与a值来调用不同的controller及其方法，以输出不同的结果。</p>
+<p><strong>视图View</strong></p>
+<p>前面只是使用了控制器controller，同时在入口文件index.php中实现了动态调用不同的控制器。接着加入视图将显示分离。</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut61466" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code61466" class="codebody"><br />&nbsp;// view/index.php<br />&nbsp;class Index {<br />&nbsp;&nbsp;&nbsp;&nbsp; public function display($output) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ob_start();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo $output;<br />&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;}<br />&nbsp;// End of index.php</div>
+<p>&nbsp;</p>
+<p>视图目录中的index.php文件中定义了Index方法，且只有一个display()函数，负责将传递给它的变量进行输出。<br />下面修改控制器文件。</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut28354" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code28354" class="codebody"><br />&nbsp;// controller/democontroller.php<br />&nbsp;class DemoController<br />&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp; private $data = 'Hello furzoom!';<br />&nbsp;&nbsp;&nbsp;&nbsp; public function index()<br />&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp; //echo 'hello world';<br />&nbsp;&nbsp;&nbsp;&nbsp; require('view/index.php');<br />&nbsp;&nbsp;&nbsp;&nbsp; $view = new Index();<br />&nbsp;&nbsp;&nbsp;&nbsp; $view-&gt;display($data);<br />&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;}// End of the class DemoController<br />&nbsp;// End of file democontroller.php</div>
+<p>&nbsp;</p>
+<p>在控制器中定义了一个data私有变量，index()方法不再直接输出，而是使用视图对象处理输出。此时，按上面的约定的URL进行访问时，将看到输出：</p>
+<p>Hello furzoom!<br />可以根据不同的请求调用不同的视图类，以不同的形式显示数据。这样就将增加了视图的作用，设计人员可以只针对视图进行页面的设计。</p>
+<p><strong>模型Model</strong></p>
+<p>上面貌似已经很cool了，但是显示什么样的内容是在控制器中直接指定的，希望内容也由URL指定，这样将数据的处理交给模型来处理。</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut27690" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code27690" class="codebody"><br />&nbsp;// model/model.php<br />&nbsp;class Model {<br />&nbsp;&nbsp;&nbsp;&nbsp; private $data = array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'title' =&gt; 'Hello furzoom',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'welcome' =&gt; 'Welcome to furzoom.com',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; );<br />&nbsp;&nbsp;&nbsp;&nbsp; public function getData($key) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return $this-&gt;data[$key];<br />&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;}<br />&nbsp;// End of model.php</div>
+<p>&nbsp;</p>
+<p>视图文件model.php定义了一个Model类，类中定义了一个getData()的方法，用于返回请求的数据。</p>
+<p>同时修改入口文件index.php如下：</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut3123" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code3123" class="codebody"><br />&nbsp;//index.php<br />&nbsp;// get runtime controller prefix<br />&nbsp;$c_str = $_GET['c'];<br />&nbsp;// the full name of controller<br />&nbsp;$c_name = $c_str.'controller';<br />&nbsp;// the path of controller<br />&nbsp;$c_path = 'controller/'.$c_name.'.php';<br />&nbsp;// get runtime action<br />&nbsp;$method = $_GET['a'];<br />&nbsp;// get runtime parameter<br />&nbsp;$param = $_GET['param'];<br />&nbsp;// load controller file<br />&nbsp;require($c_path);<br />&nbsp;// instantiate controller<br />&nbsp;$controller = new $c_name;<br />&nbsp;// run the controller&nbsp; method<br />&nbsp;$controller-&gt;$method($param);<br />&nbsp;// End of index.php</div>
+<p>&nbsp;</p>
+<p>增加了一个参数$param，将其作为控制器的方法调用参数。</p>
+<p>还需要修改控制器的方法根据不同参数取得不同的数据。</p>
+<p>&nbsp;</p>
+<div class="codetitle"><a id="copybut76825" class="copybut"></a><span style="text-decoration: underline;">复制代码</span>代码如下:</div>
+<div id="code76825" class="codebody"><br />&nbsp;// controller/democontroller.php<br />&nbsp;class DemoController<br />&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp; // private $data = 'Hello furzoom!';<br />&nbsp;&nbsp;&nbsp;&nbsp; function index($param)<br />&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp; // echo 'hello world';<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; require('view/index.php');<br />&nbsp;&nbsp;&nbsp;&nbsp; require('model/model.php');<br />&nbsp;&nbsp;&nbsp;&nbsp; $model = new Model();<br />&nbsp;&nbsp;&nbsp;&nbsp; $view = new Index();<br />&nbsp;&nbsp;&nbsp;&nbsp; $data = $model-&gt;getData($param);<br />&nbsp;&nbsp;&nbsp;&nbsp; $view-&gt;display($data);<br />&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;}// End of the class DemoController<br />&nbsp;// End of file democontroller.php</div>
+<p>&nbsp;</p>
+<p>包含需要的视图文件和模型文件，然后生成视图与模型文件，接着通过模型对象取得数据，再用视图对象来输出取得的数据。</p>
+<p>此时，在浏览器中使用上面的约定的URL进行访问，将得到输出如下：</p>
+<p>Welcome to furzoom.com<br />如下图：</p>
+<p><img src="http://files.jb51.net/file_images/article/201502/201502051128556.png" alt="" /></p>
+<p>至此PHP的MVC模式已经基本介绍完成了，剩余的工作就是根据需要进行添加扩充了，很简单吧！！</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2016-08-19 17:56</span> <a href='http://www.cnblogs.com/foonsun/'>乔晓峰</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=5788564" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(5788564);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=208423,cb_entryId=5788564,cb_blogApp=currentBlogApp,cb_blogUserGuid='73a59eaa-4283-e411-b908-9dcfd8948a71',cb_entryCreatedDate='2016/8/19 17:56:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'></div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2017 乔晓峰
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<center>如果您有其他意向合作，请联系我邮箱:andyjoe318#gmail.com 我会尽量及时回复。</center>
+<!--PageEndHtml Block End-->
+</body>
+</html>

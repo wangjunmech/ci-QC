@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>客户详细信息编辑</title>
+<script language="javascript" type="text/javascript" src="<?=base_url();?>public/js/contries.js" charset="UTF-8"></script>
+<style type="text/css">
+
+input[type="text"]  
+    {  
+        background-color:lightgreen;
+        width: 800px;
+    }  
+
+.a1 {
+	color: #F00;
+	}
+
+select{
+	background-color: lightgreen;
+	font-size: 16;
+}
+#btn{  
+	
+        text-align:center;
+        vertical-align:middle;
+        align-content: center;
+    } 
+
+input[type="submit"]{  	
+
+	-moz-box-shadow: 0px 0px 0px 2px #f0f7fa;
+	-webkit-box-shadow: 0px 0px 0px 2px #f0f7fa;
+	box-shadow: 0px 0px 0px 2px #f0f7fa;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #33bdef), color-stop(1, #019ad2));
+	background:-moz-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:-webkit-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:-o-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:-ms-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#33bdef', endColorstr='#019ad2',GradientType=0);
+	background-color:#33bdef;
+	-moz-border-radius:90px;
+	-webkit-border-radius:90px;
+	border-radius:90px;
+	border:1px solid #057fd0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:5px 40px;#按钮的宽和高
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b6178;
+	}  
+
+
+input[type="submit"]:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #019ad2), color-stop(1, #33bdef));
+	background:-moz-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:-webkit-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:-o-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:-ms-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#019ad2', endColorstr='#33bdef',GradientType=0);
+	background-color:#019ad2;
+}
+input[type="submit"]:active {
+	position:relative;
+	top:1px;
+}
+	
+</style>
+
+<script>  
+
+$(function() {
+        $("#button").click(function() {
+            $("#form :input").not(":button, :submit, :reset, :hidden").val("").removeAttr("checked").remove("selected");//核心
+        });
+    })
+
+
+
+
+</script> 
+<!--
+	        <br/>选取（国家）再选择地区（省/州）:
+	        <select id="country" name="country"></select>
+	        State:
+	        <select id="state" name="state"></select>
+	        <br/>
+	        <br />仅选择国家:
+	        <select id="country2" name="country2"></select>
+	        <br />
+	        <script language="javascript">
+	            populateCountries("country", "state");
+	            populateCountries("country2");
+	        </script>
+-->
+</head>
+<body>
+
+<?php 
+var_dump($v);
+if($cinfo[0]){
+	$v=$cinfo[0];
+	}else{
+	$v=$v;
+}
+?>
+
+<legend>您好:<font color=red><?=$username?>----<?=$workid?></font>!
+<?php if($cinfo[0]){?>
+你正在编辑编号为<font size="5" color="red"><?=$v['client_code']?></font>的客户信息：
+<?php }else{ ?>
+请在下面输入客户信息：
+<?php };
+
+?>
+</legend>
+<form id="form" action="<?php 
+
+if($v['client_code']){
+echo site_url().'/admin/progs/clientedita'; }else{
+echo site_url().'/admin/progs/clientrega'; 
+}
+?>" method="post" enctype="multipart/form-data" >
+
+
+		<fieldset>
+			<legend>基本信息：</legend>			
+			<input type="hidden" name="id"  id="id" value="<?=$v[id]?>" />	
+			<input type="hidden" name="sales"  id="sales" value="<?=$workid?>" />			  
+			<p><label for="client_code">客户编号：</label>
+			<input type="text" name="client_code"  id="client_code" value="<?=$v[client_code]?>" placeholder="业务员编号+客户序号"/><?php echo form_error('client_code', '<div class="a1">', '</div>'); ?>	
+			</p>
+			
+			<p><label for="des">业务及产品描述：</label>
+			<input type="text" name="des"  id="des" value="<?=$v[des]?>" placeholder="客户生产出售的产品，客户采购需求的产品"/>		
+			<?php echo form_error('des', '<div class="a1">', '</div>'); ?>
+			</p>
+			<p><label for="company" >公司名：</label>
+			<input type="text" name="company"  id="company" value="<?=$v[company]?>" placeholder=""/>
+			<?php echo form_error('company', '<div class="a1">', '</div>'); ?>		
+			</p>
+			<p><label for="contry">国家：</label>
+			<input type="text" name="contry"  id="contry" value="<?php 
+			if($v[contry]){
+			echo $v[contry].$v[state]; };
+			?>" placeholder="请在下面选择……" readonly/>	
+			<?php echo form_error('contry', '<div class="a1">', '</div>'); ?>
+	        <br/>选取（国家）:
+	        <select id="country" name="country"></select>
+	        再选择地区（省/州）:
+	        <select id="state" name="state"></select>
+            <script language="javascript">
+	            populateCountries("country", "state");
+	            //populateCountries("country2");
+	        </script>
+	
+			</p>
+			<p><label for="addr">地址：</label>
+			<input type="text" name="addr"  id="addr" value="<?=$v[addr]?>" placeholder="客户的公司地址"/>
+			<?php echo form_error('addr', '<div class="a1">', '</div>'); ?>		
+			</p>
+			<p><label for="site">网站地址：</label>
+			<input type="text" name="site"  id="site" value="<?=$v[site]?>" placeholder="客户的完整网址，可打开客户的网站主页从地址栏复制粘贴过来"/>	
+			<?php echo form_error('site', '<div class="a1">', '</div>'); ?>	
+			</p>
+			<p><label for="telphone">电话：</label>
+			<input type="text" name="telphone"  id="telphone" value="<?=$v[telphone]?>" placeholder="客户的公司电话"/>
+			<?php echo form_error('telphone', '<div class="a1">', '</div>'); ?>		
+			</p>
+			<p><label for="regtime">录入日期时间：</label>
+			<input type="text" name="regtime"  id="regtime" value="<?=$v[regtime]?>" placeholder="默认不用填写" readonly/>		
+			</p>
+			<p><label for="remark">备注：</label>
+			<input type="text" name="remark"  id="remark" value="<?=$v[remark]?>"placeholder=""/>		
+			</p>
+		</fieldset>
+  		<div id='btn'><input type="submit" name="btn" value="<?php 
+if($v['client_code']){
+echo '提交修改';}else{
+echo '确认录入';}
+?> "></div>
+    <p>&nbsp;</p>
+</form>
+</body>
+</html>

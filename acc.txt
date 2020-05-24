@@ -1,0 +1,2 @@
+http://127.0.0.1/qc/index.php/admin/login
+http://127.0.0.1/qc/index.php/admin/progs/mech

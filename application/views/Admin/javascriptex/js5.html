@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery Tab标签页的做法</title>
+<style type="text/css">
+.table{
+		width:500px;
+		border: 1px solid red;
+		border-collapse: collapse;
+	}
+.table td{
+	border: 2px solid red;
+}
+</style>
+D:\WWW\QC\Public\
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+ 
+ <script src="<?php echo base_url('Public/colpick-jQuery-Color-Picker-master/js/colpick.js')?>"></script>
+</head>
+<link rel="stylesheet" href="<?php echo base_url('Public/colpick-jQuery-Color-Picker-master/css/colpick.css')?>" type="text/css"/>
+<body>
+
+<style type="text/css">
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	margin: 30px;
+}
+ul{list-style-type: none}//去掉ul列表的默认带点样式
+#ul{
+	height: 30px;
+display: block;
+}
+#ul li{
+	//li列表样式
+	height: 30px;
+	line-height: 30px;
+	padding: 0 15px;
+	border: 1px solid blue;
+	float: left;
+	cursor: pointer;
+	background-color: yellow;
+
+}
+
+#content{
+	width: 500px;
+	height: 200px;
+}
+
+#content div{
+	margin-top: 10px;
+	//内容div的样式
+	width: 500px;
+	height: 200px;
+	border: 1px solid;
+	border-color: green;
+	display: none;
+	}
+#ul li.current{
+	//当前选中的li的样式
+	border: 2px solid;
+	border-color: red;
+	background: green;
+}
+#content div.show{
+	display: block;
+}
+
+</style>
+
+
+<ul id='ul'>
+	<li class="current">PHP</li>
+	<li>Python</li>
+	<li>Ruby</li>
+</ul>
+<br>
+<div id='content'>
+<div class="show">PHP......</div>
+<div>Python......</div>
+<div>Ruby......</div>
+
+</div>
+<button id="picker">Show Color Picker</button>
+
+<script type="text/javascript">
+//******增加节点的方法
+var newtab='<li>JAVA</li>';
+var newtab1='<li>ASP</li>';
+var newtab2='<li>Swift</li>';
+var newdiv='<div>JAVA</div>';
+var newdiv1='<div>ASP</div>';
+var newdiv2='<div>Swift</div>';
+$('ul').append(newtab,newtab1,newtab2);
+$('#content').append(newdiv,newdiv1,newdiv2);
+//end******增加节点的方法
+
+//Tab标签页，Tab-block控制
+//*****获取节点
+//先获取ul和li
+// var ul=document.getElementById('ul');
+// var li=ul.getElementsByTagName('li');
+// //再获取div
+// var content=document.getElementById('content');
+// var div=content.getElementsByTagName('div');
+// // console.log(li[0]);
+// // console.log(li[1]);
+// // console.log(li[2].innerHTML);
+// // console.log(div);
+
+// //**********js原生代码方法1
+// for(var s=0;s<li.length;s++){
+// 	li[s].index=s;
+// 	li[s].onclick=function(){
+// 		//alert(this.index);
+// 	this.className='current';
+	
+// 		for(var j=0;j<li.length;j++){
+// 			if(j != this.index){
+// 				li[j].className='';
+// 				div[j].style.display='none';
+// 				}else{
+// 					div[j].style.display='block';
+// 				}
+// 		}
+// 	}
+// }
+
+////**********js原生代码方法2
+// for(var i=0;i<li.length;i++){
+// 	li[i].index=i;
+// 	li[i].onclick=function(){
+// 	for(var i=0;i<li.length;i++){
+// 			li[i].className='';
+// 			div[i].style.display='none';
+// 			};
+// 			this.className='current';
+// 			div[this.index].style.display='block';
+// 	}
+// }
+
+
+
+
+
+//**********jQuery代码的写法
+//获取DOM节点
+$('#ul li').click(function() {
+	////**********jQuery一条代码的写法
+	//$(this).addClass('current').siblings().removeClass('current').parent().next().next().children().eq($(this).index()).show().siblings().hide();
+	$(this).addClass('current').siblings().removeClass('current').parent().next().next().find('div').eq($(this).index()).show().siblings().hide();
+	// ////**********jQuery两条代码的写法
+	// //1.点击li的时候切换样式
+	// $(this).addClass('current').siblings().removeClass('current');
+	// //2.根据单击的index值，设置显示，用siblines方法隐藏其它
+	// $('#content>div').eq($(this).index()).show().siblings().hide();
+
+});
+
+</script>
+<script type="text/javascript">
+$('#picker').colpick();
+
+</script>
+
+</body>
+</html>

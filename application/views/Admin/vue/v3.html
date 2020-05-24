@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<script src="https://unpkg.com/vue"></script>
+
+<title>Vue2.0选项</title>
+</head>
+<body>
+<hr>
+<h1><strong>选项就是在Vue构造器里的配置功能的前缀（Vue已经给我们定义好了）</strong></h1><br>	
+
+<hr>
+<h1>第1节：propsData Option  全局扩展的数据传递</h1>
+<header></header>
+
+<script type="text/javascript">
+  var header_a = Vue.extend({
+    template:`<p>{{message}}=={{a}}</p>`,
+    data:function(){
+      return{
+        message:"hello,I am header",
+      }
+    },
+    props:['a'],
+  });
+  //上面创建标签扩展
+  //下面挂载扩展到DOM元素，后面一个括号内现在是写标签名header，也可以写类名(.className)或id名（#idName）
+ // new header_a({propsData:{a:1}}).$mount('header');
+  new header_a({propsData:{a:1}}).$mount('header');
+  
+
+</script>
+
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+
+
+<hr>
+<h1>第2节：computed Option  计算选项，格式化价格</h1>
+<div id='opt'>
+<p>得到数据price:100,处理为：￥100元：price==========newPrice</p>
+<p>{{price}}=========={{newPrice}}</p>
+</div>
+
+<script type="text/javascript">
+  var app = new Vue({
+    el:'#opt',
+    data:{
+      price:100,
+     
+      },
+    
+    computed:{
+      newPrice:function(){
+        return this.price = '￥'+this.price+'元';
+      },
+    }
+  });
+
+</script>
+
+<h4>computed Option重排新闻</h4>
+<div id='opt2'>
+<p>用reverse()方法给新闻列表数组排序</p>
+<ul>
+  <li v-for="item in newsSort">{{item.title}}--发表时间：--{{item.date}}</li>
+</ul>
+</div>
+
+<script type="text/javascript">
+    var inlist=[
+    {title:"优步CEO父母遭遇沉船事故：母亲遇难，父亲受伤",date:"2017/3/23"},
+    {title:"美国土安全部：进出美国航班上或将禁止携带笔记本电脑",date:"2017/3/29"},
+    {title:"今年培养5810名中西部定向本科医学生 中央财政'埋单'",date:"2017/4/13"},
+    {title:"65岁退休你还不乐意？有一群人正商量延迟到70岁",date:"2017/4/23"},
+    {title:"媒体谈女德教师：脑子里的残渣有辱现代文明",date:"2017/5/23"},
+    ]
+  var app = new Vue({
+    el:'#opt2',
+    data:{
+      newslist:inlist,
+      },    
+    computed:{
+      newsSort:function(){
+        return this.newslist.reverse();
+      }
+    }
+  });
+
+</script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+<hr>
+<h1>第3节：Methods Option  方法选项</h1>
+<div id='mth'>
+<p>{{a}}</p>
+<p><button @click='add(2,$event)'>add-2</button></p>
+
+<p><btn @click.native='add(5)'></btn> 用@click.native=函数名(参数)的方法</p>
+
+</div>
+<p><button onclick='app3.add(10)'>外部组件按钮add-10</button>,用onclick=应用名.函数名(参数)的方法</p>
+
+<script type="text/javascript">
+  var btn={
+    template:`<button>内部组件按钮add+5</button>`
+  }
+  var app3 = new Vue({
+    el:'#mth',
+    data:{
+      price:100,
+      a:0,
+      },
+    components:{
+      'btn':btn,
+     },
+    methods:{
+      add:function(num,event){
+        if(num != ''){
+          this.a+=num;
+        }else{
+        this.a++;
+        };
+        console.log(event);
+      },
+    },
+
+
+  });
+
+</script>
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+<hr>
+<h1>第4节：Watch 选项 监控数据</h1>
+<div id='wach'>
+<p>今日温度：{{temper}}</p>
+<p>建议着装：{{suggestion}}</p>
+<button @click='up()'>升温</button>
+<button @click='dn()'>降温</button>
+
+
+</div>
+
+<script type="text/javascript">
+  var sugt=['短袖','长袖','毛衣','皮衣','大棉袄'];
+
+  var app = new Vue({
+    el:'#wach',
+    data:{
+      suggestion:"短袖",
+      temper:32
+      
+      },
+    components:{
+      'btn':btn,
+     },
+    methods:{
+      up:function(){
+        this.temper+=3;
+      },
+      dn:function(){
+        this.temper-=3;
+      },
+    },
+// // //watch:写法1，构造器内写判断条件及结果
+// watch:{
+//        temper:function(newVal,oldVal){
+//             if(newVal>=30){
+//                this.suggestion="短袖";
+//             }else if(newVal<30 && newVal >=20){
+//                this.suggestion="长袖";
+//             }else if(newVal<20 && newVal >=10){
+//                this.suggestion="毛衣";
+//             }else if(newVal<10 && newVal >=0){
+//                this.suggestion="皮衣";
+//             }else{
+//                this.suggestion="大棉袄";
+//             }
+//             }
+//             },
+
+// //watch:写法2，把值以数组形式写到构造器外面，引用数组进来
+// watch:{
+//        temper:function(newVal,oldVal){
+//             if(newVal>=30){
+//                this.suggestion=sugt[0];
+//             }else if(newVal<30 && newVal >=20){
+//                this.suggestion=sugt[1];
+//             }else if(newVal<20 && newVal >=10){
+//                this.suggestion=sugt[2];
+//             }else if(newVal<10 && newVal >=0){
+//                this.suggestion=sugt[3];
+//             }else{
+//                this.suggestion=sugt[4];
+//             }
+//             }
+//             },
+
+});
+
+//watch:写法3，在构造器外写
+app.$watch('temper',function(newVal,oldVal){
+            if(newVal>=30){
+               this.suggestion=sugt[0];
+            }else if(newVal<30 && newVal >=20){
+               this.suggestion=sugt[1];
+            }else if(newVal<20 && newVal >=10){
+               this.suggestion=sugt[2];
+            }else if(newVal<10 && newVal >=0){
+               this.suggestion=sugt[3];
+            }else{
+               this.suggestion=sugt[4];
+            }            
+            },)
+
+</script>
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+<hr>
+<h1>第5节：Mixins 混入选项操作</h1>
+<div id='mix'>
+<p>{{a}}</p>
+<button @click="add()">自加1</button>
+<btna @click.native='addtwo(2)'></btna>
+</div><strong></strong>
+
+<script type="text/javascript">
+  Vue.mixin({
+       updated:function(){
+      console.log('全局mixin的updated<strong>最先1111111111</strong>执行……')
+    }, 
+  });
+
+  var addlog={
+    updated:function(){
+      console.log('<strong>其次2222222222</strong>Mixins的updated开始，数据发生变化提醒：'+this.a);
+    }
+  };
+
+  var btnp={
+    template:`<button>内部组件按钮自加2</button>`
+  }
+  var appmix = new Vue({
+    el:'#mix',
+    data:{
+      price:100,
+      a:0,
+      },
+    components:{
+      'btna':btnp,
+     },
+    methods:{
+      add:function(){      
+          this.a +=1;
+      },
+      addtwo:function(num){      
+          this.a +=num;
+      },
+    },
+    updated:function(){
+      console.log('<strong>最后333333333</strong>原生updated执行……')
+    },
+    mixins:[addlog]
+
+  });
+
+</script>
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+
+<hr>
+<h1>第6节：Extends Option  扩展选项</h1>
+<h3 style="color:red">注意：原生的methods下面有一个add方法，扩展的这个同名方法将不会被执行</h3>
+
+<div id='extopt'>
+<p>{{a}}</p>
+<p>新delimeters=$%a$%</p>
+<button @click="add()">加100</button>
+</div>
+
+<script type="text/javascript">
+/////////////扩展********start,原生的methods下面有一个add方法，扩展的这个同名方法将不会被执行
+  var extendsopt={
+    updated:function(){
+      console.log("扩展选项的updated执行@@@@@@@@@@@@@@@")
+    },
+    methods:{
+      add:function(){      
+          this.a +=100;
+          console.log('扩展的添加方法····@@@@@@@')
+      },
+    },
+  }
+/////////////扩展********end
+
+  var eopt = new Vue({
+    el:'#extopt',
+    data:{
+      price:100,
+      a:0,
+      },
+    methods:{
+      add:function(){      
+          this.a +=100;
+          console.log('添加操作￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥')
+      },
+    },
+    updated:function(){
+      console.log('原生updated执行￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥')
+    },
+    extends:extendsopt,
+    delimiters:['$%','$%'],
+
+  });
+
+</script>
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+</body>
+</html>
+	

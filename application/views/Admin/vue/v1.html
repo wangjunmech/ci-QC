@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<script src="https://unpkg.com/vue"></script>
+
+<title>Vue2.0基础</title>
+</head>
+<body>
+<hr>
+<h1><strong>1.引用变量的几种写法：
+</strong></h1><br>	
+1.双大括号：<pre>{{ message }}</pre>
+2.使用v-text方法:<pre><p v-text="'hello ' + world"></p></pre>
+3.使用双大括号加反引号`包括用普通文本和变量，变量用单大括号前加$的方式:<pre><p>{{`hello ${world}`}}</p></pre>
+4.使用v-text方法:<pre><p v-text="'hello ' + world"></p></pre>
+<div id="app">
+  {{ message }}
+  <p>hello {{world}}</p>
+  <p v-text="'hello ' + world"></p>
+  <p>{{`hello ${world}`}}</p>
+  <p v-text="`hello ${world}`"></p>
+   <button @click="world='ziksang'">改变wrold值</button>
+</div>
+<h3 style="color:red">说明：引用变量的符号可以通过选项更改,(delimiters:['$%','$%']),例如：这样把原来的{{}}改成了$%$%</h3>
+
+<script type="text/javascript">
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!在DOM元素中用双花括号引用变量，在脚本中创建vue对象，使用el:绑定DOM，然后使用data:属性赋值给绑定的变量名',
+    world:'这个代表世界'
+  }
+})
+</script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+<hr>
+<h1>2.Vue之条件判断，V-if/V-else/V-show示例：</h1>
+<p style="color:red">注意v-if和v-show的区别，v-if不会加载DOM元素，而v-show会加载元素，只是把元素的CSS的style样式的display属性设置为none<br></p>
+<div id="vif">
+<ol>
+	<li v-if="islogin">a,已登录</li>
+
+	<li v-else="islogin">b,未登录</li>
+	<li v-show="islogin">v-show是不是出来了？</li>
+	
+</ol>
+</div>
+<script type="text/javascript">
+var app = new Vue({
+  el: '#vif',
+  data: {
+    // islogin:true,
+    islogin:false,
+
+  }
+})
+</script>
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+<hr>
+<h1>3.Vue之for循环，V-for示例：</h1>
+<p style="color:red">v-for循环语法：首先在data中声明数组，
+<pre>  data: {
+    arrlist:[11,33,55,66,77,22,88,44,99]
+  }
+    computed:{
+  	这里放一些处理方法，对数据进行一些处理。
+  }
+  然后循环：小于号<=&lt
+  "&ltli v-for="key in arrlist">{{key}}&lt/li>"</pre>
+<br></p>
+
+<div id="vf">
+<ol>
+	<li v-for="key in arrlist">{{key}}</li>
+</ol>
+使用computed对数组进行处理,使用sort()函数,默认排序是按字母顺序排的,所以数字排序需要在sort()中传递一处自定义函数才能正常排序数字.
+<br>换个写法试试：
+<ol>
+	<li v-for="items in sortarr">{{items}}</li>
+</ol>
+<p style="color:red">处理多维数组,并调用自定义函数排序：</p>
+
+<ul>
+	<li v-for="att in sortStudents">{{att.name}}=>{{att.age}}=>{{att.sex}}</li>
+</ul>
+
+</div>
+
+<script type="text/javascript">
+//自定义函数处理数字大小排序==从小到大
+function sortNum(a,b){
+	return a-b;
+}
+//自定义函数处理数字大小排序==从大到小
+function sortNum1(a,b){
+	return b-a;
+}
+//自定义函数处理数组对象属性排序，
+function sortbykey(arr,key){
+	return arr.sort(function(a,b){
+		var x=a[key];
+		var y=b[key];
+		return ((x<y)?-1:((x>y)?1:0)); 
+	});
+}
+var app = new Vue({
+  el: '#vf',
+  data: {
+  	//一维数组arrlist
+    arrlist:[3,11,33,55,66,77,22,88,44,99],
+    //多维数组 students
+    students:[
+    {name:'Bruce',age:33,sex:1},
+    {name:'Ken',age:53,sex:1},
+    {name:'Robert',age:22,sex:1},
+    {name:'Jason',age:13,sex:1},
+    {name:'Carl',age:9,sex:0},
+    {name:'Amy',age:18,sex:0},
+    ]
+  },
+  computed:{
+  	sortarr:function(){
+  		return this.arrlist.sort(sortNum1);
+  		//默认排序是按字母顺序排的，所以数字排序会有问题，需要自定义一个函数作为参数传入sort()中。
+  	},
+
+  	sortStudents:function(){
+  		return sortbykey(this.students,'sex');
+  	}
+
+  }
+})
+</script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+<hr>
+<h1>4.v-text & v-html示例：</h1>
+<p style="color:red">v-text 与 v-html的区别,v-html可以输出html的代码,使用要注意防止跨站攻击：
+
+<div id="vth">
+<span>用双大括号输出：{{msg}}</span><br>
+<span v-text=msg></span>
+<p>v-text输出dodo属性的内容：</p>
+<span v-text=dodo></span>
+<p>v-html输出dodo属性的内容：</p>
+<span v-html=dodo></span>
+</div>
+<script type="text/javascript">
+
+var app = new Vue({
+  el: '#vth',
+  data: {
+  	msg:'hello world!',
+  	dodo:'<span><h2>Hello world!!!</h2></span>'
+  },
+})
+</script>
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+<hr>
+<h1>5.v-on：绑定事件监听器：</h1>
+<p style="color:red">v-on：绑定事件监听器：</p>
+<p>v-on的简化写法为@,如v-on:click简写为@click</p>
+<p>绑定回车键enter的keyup事件示例：
+&ltinput type="text" name="" v-on:keyup.enter="onenter" v-model="score2">
+<br>
+
+也可把键名写为按键的代码（参考：<a href="">键盘按钮keyCode大全</a>，如这里的enter写为13<br>
+&ltinput type="text" name="" v-on:keyup.13="onenter" v-model="score2">
+</p>
+<div id="von">
+<span>本场比赛得分：{{score}}</span><br>
+<button @click="addscore">加1分</button>
+<button v-on:click="deductscore">减1分</button>
+<input type="text" name="" v-on:keyup.13="onenter" v-model="score2">
+</div>
+<script type="text/javascript">
+
+var app = new Vue({
+  el: '#von',
+  data: {
+  	score:0,
+  },
+  methods:{
+  	addscore:function(){
+  		this.score++;
+  	},
+  	deductscore:function(){
+  		this.score--;
+  	},
+  	onenter:function(){
+  		this.score=this.score + parseInt(this.score2);
+  		// this.score=this.score + this.score2;//需要把score2转为数值类型才能正确运算
+  	},
+  }
+})
+</script>
+
+<font color="red">
+<h3>注意绑定内部和外部方法的写法区别说明如下：</h3>
+</font>
+
+<font color="blue">
+<pre>
+//Html代码
+&ltdiv id='lifecycle' >
+&lth4>{{num}}&lt/h4>
+&ltbutton @click="add5">绑定内部函数--点加5&lt/button>
+&lt/div>
+&ltbutton onclick="add2()">绑定外部函数--点加2&lt/button>
+
+&lt/div>
+</font>
+<font color="purple">
+//JS代码
+&ltscript type="text/javascript">
+<strong>
+    function add2(){//外部函数写在构造器外面
+       lifeapp.num+=2;
+    }</strong></font>
+<font color="red">
+var lifeapp = new Vue({
+  el: '#lifecycle',
+  data:{
+    num: 0,
+    msg:"内部信息",
+    color:'red',
+  },
+ methods:{<strong>
+    add5:function(){//内部函数写在methods下面
+      this.num+=5;
+    },</strong>
+  }
+})
+
+&lt/script>
+</pre>
+</font>
+
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+<hr>
+<h1>6. v-model指令：</h1>
+<p style="color:red">v-model：数据源双向绑定</p>
+
+<p style="color:red">v-model的几个属性：</p>
+<ul>
+	<li>lazy----输入完并推动焦点时再一次更新结果:&l tinput type="text" name="" v-model.lazy="msg"></li>
+	<li>number----只能双向绑定输入数字，如果先绑定字符可以输入字符，如果先输入数字则不能输入字符:&l input type="text" name="" v-model.number="msg"></li>
+	<li>trim----失去焦点时自动去除输入框内文本前后的空格</li>
+</ul>
+</p>
+
+<div id="vm">
+<h3 style="color: blue">文本输入框双向绑定：</h3>
+<p>
+	{{msg}}
+</p>
+<br>
+<p>v-model:<input type="text" name="" v-model="msg"></p>
+<p>v-model.lazy:<input type="text" name="" v-model.lazy="msg"></p>
+<p>v-model.number:<input type="text" name="" v-model.number="msg"></p>
+<p>v-model.trim:<input type="text" name="" v-model.trim="msg"></p>
+
+<h3 style="color: blue">文本域双向绑定：</h3>
+<textarea cols="30" rows="10" v-model='msg'></textarea>
+
+<h3 style="color: blue">单选框绑定：</h3>
+<label for="male">男</label>
+<input type="radio" id='one' name="male" value='男' v-model="sselect">
+<label for="female">女</label>
+<input type="radio" id='one' name="female" value='女' v-model="sselect">
+<label for="secret">保密</label>
+<input type="radio" id='one' name="secret" value='保密' v-model="sselect">
+<p>你选择的性别：{{sselect}}</p>
+
+<h3 style="color: blue">复选框双向绑定：</h3>
+<label for="ck">{{isck}}</label>
+<input type="checkbox" name="ck" v-model="isck">
+
+<h3 style="color: blue">复选框绑定数组：</h3>
+<p style="color:green">{{isckd}}</p>
+<label for="ckd0">Amy</label>
+<input type="checkbox" name="ckd0" id='Amy' value='amy' v-model="isckd">
+<label for="ckd1">Ben</label>
+<input type="checkbox" name="ckd1" id='Ben' value='ben' v-model="isckd">
+<label for="ckd2">Gray</label>
+<input type="checkbox" name="ckd2" id='Gary' value='gary' v-model="isckd">
+<label for="ckd3">Tom</label>
+<input type="checkbox" name="ckd3" id='Tom' value='tom' v-model="isckd">
+
+</div>
+
+<script type="text/javascript">
+
+var app = new Vue({
+  el: '#vm',
+  data: {
+  	msg:'Hello world!!',
+  	sselect:'男',
+  	isck:true,
+  	isckd:[]
+  },
+
+})
+</script>
+
+
+
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+ <style type="text/css">
+ 	.classA{
+ 		font-size: 30px;
+ 	}
+  	.classB{
+ 		color: blue;
+ 	}
+ 	.classC{
+ 		background: pink;
+ 	}
+ </style>
+<hr>
+<h1>7. v-bind指令：</h1>
+<p style="color:red">v-bind用imgSrc属性绑定图片：</p>
+&ltimg v-bind:src="imgSrc"  width="200px">
+<p style="color:red">简写v-bind用:冒号绑定链接：</p>
+ &lta v-bind:href="wurl">绑定链接到百度&lt/a><br>
+&lta :href="wurl" target="_blank">绑定链接到百度简写&lt/a>
+<p style="color:red">绑定css样式：</p>
+&ltspan :class="className">绑定CSS样式为className&lt/span><br>
+&ltp :class='{classB:isok}'>根据条件绑定CSS样式,如果isok为真绑定classB&lt/p><br>
+&ltp :class='[classA,classB,classC]'>数组形式绑定多个CSS样式,classA,classB,classC&lt/p><br>
+&ltp :class='isok?classA:classC'>三元运算符A?B:C条件判断绑定CSS样式&lt/p><br>
+&ltp :style="{color:cl,fontSize:ft}">绑定内联style样式,注意css中的font-size在这里要改写为fontSize才行&lt/p><br>
+&ltp :style="cssobj">绑定内联style样式对象,先在data中声明对象&lt/p><br>
+<div id="vb">
+    <img v-bind:src="imgSrc"  width="200px">
+ <p><a :href="wurl" target="_blank">绑定链接到百度</a></p>
+
+  <span :class="className">绑定CSS样式,在元素之前先写好class或引入class文件，例如这里在上面声明了classA和classB</span>
+<p :class='{classB:isok}'>根据条件绑定CSS样式,如果isok为真绑定classB</p>
+<p :class='[classA,classB,classC]'>数组形式绑定多个CSS样式,classA,classB,classC</p>
+<p :class='isok?classA:classC'>三元运算符A?B:C条件判断绑定CSS样式</p>
+<p style="color:red;font-size:20px">内联style样式,注意css中的font-size在这里要改写为fontSize才行</p>
+<p :style="{color:cl,fontSize:ft}">绑定内联style样式,注意css中的font-size在这里要改写为fontSize才行</p>
+<p :style="cssobj">绑定内联style样式对象,先在data中声明对象</p>
+</div>
+
+<script type="text/javascript">
+
+var app = new Vue({
+  el: '#vb',
+  data: {
+          imgSrc:'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=111208453,796064750&fm=23&gp=0.jpg',
+          wurl:'https://www.baidu.com',
+          className:'classA',
+          classA:'classA',
+          classB:'classB',
+          classC:'classC',
+          isok:true,
+          cl:'green',
+          ft:'20px',
+          cssobj:{
+          	fontSize:'15px',
+          	color:'purple',
+          	}
+
+  }
+
+})
+</script>
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+<hr>
+<h1>8.其他内部指令(v-pre & v-cloak & v-once)：</h1>
+<div id="vother">
+<p>v-pre:原样输出标签内的<strong><font color=red>插值</font></strong>代码</p>
+<div v-pre><p ><span style="color: red;font-size:20px">{{msg}}</span></p></div>
+
+<p>v-cloak:保证内容加载完成才能渲染显示<strong><font color=red>缓存完才显示出来,cloak原意为： 遮掩；隐匿</font></strong></p>
+<div v-cloak><p ><span style="color: red;font-size:20px">{{msg}}</span></p></div>
+
+<p>v-once:只绑定一次数据（只渲染第一次），后面的数据修改不起作用<strong><font color=red></strong></font>
+<input type="text" name="" v-model='msg'>{{msg}}
+<p v-once='msg'>{{msg}}</p>
+<p v-once='msg'>{{msg}}</p>
+<p v-once='msg'>{{msg}}</p>
+</div>
+<script type="text/javascript">
+
+var app = new Vue({
+  el: '#vother',
+  data: {
+  	//msg:"Hello world!!!",
+  	msg:"Hello world!!!指令是带有v-的标签Hello world!!!",
+  },
+  
+})
+</script>
+
+
+
+
+
+
+
+
+<div>
+
+
+</div>
+</body>
+</html>
+	

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+   
+
+ 
+<title>jQuery 折叠菜单实例</title>
+<script type="text/javascript" src="jquery-1.6.2.min.js"></script>
+<style type="text/css">
+/** { margin:0px; padding:0px; }
+body { background:transparent url('images/bg.gif') repeat scroll left top;font-size:14px; }
+ul, li, p, h1, h2, h3, div, label, input, form { list-style:none; padding:0px; margin:0px; }
+#header { width:600px; margin:20px auto 0; color:#ffffff; background:transparent url('images/header1.jpg') repeat-x scroll left top; height:90px; line-height:90px; font-size:20px; overflow:hidden; }
+#header p { padding-left:15px; font-weight:bold; }
+#header p span.date { float:right; padding-right:15px; font-size:14px; padding-top:10px; font-weight:normal; }
+.content { width:596px; _height:430px; min-height:430px; margin:0 auto; border:2px solid #AAAA00; border-top:none; background-color:#FFFFFF; overflow:hidden; }
+.toggle { width:450px; margin:20px auto; }
+.toggle dl dt { background:#F4FFF4 url('images/bg_toggle_up.gif') no-repeat scroll 8px 14px; height:40px; width:450px; line-height:40px; font-size:16px; font-weight:bold; color:#006600; cursor:pointer; margin:8px 0; padding-left:25px; display:block; }
+.toggle dl dt.current { background:#F4FFF4 url('images/bg_toggle_down.gif') no-repeat scroll 8px 14px; }
+.toggle dl dd { padding-left:10px; line-height:24px; }
+.toggle dl dd h2 { font-size:15px; }
+.toggle dl dd ul { padding-bottom:12px; }
+.toggle dl dd ul li { list-style:decimal inside none; }*/
+</style>
+  <script type="text/javascript"> 
+   $(function(){
+    $(".toggle dl dd").hide();
+    $(".toggle dl dt").click(function(){
+     $(".toggle dl dd").not($(this).next()).hide();
+     $(".toggle dl dt").not($(this).next()).removeClass("current");
+     $(this).next().slideToggle(500);
+     $(this).toggleClass("current");
+     });
+    });
+
+   $('.collapse').collapse();
+
+
+var Collapse = function ( element, options ){} // 构造器
+Collapse.prototype = {} //构造器的原型
+$.fn.collapse = function ( option ){} //jQuery原型上自定义的方法
+$.fn.collapse.defaults = {} // 默认参数
+$.fn.collapse.Constructor = Collapse // 重写jQuery原型自定义方法的构造器名
+$(function (){}) // 初始化
+
+
+  </script>
+  </head>
+  <body>
+<div id="header">
+  <p><span class="date">时间：2010/8/3</span>jQuery 折叠菜单<span style="font-size:14px;padding:10px 0 0 5px;">By Sam Zhang</span> 
+ </div>
+<div class="content">
+  <div class="toggle">
+ <dl>
+  <dt>web 前端开发工程师（工作地点:上海、广州）</dt>
+  <dd>
+ <h2>工作职责：</h2>
+ <ul>
+   <li>简单分析用户数据，整理用户需求导向；</li>
+   <li>对在用户浏览器端的最终视觉呈现负责；</li>
+   <li>和后台工程师一起研讨技术实现方案，制定服务接口等；</li>
+  </ul>
+ <h2>职位要求：</h2>
+ <ul>
+   <li>本科以上学历，习惯阅读英文原版技术文档和书籍；</li>
+   <li>对可用性、可访问性等相关知识有深刻的认识和实践经验；</li>
+   <li>掌握至少一门非前端脚本开发语言（如PHP/Python等）；</li>
+  </ul>
+ </dd>
+  <dt>web 前端开发工程师（工作地点:上海、广州）</dt>
+  <dd>
+ <h2>工作职责：</h2>
+ <ul>
+   <li>对在用户浏览器端的最终视觉呈现负责；</li>
+   <li>持续的优化前端体验和页面响应速度；</li>
+   <li>和后台工程师一起研讨技术实现方案，制定服务接口等；</li>
+  </ul>
+ <h2>职位要求：</h2>
+ <ul>
+   <li>本科以上学历，习惯阅读英文原版技术文档和书籍；</li>
+   <li>熟悉至少一种JS框架（如YUI/JQuery等），我们目前主要使用YUI；</li>
+   <li>掌握至少一门非前端脚本开发语言（如PHP/Python等）；</li>
+  </ul>
+ </dd>
+  <dt>web 前端开发工程师（工作地点:上海、广州）</dt>
+  <dd>
+ <h2>工作职责：</h2>
+ <ul>
+   <li>简单分析用户数据，整理用户需求导向；</li>
+   <li>对在用户浏览器端的最终视觉呈现负责；</li>
+   <li>使用HTML/CSS/Javascript开发符合W3C标准的网站前端页面；</li>
+  </ul>
+ <h2>职位要求：</h2>
+ <ul>
+   <li>精通XHTML/CSS/Javascript等前端技术，兼容多种浏览器的代码；</li>
+   <li>熟悉至少一种JS框架（如YUI/JQuery等），我们目前主要使用YUI；</li>
+   <li>掌握至少一门非前端脚本开发语言（如PHP/Python等）；</li>
+  </ul>
+ </dd>
+  </dl>
+ </div>
+ </div>
+ <hr>
+
+
+
+</body>
+</html>

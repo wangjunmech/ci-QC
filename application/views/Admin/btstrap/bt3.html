@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+
+
+<!-- 加载Bootstrap的层叠样式表 -->
+<link href="<?php echo base_url('Static/bootstrap-3.3.7-dist/css/bootstrap.min.css'); ?>" rel='stylesheet'>
+
+
+<title>下拉菜单、按钮组</title>
+<script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<script src="<?php echo base_url('Static/bootstrap-3.3.7-dist/js/bootstrap.js')?>"></script>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!-- 加载Font Awesome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+
+<div>
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">默认
+    <!-- caret设置下拉菜单按钮的向下三角形标志 -->
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="#">功能</a>
+        </li>
+        <li>
+            <a href="#">另一个功能</a>
+        </li>
+        <li>
+            <a href="#">其他</a>
+        </li>
+        <li class="divider">divider样式设置下拉菜单项的分隔线</li>
+        <li>
+            <a href="#">分离的链接</a>
+        </li>
+    </ul>
+</div>
+<div class="btn-group dropup">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">上拉
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="#">功能</a>
+        </li>
+        <li>
+            <a href="#">另一个功能</a>
+        </li>
+        <li>
+            <a href="#">其他</a>
+        </li>
+        <li class="divider">divider样式设置下拉菜单项的分隔线</li>
+        <li>
+            <a href="#">分离的链接</a>
+        </li>
+    </ul>
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">下拉
+       
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="#">功能</a>
+        </li>
+        <li>
+            <a href="#">另一个功能</a>
+        </li>
+        <li>
+            <a href="#">其他</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a href="#">分离的链接</a>
+        </li>
+    </ul>
+    
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">下拉
+        <span class="caret"></span></button>
+<ul class="dropdown-menu" role='menu' aria-labelledby="dropdownM1">
+    <li role="presentation" class="dropdown-header">Dropdown-header</li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">AAAA</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">BBBB</a></li>
+    <li class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CCCC</a></li>
+      
+    </ul>
+    </div>
+</div>
+
+<!-- 按钮组 -->
+<div class="btn-group">
+<button type="button" class="btn btn-info">AAAA</button>
+<button type="button" class="btn btn-warning">BBBB</button>
+<button type="button" class="btn btn-info">3</button>
+<button type="button" class="btn btn-info">4</button>
+<button type="button" class="btn btn-info">5</button>
+</div>
+<hr>
+<!-- 多个按钮组组成toolbar -->
+<div class="btn-boolbar" role="toolbar">
+<div class="btn-group btn-group-lg">
+<button type="button" class="btn btn-info">AAAA</button>
+<button type="button" class="btn btn-info">BBBB</button>
+<button type="button" class="btn btn-info">3</button>
+<button type="button" class="btn btn-info">4</button>
+<button type="button" class="btn btn-info">5</button>
+</div>
+<div class="btn-group btn-group-vertical">
+<button type="button" class="btn btn-info">WWWW</button>
+<button type="button" class="btn btn-danger">XXXX</button>
+<button type="button" class="btn btn-info">3</button>
+<button type="button" class="btn btn-info">4</button>
+<button type="button" class="btn btn-info">5</button>
+</div>
+<div class="btn-group btn-group-xs">
+<button type="button" class="btn btn-info">AAAA</button>
+<button type="button" class="btn btn-info">BBBB</button>
+<button type="button" class="btn btn-info">3</button>
+<button type="button" class="btn btn-info">4</button>
+<button type="button" class="btn btn-info">5</button>
+
+<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">下拉
+        <span class="caret"></span></button>
+<ul class="dropdown-menu" role='menu' aria-labelledby="dropdownM1">
+    <li role="presentation" class="dropdown-header">Dropdown-header</li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">AAAA</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">BBBB</a></li>
+    <li class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CCCC</a></li>      
+    </ul>
+</div> 
+<div class="btn-group">
+<button type="button" class="btn btn-info dropdown-toggle " data-toggle="dropdown">下拉
+        <span class="caret"></span></button>
+<ul class="dropdown-menu" role='menu' aria-labelledby="dropdownM1">
+    <li role="presentation" class="dropdown-header">Dropdown-header</li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">AAAA</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">BBBB</a></li>
+    <li class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CCCC</a></li>      
+    </ul>
+    </div>
+
+
+
+</div>
+<!-- 两端对齐使用样式btn-group btn-group-justified -->
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default">Left</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default">Middle</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default">Right</button>
+  </div>
+</div>
+<div>
+  <p>分裂式按钮下拉菜单</p>
+</div>
+<!-- Split button -->
+<div class="btn-group dropup">
+  <button type="button" class="btn btn-danger btn-sm ">分裂式</button>
+
+  <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown">
+    <span class="caret "></span>
+  </button>
+
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+
+</div>
+
+  </body>
+</html>

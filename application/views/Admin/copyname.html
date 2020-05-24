@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+
+	<title>复制文件名</title>
+	<style type="text/css">
+input[type="text"]  
+    {  
+        background-color:#6F9;
+        width: 400px;
+    }  
+	
+.a1 {
+	color: #F00;
+	}
+</style>
+
+</head>
+<body>
+
+<p>程序功能说明：</p>
+<p>读取源目录，遍历源目录中的所有文件（忽略文件夹），在指定的新目录内创建和源目录中文件名相同的文件，文件内容暂时用循环次数，用于文件或文件名操作测试</p>
+
+<font color="red">待改进：<br>
+1.选择目录</font>
+
+<div>
+
+<form name="copyname" method="post" action="<?php echo site_url().'/admin/progs/copyname';?>">
+源目录：<br>
+<input type="text" name="odir" value="<?php echo $_POST['odir']?>">
+<br>
+
+新目录：<br>
+<input type="text" name="ndir" value="<?php echo $_POST['ndir']?>">
+<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+	<input type="submit" name="copy" value="执行复制文件名">
+						
+</form>
+</div>
+
+
+<?php
+
+if(!empty($msg)){
+echo '<font color="red">'.$msg.'</font>';
+}
+
+?>
+
+</body>
+</html>

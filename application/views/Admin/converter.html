@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('Public/Progs/Css/style.css');?>">
+<title>
+单位转换器
+</title>
+<head>
+<!--<style>a{ TEXT-DECORATION:none }</style>
+-->
+</head>
+
+
+
+
+<body>
+
+<div id="top" >
+<p id="head">
+单位转换
+</p>
+
+</div>
+<hr>
+<div id="tit" >
+<p>
+
+<?php
+//输出项目链接
+foreach( $items as $k=>$v){  
+		echo "<a href='".site_url()."/admin/progs/converter/$k'> &nbsp||>$v<||&nbsp </a>";  
+			} 
+?>
+
+
+</p>
+</div>
+
+<div id="main" >
+<?php
+
+if(isset($form)){
+print_r($form) ;
+
+}
+echo $msg;
+echo $msg1;
+
+?>
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>jQuery-Ajax</title>
+			  
+<script src="<?php echo base_url('Public/js/jquery.js')?>"> </script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
+<script>window.jQuery||document.write('<script src="<?php echo base_url('Public/js/jquery.js')?>"><\/script>')
+</script>
+
+<!-- 
+<script type="text/javascript">
+	window.onload = function(){
+		alert('W.onload');
+	}
+	window.onload = function(){
+		alert('W.onload-2');
+	}
+
+	$(function(){
+		alert('D.ready-3');
+	});
+	$(function(){
+		alert('D.ready-1');
+	});
+	$(document).ready(function(){
+		alert('D.ready-2');
+	});
+
+</script> -->
+
+</head>
+<body onscroll="fixpos()">
+jQuery-Ajax
+
+<!-- 固定元素位置 -->
+
+<p class="first">PPPPPPPPPPPPPP</p>
+<div id="one">1st
+	<div id="two">2nd
+		<div id="three">3rd
+			<div id="four">4th
+			<img src="../../../Public/images/warning.gif" id='tu'">
+			<p title="js">div>p>AAAA<ul><li>001</li>
+			<li>002</li></ul></p>
+			<p>div>p>BBBB</p>
+			<p>div>p>CCCC</p>
+			<p>div>p>DDDD</p>
+			<a href="###">link-11111111</a>
+
+			<a href="###">link-bbbbbbbb</a>
+
+			<p><a href="###">link-under P 222222222</a></p>
+			<div>link-div</div>
+			<ul>link-ul</ul>
+			<a href="###">link-3333333</a>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+<input type="button" id="bt" value="move">
+<div id='go' style="width:50px; height:50px; background:green; position: relative;">66</div>
+<p class="first">link-0000000000</p>
+<p class="first">link-111111111</p>
+<p class="second">link-222222</p>
+<div id="div1"><h2>使用 jQuery AJAX 修改文本内容</h2></div>
+<p>link-888888888888888</p>
+<button id='aj'>获取其他内容</button>
+<button>获取其他内容</button>
+<input type="text" value="111"></input>
+<input type="text" value="222"></input>
+<input type="text" value="333"></input>
+
+<script>
+	var tu = document.getElementById("tu");
+function fixpos(){
+		tu.style.top = 100+document.body.scrollTop;
+		tu.style.left = 100+document.body.scrollLeft;
+}
+
+
+</script>
+
+<script>
+
+$(document).ready(function(){
+	$("#aj").click(function(){
+		// $.ajax({url:"<?php echo base_url('demo_test.txt');?>",success:function(result){
+	$.ajax({url:"<?php echo base_url('demoa.txt');?>",	
+      success:function(result){      		
+			$("#div1").html(result);
+		}});
+
+	});
+});
+// console.log(jqxhr);
+
+
+//20:17
+// function get_dis_top(obj){
+// 	var pos = 0;
+// 	while(obj){
+// 		if(obj.nodeName == "HTML")
+// 			break;
+// 		pos += obj.offsetTop;
+// 		obj = obj.parentNode;
+// 	}
+// 	return pos;
+// }
+// var a ;
+// a = $('#four');
+// alert(a.html());
+// alert(a[0].innerHTML);
+// alert(a.get(0).innerHTML+'5555555555555555');
+
+// div = document.getElementById('four');
+// alert(div.innerHTML +'5555555555555555');
+
+// var jqdiv = $(div);
+// alert(jqdiv.html());
+
+
+// $('p').click(function(){
+// 	if($(this).is('.first')){
+// 		$(this).css('background','green');
+// 	}
+// });
+// $(function(){
+// // $('p[title]').css('background','yellow');
+// // $('p：eq[0]').css('background','yellow');
+// // $('p').filter('.classa').css('background','yellow');
+// // $('p').filter('#ida').css('background','yellow');
+// // $('p').first(':even').css('background','yellow');
+// // $('p').first(':odd').css('background','yellow');
+
+
+// 	$('#go').animate({'left':'100'},10);
+// 	$(':animated').css('background','green')
+
+// 	var s= $('p :first').css('color','red');
+// 	console.log(s);
+// })
+// $("button").css('background','red');
+
+//滑动动画
+$(document).ready(function(){
+  $("#bt").click(function(){
+    $("#go").animate({left:'250px'});
+  });
+});
+
+
+// var arr=$('input').map(function(){
+
+// 	return $($this).val()
+// }).get().join(',');
+
+// alert(typeof arr);
+// $('p').html(arr);
+
+</script>
+
+
+
+
+</body>
+</html>
+

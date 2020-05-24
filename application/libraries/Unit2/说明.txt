@@ -1,0 +1,4 @@
+class 新加类名需要大写 extends Unit{
+	public $name="新加类的名字";
+	private $u;
+	private $a;

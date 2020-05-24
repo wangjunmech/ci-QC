@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Zero Clipboard Test</title>
+<meta charset="utf-8">
+</head>
+<body>
+<script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<script src="<?php echo base_url('Public/zeroclipboard-2.2.0/dist/ZeroClipboard.js')?>"></script>
+
+<p>复制到剪贴板插件<br>
+参考：http://www.cnblogs.com/PeunZhang/p/3324727.html<br>
+插件官网：http://zeroclipboard.org/<br>
+加载插件文件：D:\WWW\QC\Public\zeroclipboard-2.2.0\dist\ZeroClipboard.js</p>
+<!-- 
+    说明：
+    1.data-clipboard-target 输入要复制的对象的ID
+-->
+<button id="d_clip_button" class="my_clip_button" data-clipboard-target="fe_text"><b>复制到剪贴板</b></button>
+<button id="cb" data-clipboard-target="fe_text" style="background: green;"><b>复制到剪贴板</b></button>
+<br/>
+<div id='ccb' data-clipboard-target="fe_text" style="background: green;width: 30px;height: 20px;" ></div>
+<textarea id="fe_text" cols="50" rows="3">输入需要复制的内容</textarea>
+
+
+
+
+<p><strong>复制到剪贴板JS原生测试代码：参考地址:http://www.cnblogs.com/tylerdonet/p/4533782.html
+</strong>    
+<br>
+1.实现点击按钮，复制文本框中的的内容<br>
+
+ <script type="text/javascript">
+ function copyUrl2()
+ {
+ var Url2=document.getElementById("biao1");
+ Url2.select(); // 选择对象
+ document.execCommand("Copy"); // 执行浏览器复制命令
+ alert("已复制好，可贴粘。");
+ }
+ </script>
+<textarea cols="20" rows="10" id="biao1">用户定义的代码区域</textarea>
+<input type="button" onClick="copyUrl2()" value="点击复制代码" />
+
+<br>2.复制专题地址和 url 地址，传给 QQ/MSN 上的好友,IE支持，其它要注意可能不支持<br>
+<p>
+<input type="button" name="anniu1" onClick='copyToClipBoard()' value="复制专题地址和url地址，传给QQ/MSN上的好友">
+
+<script language="javascript">
+function copyToClipBoard(){
+// alert(this.location.href);
+var clipBoardContent="";
+clipBoardContent+=document.title;
+clipBoardContent+="";
+clipBoardContent+=this.location.href;
+clipboardData = this.location.href;
+alert(clipboardData);
+
+document.execCommand("Copy");
+window.clipboardData.setData("Text",clipBoardContent);
+alert("复制成功，请粘贴到你的QQ/MSN上推荐给你的好友");
+}
+
+
+</script>
+
+<br><br>
+<br><br>
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+// 定义一个新的复制对象
+// var clip = new ZeroClipboard( document.getElementById("d_clip_button"), {
+//   moviePath: "ZeroClipboard.swf"
+// } );
+
+// 复制内容到剪贴板成功后的操作
+// clip.on('click',function(client, args) {
+//    alert("复制成功，复制内容为："+ args.text);
+// } );
+// $('#d_clip_button').click(function(event) {
+//  alert('复制内容到剪贴板成功！')});
+var cc = new ZeroClipboard( document.getElementById("ccb"), {
+  moviePath: "ZeroClipboard.swf"
+} );
+$('#ccb').click(function(event) {
+ alert('复制内容到剪贴板成功！')});
+</script>

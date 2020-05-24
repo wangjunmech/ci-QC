@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<title>JS鼠标事件大全</title>
+<meta name="keywords" content="鼠标事件" />
+<meta name="description" content="JS鼠标事件大全 推荐收藏，整理的比较细，推荐大家看下。" />
+<link rel="stylesheet" href="/skin/mobile2017/css/base.css">
+<link rel="stylesheet" href="/skin/mobile2017/css/common.css">
+<link rel="canonical" href="http://www.jb51.net/article/28772.htm"/>
+<script src="//msite.baidu.com/sdk/c.js?appid=1549322409310619"></script>
+<script src="/skin/mobile/js/bd_inc.js"></script>
+<script>
+var bd="ok";
+</script> 
+</head>
+<body id="alist">
+
+
+<div class="con">
+<div id="art_demo">JS鼠标事件大全</div>
+</div>
+
+<div class="con" id="content">
+<TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#cccccc border=0>
+<TBODY>
+<TR>
+<TH align=left bgColor=#ffffff colSpan=3><FONT color=#990000><STRONG>一般事件</STRONG></FONT></TH></TR>
+<TR>
+<TH width="11%" bgColor=#ffffff><STRONG><FONT size=2>事件</FONT></STRONG></TH>
+<TH width="31%" bgColor=#ffffff><STRONG><FONT size=2>浏览器支持</FONT></STRONG></TH>
+<TH width="58%" bgColor=#ffffff><STRONG><FONT size=2>描述</FONT></STRONG></TH></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onClick</FONT></STRONG></TH>
+<TD vAlign=top noWrap bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser: <STRONG><FONT color=#cc0000>IE3 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N2 </FONT></STRONG>|<STRONG><FONT color=#cc0000> O3 </FONT></STRONG></TD>
+<TD bgColor=#ffffff>鼠标点击事件，多用在某个对象控制的范围内的鼠标点击</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDblClick</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N4 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>鼠标双击事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onMouseDown</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N4 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>鼠标上的按钮被按下了</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onMouseUp</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N4 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>鼠标按下后，松开时激发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onMouseOver</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE3 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N2 </FONT></STRONG>|<STRONG><FONT color=#cc0000> O3 </FONT></STRONG></TD>
+<TD bgColor=#ffffff>当鼠标移动到某对象范围的上方时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onMouseMove</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N4 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>鼠标移动时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onMouseOut</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N3 </FONT></STRONG>|<STRONG><FONT color=#cc0000> O3 </FONT></STRONG></TD>
+<TD bgColor=#ffffff>当鼠标离开某对象范围时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onKeyPress</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N4 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>当键盘上的某个键被按下并且释放时触发的事件.[注意:页面内必须有被聚焦的对象]</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onKeyDown</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N4 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>当键盘上某个按键被按下时触发的事件[注意:页面内必须有被聚焦的对象]</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onKeyUp</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N4 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>当键盘上某个按键被按放开时触发的事件[注意:页面内必须有被聚焦的对象]</TD></TR>
+<TR>
+<TH align=left bgColor=#ffffff colSpan=3><FONT color=#990000><STRONG>页面相关事件</STRONG></FONT></TH></TR>
+<TR>
+<TH bgColor=#ffffff><STRONG><FONT size=2>事件</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>浏览器支持</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>描述</FONT></STRONG></TH></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onAbort</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N3 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>图片在下载时被用户中断</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onBeforeUnload</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当前页面的内容将要被改变时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onError</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N3 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>捕抓当前页面因为某种原因而出现的错误，如脚本错误与外部数据引用的错误</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onLoad</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE3 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N2 </FONT></STRONG>|<STRONG><FONT color=#cc0000> O3 </FONT></STRONG></TD>
+<TD bgColor=#ffffff>页面内空完成传送到浏览器时触发的事件，包括外部文件引入完成</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onMove</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser: IE |<STRONG><FONT color=#cc0000> N4 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>浏览器的窗口被移动时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onResize</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N4 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>当浏览器的窗口大小被改变时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onScroll</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>浏览器的滚动条位置发生变化时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onStop</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>浏览器的停止按钮被按下时触发的事件或者正在下载的文件被中断</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onUnload</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE3 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N2 </FONT></STRONG>|<STRONG><FONT color=#cc0000> O3 </FONT></STRONG></TD>
+<TD bgColor=#ffffff>当前页面将被改变时触发的事件</TD></TR>
+<TR>
+<TH align=left bgColor=#ffffff colSpan=3><FONT color=#990000><STRONG>表单相关事件</STRONG></FONT></TH></TR>
+<TR>
+<TH bgColor=#ffffff><STRONG><FONT size=2>事件</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>浏览器支持</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>描述</FONT></STRONG></TH></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onBlur</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE3 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N2 </FONT></STRONG>|<STRONG><FONT color=#cc0000> O3 </FONT></STRONG></TD>
+<TD bgColor=#ffffff>当前元素失去焦点时触发的事件 [鼠标与键盘的触发均可]</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onChange</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE3 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N2 </FONT></STRONG>|<STRONG><FONT color=#cc0000> O3 </FONT></STRONG></TD>
+<TD bgColor=#ffffff>当前元素失去焦点并且元素的内容发生改变而触发的事件 [鼠标与键盘的触发均可]</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onFocus</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE3 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N2 </FONT></STRONG>|<STRONG><FONT color=#cc0000> O3 </FONT></STRONG></TD>
+<TD bgColor=#ffffff>当某个元素获得焦点时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onReset</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N3 </FONT></STRONG>|<STRONG><FONT color=#cc0000> O3 </FONT></STRONG></TD>
+<TD bgColor=#ffffff>当表单中RESET的属性被激发时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onSubmit</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE3 </FONT></STRONG>|<STRONG><FONT color=#cc0000> N2 </FONT></STRONG>|<STRONG><FONT color=#cc0000> O3 </FONT></STRONG></TD>
+<TD bgColor=#ffffff>一个表单被递交时触发的事件</TD></TR>
+<TR>
+<TH align=left bgColor=#ffffff colSpan=3><FONT color=#990000><STRONG>滚动字幕事件</STRONG></FONT></TH></TR>
+<TR>
+<TH bgColor=#ffffff><STRONG><FONT size=2>事件</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>浏览器支持</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>描述</FONT></STRONG></TH></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onBounce</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>在Marquee内的内容移动至Marquee显示范围之外时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onFinish</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当Marquee元素完成需要显示的内容后触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onStart</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当Marquee元素开始显示内容时触发的事件</TD></TR>
+<TR>
+<TH align=left bgColor=#ffffff colSpan=3><FONT color=#990000><STRONG>编辑事件</STRONG></FONT></TH></TR>
+<TR>
+<TH bgColor=#ffffff><STRONG><FONT size=2>事件</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>浏览器支持</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>描述</FONT></STRONG></TH></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onBeforeCopy</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当页面当前的被选择内容将要复制到浏览者系统的剪贴板前触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onBeforeCut</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当页面中的一部分或者全部的内容将被移离当前页面[剪贴]并移动到浏览者的系统剪贴板时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onBeforeEditFocus</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当前元素将要进入编辑状态</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onBeforePaste</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>内容将要从浏览者的系统剪贴板传送[粘贴]到页面中时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onBeforeUpdate</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当浏览者粘贴系统剪贴板中的内容时通知目标对象</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onContextMenu</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当浏览者按下鼠标右键出现菜单时或者通过键盘的按键触发页面菜单时触发的事件 [试试在页面中的&lt;body&gt;中加入onContentMenu="return false"就可禁止使用鼠标右键了]</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onCopy</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当页面当前的被选择内容被复制后触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onCut</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当页面当前的被选择内容被剪切时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDrag</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当某个对象被拖动时触发的事件 [活动事件]</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDragDrop</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser: IE |<STRONG><FONT color=#cc0000> N4 </FONT></STRONG>| O</TD>
+<TD bgColor=#ffffff>一个外部对象被鼠标拖进当前窗口或者帧</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDragEnd</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当鼠标拖动结束时触发的事件，即鼠标的按钮被释放了</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDragEnter</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当对象被鼠标拖动的对象进入其容器范围内时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDragLeave</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当对象被鼠标拖动的对象离开其容器范围内时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDragOver</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当某被拖动的对象在另一对象容器范围内拖动时触发的事件 [活动事件]</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDragStart</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当某对象将被拖动时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDrop</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>在一个拖动过程中，释放鼠标键时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onLoseCapture</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当元素失去鼠标移动所形成的选择焦点时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onPaste</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当内容被粘贴时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onSelect</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 |<STRONG><FONT color=#cc0000> 4 </FONT></STRONG><BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当文本内容被选择时的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onSelectStart</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当文本内容选择将开始发生时触发的事件</TD></TR>
+<TR>
+<TH align=left bgColor=#ffffff colSpan=3><FONT color=#990000><STRONG>数据绑定</STRONG></FONT></TH></TR>
+<TR>
+<TH bgColor=#ffffff><STRONG><FONT size=2>事件</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>浏览器支持</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>描述</FONT></STRONG></TH></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onAfterUpdate</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当数据完成由数据源到对象的传送时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onCellChange</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当数据来源发生变化时</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDataAvailable</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当数据接收完成时触发事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDatasetChanged</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>数据在数据源发生变化时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onDatasetComplete</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当来子数据源的全部有效数据读取完毕时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onErrorUpdate</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当使用onBeforeUpdate事件触发取消了数据传送时，代替onAfterUpdate事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onRowEnter</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当前数据源的数据发生变化并且有新的有效数据时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onRowExit</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当前数据源的数据将要发生变化时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onRowsDelete</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当前数据记录将被删除时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onRowsInserted</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当前数据源将要插入新数据记录时触发的事件</TD></TR>
+<TR>
+<TH align=left bgColor=#ffffff colSpan=3><FONT color=#990000><STRONG>外部事件</STRONG></FONT></TH></TR>
+<TR>
+<TH bgColor=#ffffff><STRONG><FONT size=2>事件</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>浏览器支持</FONT></STRONG></TH>
+<TH bgColor=#ffffff><STRONG><FONT size=2>描述</FONT></STRONG></TH></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onAfterPrint</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当文档被打印后触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onBeforePrint</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当文档即将打印时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onFilterChange</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当某个对象的滤镜效果发生变化时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onHelp</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当浏览者按下F1或者浏览器的帮助选择时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onPropertyChange</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE5 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当对象的属性之一发生变化时触发的事件</TD></TR>
+<TR>
+<TH vAlign=top align=left bgColor=#ffffff><STRONG><FONT size=2>onReadyStateChange</FONT></STRONG></TH>
+<TD vAlign=top bgColor=#ffffff>HTML: 2 | 3 | 3.2 | 4 <BR>Browser:<STRONG><FONT color=#cc0000> IE4 </FONT></STRONG>| N | O</TD>
+<TD bgColor=#ffffff>当对象的初始化属性值发生变化时触发</TD></TR></TBODY></TABLE>
+<P>&nbsp;</P>
+<P>一般事件 事件 浏览器支持 描述 <BR>onClick IE3|N2|O3 鼠标点击事件，多用在某个对象控制的范围内的鼠标点击 <BR>onDblClick IE4|N4|O 鼠标双击事件 <BR>onMouseDown IE4|N4|O 鼠标上的按钮被按下了 <BR>onMouseUp IE4|N4|O 鼠标按下后，松开时激发的事件 <BR>onMouseOver IE3|N2|O3 当鼠标移动到某对象范围的上方时触发的事件 <BR>onMouseMove IE4|N4|O 鼠标移动时触发的事件 <BR>onMouseOut IE4|N3|O3 当鼠标离开某对象范围时触发的事件 <BR>onKeyPress IE4|N4|O 当键盘上的某个键被按下并且释放时触发的事件.[注意:页面内必须有被聚焦的对象] <BR>onKeyDown IE4|N4|O 当键盘上某个按键被按下时触发的事件[注意:页面内必须有被聚焦的对象] <BR>onKeyUp IE4|N4|O 当键盘上某个按键被按放开时触发的事件[注意:页面内必须有被聚焦的对象] <BR>页面相关事件 事件 浏览器支持 描述 <BR>onAbort IE4|N3|O 图片在下载时被用户中断 <BR>onBeforeUnload IE4|N|O 当前页面的内容将要被改变时触发的事件 <BR>onError IE4|N3|O 捕抓当前页面因为某种原因而出现的错误，如脚本错误与外部数据引用的错误 <BR>onLoad IE3|N2|O3 页面内空完成传送到浏览器时触发的事件，包括外部文件引入完成 <BR>onMove IE|N4|O 浏览器的窗口被移动时触发的事件 <BR>onResize IE4|N4|O 当浏览器的窗口大小被改变时触发的事件 <BR>onScroll IE4|N|O 浏览器的滚动条位置发生变化时触发的事件 <BR>onStop IE5|N|O 浏览器的停止按钮被按下时触发的事件或者正在下载的文件被中断 <BR>onUnload IE3|N2|O3 当前页面将被改变时触发的事件 <BR>表单相关事件 事件 浏览器支持 描述 <BR>onBlur IE3|N2|O3 当前元素失去焦点时触发的事件 [鼠标与键盘的触发均可] <BR>onChange IE3|N2|O3 当前元素失去焦点并且元素的内容发生改变而触发的事件 [鼠标与键盘的触发均可] <BR>onFocus IE3|N2|O3 当某个元素获得焦点时触发的事件 <BR>onReset IE4|N3|O3 当表单中RESET的属性被激发时触发的事件 <BR>onSubmit IE3|N2|O3 一个表单被递交时触发的事件 <BR>滚动字幕事件 事件 浏览器支持 描述 <BR>onBounce IE4|N|O 在Marquee内的内容移动至Marquee显示范围之外时触发的事件 <BR>onFinish IE4|N|O 当Marquee元素完成需要显示的内容后触发的事件 <BR>onStart IE4|N|O 当Marquee元素开始显示内容时触发的事件 <BR>编辑事件 事件 浏览器支持 描述 <BR>onBeforeCopy IE5|N|O 当页面当前的被选择内容将要复制到浏览者系统的剪贴板前触发的事件 <BR>onBeforeCut IE5|N|O 当页面中的一部分或者全部的内容将被移离当前页面[剪贴]并移动到浏览者的系统剪贴板时触发的事件 <BR>onBeforeEditFocus IE5|N|O 当前元素将要进入编辑状态 <BR>onBeforePaste IE5|N|O 内容将要从浏览者的系统剪贴板传送[粘贴]到页面中时触发的事件 <BR>onBeforeUpdate IE5|N|O 当浏览者粘贴系统剪贴板中的内容时通知目标对象 <BR>onContextMenu IE5|N|O 当浏览者按下鼠标右键出现菜单时或者通过键盘的按键触发页面菜单时触发的事件 [试试在页面中的&lt;body&gt;中加入onContentMenu="return false"就可禁止使用鼠标右键了] <BR>onCopy IE5|N|O 当页面当前的被选择内容被复制后触发的事件 <BR>onCut IE5|N|O 当页面当前的被选择内容被剪切时触发的事件 <BR>onDrag IE5|N|O 当某个对象被拖动时触发的事件 [活动事件] <BR>onDragDrop IE|N4|O 一个外部对象被鼠标拖进当前窗口或者帧 <BR>onDragEnd IE5|N|O 当鼠标拖动结束时触发的事件，即鼠标的按钮被释放了 <BR>onDragEnter IE5|N|O 当对象被鼠标拖动的对象进入其容器范围内时触发的事件 <BR>onDragLeave IE5|N|O 当对象被鼠标拖动的对象离开其容器范围内时触发的事件 <BR>onDragOver IE5|N|O 当某被拖动的对象在另一对象容器范围内拖动时触发的事件 <BR>onDragStart IE4|N|O 当某对象将被拖动时触发的事件 <BR>onDrop IE5|N|O 在一个拖动过程中，释放鼠标键时触发的事件 <BR>onLoseCapture IE5|N|O 当元素失去鼠标移动所形成的选择焦点时触发的事件 <BR>onPaste IE5|N|O 当内容被粘贴时触发的事件 <BR>onSelect IE4|N|O 当文本内容被选择时的事件 <BR>onSelectStart IE4|N|O 当文本内容选择将开始发生时触发的事件 <BR>数据绑定 事件 浏览器支持 描述 <BR>onAfterUpdate IE4|N|O 当数据完成由数据源到对象的传送时触发的事件 <BR>onCellChange IE5|N|O 当数据来源发生变化时 <BR>onDataAvailable IE4|N|O 当数据接收完成时触发事件 <BR>onDatasetChanged IE4|N|O 数据在数据源发生变化时触发的事件 <BR>onDatasetComplete IE4|N|O 当来子数据源的全部有效数据读取完毕时触发的事件 <BR>onErrorUpdate IE4|N|O 当使用onBeforeUpdate事件触发取消了数据传送时，代替onAfterUpdate事件 <BR>onRowEnter IE5|N|O 当前数据源的数据发生变化并且有新的有效数据时触发的事件 <BR>onRowExit IE5|N|O 当前数据源的数据将要发生变化时触发的事件 <BR>onRowsDelete IE5|N|O 当前数据记录将被删除时触发的事件 <BR>onRowsInserted IE5|N|O 当前数据源将要插入新数据记录时触发的事件 <BR>数据绑定 事件 浏览器支持 描述 <BR>onAfterPrint IE5|N|O 当文档被打印后触发的事件 <BR>onBeforePrint IE5|N|O 当文档即将打印时触发的事件 <BR>onFilterChange IE4|N|O 当某个对象的滤镜效果发生变化时触发的事件 <BR>onHelp IE4|N|O 当浏览者按下F1或者浏览器的帮助选择时触发的事件 <BR>onPropertyChange IE5|N|O 当对象的属性之一发生变化时触发的事件 <BR>onReadyStateChange IE4|N|O 当对象的初始化属性值发生变化时触发的事件</P>
+
+</div>
+
+
+
+
+
+
+<div class="clearfix"></div>
+<div class="asd"><script>d()</script></div>
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='/skin/mobile/js/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+    }
+</script>
+<script type="text/javascript" src="/skin/mobile/js/article.js"></script>
+<div class="count"><script type="text/javascript" src="/skin/mobile/js/mcount.js"></script></div> 
+<script type="application/ld+json">
+        {
+            "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+            "@id": "https://m.jb51.net/article/28772.htm",
+            "appid": "1549322409310619",
+            "title": "JS鼠标事件大全 推荐收藏",
+            "description": "JS鼠标事件大全 推荐收藏，整理的比较细，推荐大家看下。",
+            "pubDate": "2011-11-01T20:21:36"
+        }
+</script>
+</body>
+</html>
+<!-- published at 2018/5/16 5:33:16By dxycms qq:461478385  -->

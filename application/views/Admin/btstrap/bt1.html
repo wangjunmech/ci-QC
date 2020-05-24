@@ -1,0 +1,448 @@
+﻿<!DOCTYPE html>
+<html>
+<html lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<!-- 处理IE兼容问题 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<title>Bootstrap frame test</title>
+	<!-- 加载Bootstrap的层叠样式表 -->
+<link href="<?php echo base_url('Static/bootstrap/css/bootstrap.min.css')?>" rel='stylesheet'>
+<script language="javascript" type="text/javascript" src="<?=base_url();?>public/js/contries.js" charset="UTF-8"></script>
+
+</head>
+<body>
+<script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<script src="<?php echo base_url('Static/bootstrap/js/bootstrap.min.js')?>"></script>
+<h1>Bootstrap</h1>
+
+<p>Bootstrap是一个功能强大的前端框架</p>
+<h3>步骤：</h3>
+<ol>
+	<li>在&lt title &gt标签后加载Bootstrap的层叠样式表：&lt link href="&lt ?php echo base_url('Static/bootstrap/css/bootstrap.min.css')?&gt" rel='stylesheet'&gt</li>
+	<li>在&lt body &gt标签后加载jQuery库：&ltscript src="&lt?php echo base_url('Public/js/jquery.js')?&gt"&gt&lt/script&gt</li>
+	<li>然后再加载Bootstrap的核心js库：&lt script src="&lt?php echo base_url('Static/bootstrap/js/bootstrap.min.js')?&gt"&gt&lt/script &gt</li>
+</ol>
+<h3>注意：</h3>
+<p>加载Bootstrap.min.js之前必须加载jQuery库，否则无法正常使用</p>
+<div class="container">class="container"</div>
+<div class="container-fluid">class="container-fluid"
+<p>被删除的文本</p>
+<del>删除文本测试一下</del>
+<p>无用文本</p>
+<s>This line of text is meant to be treated as no longer accurate.</s>
+<p>插入文本</p>
+<ins>This line of text is meant to be treated as an addition to the document.</ins>
+<p>带下划线的文本</p>
+<u>This line of text will render as underlined</u>
+<p>小号文本</p>
+<small>This line of text is meant to be treated as fine print.</small>
+<p>着重</p><strong>rendered as bold text</strong>
+<p>斜体</p>
+<em>rendered as italicized text</em>
+<p>对齐</p>
+<p class="text-left">Left aligned text.</p>
+<p class="text-center">Center aligned text.</p>
+<p class="text-right">Right aligned text.</p>
+<p class="text-justify">Justified text.</p>
+<p class="text-nowrap">No wrap text.</p>
+<h4>改变大小写</h4>
+<p class="text-lowercase">Lowercased text.</p>
+<p class="text-uppercase">Uppercased text.</p>
+<p class="text-capitalize">Capitalized text.</p>
+<h4>基本缩略语</h4>
+<abbr title="attribute">attr</abbr>
+<h4>首字母缩略语</h4>
+<abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
+<h4>无样式列表unstyled</h4>
+<ul class="unstyled">
+  <li>Item1...</li>
+  <li>Item12...</li>
+  <li>Item123...</li>
+</ul>
+<h4>内联列表inline</h4>
+
+<ul class="inline">
+  <li>Item...</li>
+  <li>Item1...</li>
+  <li>Item2...</li>
+</ul>
+<h4>描述</h4>
+<dl>
+  <dt>Subject...</dt>
+  <dd>Contents...</dd>
+</dl>
+<h4>水平排列的描述</h4>
+<dl class="dl-horizontal">
+  <dt>Subject...</dt>
+  <dd>Contents...</dd>
+</dl>
+
+<h4>用户输入</h4>
+To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br>
+To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
+
+<h4>代码块</h4>
+<pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
+
+<h4>变量,通过 &lt;<var &gt; 标签标记变量</h4>
+
+<var>y</var> = <var>m</var><var>x</var> + <var>b</var>
+
+<h4>表格基本实例</h4>
+<table class="table">
+      <caption>Optional table caption.</caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+<h4>条纹状表格</h4>
+<p>通过 .table-striped 类可以给 &lt;tbody&lt;之内的每一行增加斑马条纹样式。</p>
+<table class="table table-striped">
+      <caption>Optional table caption.</caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+<h4>带边框的表格</h4>
+<p>添加 .table-bordered 类为表格和其中的每个单元格增加边框。</p>
+<table class="table table-bordered">
+      <caption>Optional table caption.</caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+
+<h4>鼠标悬停</h4>
+<p>d过添加 .table-hover 类可以让 <tbody> 中的每一行对鼠标悬停状态作出响应。</p>
+<table class="table table-hover">
+  <caption>Optional table caption.</caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+
+<h4>紧缩表格.table-condensed</h4>
+<table class="table table-condensed">
+  <caption>Optional table caption.</caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+
+<h4>状态类,通过这些状态类可以为行或单元格设置颜色</h4>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">
+            <code>.active</code>
+          </th>
+          <td>鼠标悬停在行或单元格上时所设置的颜色</td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <code>.success</code>
+          </th>
+          <td>标识成功或积极的动作</td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <code>.info</code>
+          </th>
+          <td>标识普通的提示信息或动作</td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <code>.warning</code>
+          </th>
+          <td>标识警告或需要用户注意</td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <code>.danger</code>
+          </th>
+          <td>标识危险或潜在的带来负面影响的动作</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bs-example" data-example-id="contextual-table">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Column heading</th>
+          <th>Column heading</th>
+          <th>Column heading</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="active">
+          <th scope="row">1</th>
+          <td>active content</td>
+          <td>active content</td>
+          <td>active content</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="success">
+          <th scope="row">3</th>
+          <td>success content</td>
+          <td>success content</td>
+          <td>success content</td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="info">
+          <th scope="row">5</th>
+          <td>info content</td>
+          <td>info content</td>
+          <td>info content</td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="warning">
+          <th scope="row">7</th>
+          <td>warning content</td>
+          <td>warning content</td>
+          <td>warning content</td>
+        </tr>
+        <tr>
+          <th scope="row">8</th>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="danger">
+          <th scope="row">9</th>
+          <td>danger content</td>
+          <td>danger content</td>
+          <td>danger content</td>
+        </tr>
+      </tbody>
+    </table>
+  </div><!-- /example -->
+
+<h4>响应式表格</h4>
+<p>将任何 .table 元素包裹在 .table-responsive 元素内，即可创建响应式表格，其会在小屏幕设备上（小于768px）水平滚动。当屏幕大于 768px 宽度时，水平滚动条消失。</p>
+
+<h2>表单</h2>
+<h4>基本实例</h4>
+<p>单独的表单控件会被自动赋予一些全局样式。所有设置了 .form-control 类的 &lt;input&gt;、&lt;textarea&gt; 和 &lt;select&gt; 元素都将被默认设置宽度属性为 width: 100%;。 将 label 元素和前面提到的控件包裹在 .form-group 中可以获得最好的排列。</p>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<h3>内联表单 .form-inline</h3>
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputPassword3">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Remember me
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Sign in</button>
+
+</form>
+
+<h3>Glyphicons 字体f图标</h3>
+<span class="glyphicon glyphicon-search" aria-hidden="false"></span>
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+
+<h3>Glyphicons 字体图标</h3>
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  Enter a valid email address
+</div>
+
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  Enter a valid email address
+</div>
+
+
+
+</body>
+</html>

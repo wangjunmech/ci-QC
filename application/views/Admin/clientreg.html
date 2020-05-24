@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>客户录入</title>
+
+<style type="text/css">
+
+input  
+    {  
+        background-color:yellow;
+    } 
+input[type="text"]  
+    {  
+        background-color:#6F9;
+        width: 600px;
+    }  
+
+input[type="submit"]  
+    {  
+      font-size: 20px;
+    }  
+    
+#btn{  
+		#background-color: yellow;
+        text-align:center;
+        vertical-align:middle;
+        align-content: center;
+
+    } 
+	
+.a1 {
+	color: #F00;
+	}
+</style>
+
+<script>  
+
+$(function() {
+        $("#button").click(function() {
+            $("#form :input").not(":button, :submit, :reset, :hidden").val("").removeAttr("checked").remove("selected");//核心
+        });
+    })
+
+</script> 
+
+</head>
+<body>
+程序功能----录入客户
+<br>
+
+<form id="form" action="<?php echo site_url().'/admin/progs/clientrega'; ?>" method="post" enctype="multipart/form-data" >
+
+  	
+<fieldset>
+			<legend>您好:<font color=red><?=$username?></font>!,请在下面输入客户信息：</legend>
+				
+
+<!-- 			  <p><label for="v">字段名：----插入值：</label>
+			  <input type="text" name="v" id="v" value=""/>  
+			  </p> -->
+
+			   <?php foreach($list as $k): ?>
+   				 <?php if($k !="pwd"){; ?>
+			   	<p><label for="<?php echo $k;?>">字段名：<?php echo $k;?>---->>>插入值：</label>
+			  <input type="text" name="<?php echo $k;?>" id="<?php echo $k;?>" value="<?php echo $_POST[$k]?>"/>  
+			   </p>
+			   <?php }; ?>
+			   <?php endforeach ?>
+			  
+          
+				 
+			
+          <p>
+	          <label for="">&nbsp;&nbsp;</label>
+	          
+	          <div id='btn'><input type="submit" name="ins" value="确认录入客户"/></div>
+	          
+
+		</fieldset>
+
+
+
+
+  </div>
+  <div></div>
+    <p>&nbsp;</p>
+</form>
+<span class="">
+<?php
+if($resultinfo != ''){
+	echo $resultinfo;
+}
+?>
+</span>
+
+
+
+</body>
+</html>

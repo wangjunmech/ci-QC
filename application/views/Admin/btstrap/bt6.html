@@ -1,0 +1,453 @@
+<!DOCTYPE html>  
+<html>  
+<head lang="en">  
+    <meta charset="UTF-8">  
+    <!--媒体查询-->  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+    <!-- 
+    为了确保适当的绘制和触屏缩放，需要在 <head> 之中添加 viewport 元数据标签。 
+    -->  
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <!--禁止缩放-->  
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->  
+    <title>导航及页组件</title>  
+  
+    <link href="<?php echo base_url('Static/bootstrap-3.3.7-dist/css/bootstrap.min.css'); ?>" rel="stylesheet">  
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->  
+
+</head>  
+<body>  
+
+  <div><p><h1 style="color:red">导航及页组件</h1></p></div>
+  <ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+        <li><a href="#">7</a></li>
+      </ul>
+
+  </li>
+  </ul>
+ 
+<div><p><h3 style="color:red">class="普通：nav nav-pills"</h3></p></div>
+
+  <ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation" class=""><a href="#">Profile</a></li>
+  <li role="presentation" class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+        <li><a href="#">7</a></li>
+      </ul>
+
+  </li>
+  </ul>
+
+<div><p><h3 style="color:red">两端对齐：class="nav nav-pills nav-justified"</h3></p></div>
+
+  <ul class="nav nav-pills nav-justified">
+  <li role="presentation" class="bg-info"><a href="#">Home</a></li>
+  <li role="presentation" class="bg-danger"><a href="#">Profile</a></li>
+  <li role="presentation" class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+        <li><a href="#">7</a></li>
+      </ul>
+
+  </li>
+  </ul>
+
+<div><p><h3 style="color:red">上下堆叠：class="nav nav-pills nav-stacked"</h3></p></div>
+
+  <ul class="nav nav-pills nav-stacked">
+  <li role="" class="active"><a href="#">Home</a></li>
+  <li role="" class=""><a href="#">Profile</a></li>
+  <li role="" class=""><a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+        <li><a href="#">7</a></li>
+      </ul>
+
+  </li>
+  </ul>
+
+
+<div><p><h3 style="color:red">样式示例</h3></p></div>
+<nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div><p><h3 style="color:red">品牌图标</h3></p></div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="<?php echo base_url('Public/images/bd.jpg')?>">
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<div><p><h3 style="color:red">非导航链接</h3></p></div>
+
+<p class="navbar-text ">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
+
+<div><p><h3 style="color:red">分页</h3></p></div>
+<nav aria-label="Page navigation">
+  <ul class="pagination pagination-lg">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li class="active"><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li class="active"><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav aria-label="Page navigation ">
+  <ul class="pagination pagination-sm paper">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li class="active"><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+<div><p><h3 style="color:red">翻页----链接两端对齐：li的class="previous"/class="next"</h3></p></div>
+  <ul class="pager">
+    <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+    <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+    <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+    <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+
+<ul class="pager">
+  <li ><a href="www.baidu.com">&larr;上一页</a></li>
+  <li ><a href="www.163.com">下一页&rarr;</a></li>
+</ul>
+<div><p><h3 style="color:red">标签</h3></p></div>
+
+<h3>Example heading <span class="label label-default">New</span></h3>
+<h3>Example heading <span class="label label-info">在文本中加span标签</span></h3>
+<p>Example heading <span class="label label-info">小标签</span></p>
+<h3><span class="label label-default">Default</span></h3>
+<h3><span class="label label-primary">Primary</span></h3>
+<span class="label label-success">Success</span>
+<span class="label label-info">Info</span>
+<span class="label label-warning">Warning</span>
+<span class="label label-danger">Danger</span>
+
+<div><p><h3 style="color:red">徽章"badge" 元素</h3></p></div>
+<a href="#">Inbox <span class="badge"><span >42</span></span></a>
+<button class="btn btn-primary" type="button">
+  Messages <span class="badge">4</span>
+</button>
+<div><div>测试</div><span class="badge"><span >33</span></span></div>
+
+<div><p><h3 style="color:red">巨幕</h3></p></div>
+<div class="jumbotron">
+  <h1>Hello, world!</h1>
+  <p>...</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+</div>
+
+<div style="background: green" class="jumbotron ">
+  <div class="container">
+    <div>
+    XXXXXXXXXXXXX
+    </div>
+  </div>
+
+</div>
+
+
+<div><p><h3 style="color:red">路径导航</h3></p></div>
+
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Library</a></li>
+  <li class="danger">Data</li>
+</ol>
+
+
+<div><p><h3 style="color:red">缩略图</h3></p></div>
+<div class="row">
+  <div class="col-xs-6 col-md-2">
+    <div class="thumbnail"><a href="#" class="thumbnail">
+      <img src="<?php echo base_url('Public/images/imgtest.jpg'); ?>" alt="...">
+    </a>
+    <h3>Thumbnail label</h3>
+    <p>details...</p>
+    <a href="#" class="btn btn-primary" role='button'>Button</a><a href="#" class="btn btn-default" role="button">Button2</a>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <div class="thumbnail"><a href="#" class="thumbnail">
+      <img src="<?php echo base_url('Public/images/imgtest.jpg'); ?>" alt="...">
+    </a>
+    <h3>Thumbnail label</h3>
+    <p>details...</p>
+    <a href="#" class="btn btn-primary" role='button'>Button</a><a href="#" class="btn btn-default" role="button">Button2</a>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <div class="thumbnail"><a href="#" class="thumbnail">
+      <img src="<?php echo base_url('Public/images/imgtest.jpg'); ?>" alt="...">
+    </a>
+    <h3>Thumbnail label</h3>
+    <p>details...</p>
+    <a href="#" class="btn btn-primary" role='button'>Button</a><a href="#" class="btn btn-default" role="button">Button2</a>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <div class="thumbnail"><a href="#" class="thumbnail">
+      <img src="<?php echo base_url('Public/images/imgtest.jpg'); ?>" alt="...">
+    </a>
+    <h3>Thumbnail label</h3>
+    <p>details...</p>
+    <a href="#" class="btn btn-primary" role='button'>Button</a><a href="#" class="btn btn-default" role="button">Button2</a>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <div class="thumbnail"><a href="#" class="thumbnail">
+      <img src="<?php echo base_url('Public/images/imgtest.jpg'); ?>" alt="...">
+    </a>
+    <h3>Thumbnail label</h3>
+    <p>details...</p>
+    <a href="#" class="btn btn-primary" role='button'>Button</a><a href="#" class="btn btn-default" role="button">Button2</a>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <div class="thumbnail"><a href="#" class="thumbnail">
+      <img src="<?php echo base_url('Public/images/imgtest.jpg'); ?>" alt="...">
+    </a>
+    <h3>Thumbnail label</h3>
+    <p>details...</p>
+    <a href="#" class="btn btn-primary" role='button'>Button</a><a href="#" class="btn btn-default" role="button">Button2</a>
+    </div>
+  </div> 
+</div>
+
+
+<div><p><h3 style="color:red">警告框</h3></p></div>
+<div class="alert alert-success" role="alert"> Well done! You successfully read this important alert message. ...</div>
+<div class="alert alert-info" role="alert"> Heads up! This alert needs your attention, but it's not super important. ...</div>
+<div class="alert alert-warning" role="alert"> Warning! Better check yourself, you're not looking too good. ...</div>
+<div class="alert alert-danger" role="alert"> Oh snap! Change a few things up and try submitting again. ...</div>
+
+<div><p><h3 style="color:red">可关闭的警告框</h3></p></div>
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+  <p>Better check yourself</p>  <p>Better check yourself</p>  <p>Better check yourself</p>  <p>Better check yourself</p>  <p>Better check yourself</p>  <p>Better check yourself</p>  <p>Better check yourself</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="text-danger" ><font size="10">&times;</font></span></button>
+  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+  <p>Better check yourself</p>  <p>Better check yourself</p>  <p>Better check yourself</p>  <p>Better check yourself</p>  <p>Better check yourself</p>  <p>Better check yourself</p>  <p>Better check yourself</p>
+</div>
+
+<div><p><h3 style="color:red">进度条</h3></p></div>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+    <span class="sr-only">60% Complete</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+    当前进度：90%
+  </div>
+</div>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+    <span class="sr-only">45% Complete</span>
+    <span aria-hidden="true">45%</span>
+  </div>
+    <div class="progress-bar active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+      <span class="sr-only">20% Complete</span>
+      <span aria-hidden="true">20%</span>
+    </div>
+    <div class="progress-bar progress-bar-warning active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+      <span class="sr-only">30% Complete</span>
+      <span aria-hidden="true">30%</span>
+    </div>
+</div>
+
+
+
+<div><p><h3 style="color:red">媒体对象media</h3></p></div>
+<div class="media">
+  <div class="media-left media-middle">
+    <a href="#">
+      <img class="media-object" src="<?php echo base_url('Public/images/bd.jpg'); ?>" alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">Middle aligned media</h4>
+    ...
+     <p>contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...contents...88888</p>
+     <p>contents...contents...contents...contents...</p>
+     <p>contents...contents...contents...contents...</p>
+     <p>contents...contents...contents...contents...</p>
+  </div>
+    <div class="media-body">
+    <h4 class="media-heading">Middle aligned media</h4>
+    ...
+     <p>contents...contents...contents...contents...</p>
+     <p>contents...contents...contents...contents...</p>
+     <p>contents...contents...contents...contents...</p>
+     <p>contents...contents...contents...contents...</p>
+  </div>
+</div>
+
+
+<div><p><h3 style="color:red">媒体对象列表media-list</h3></p></div>
+<ul class="media-list">
+  <li class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="<?php echo base_url('Public/images/bd.jpg'); ?>" alt="...">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">Media heading</h4>
+      ...
+    </div>
+  </li>
+</ul>
+
+<div><p><h3 style="color:red">Well类</h3></p></div>
+
+<div class="well well-lg ">Large...</div>
+<div class="well well-sm">Small...</div>
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br>
+
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>  
+   <!-- 加载Bootstrap核心库 -->  
+<script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<script src="<?php echo base_url('Static/bootstrap-3.3.7-dist/js/bootstrap.js')?>"></script>
+   
+</body>  
+</html> 

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+ <script src="<?php echo base_url('Public/js/jquery.table.customize.js')?>"></script>
+	<title>jQuery双击修改表格内容</title>
+<style type="text/css">
+/*控制表格*/
+table{
+		width: 100%;
+		table-layout: fixed;
+		border: 1px solid #abcdef;
+		border-collapse: collapse;
+		table-layout: fixed;
+		word-break: break-all;
+		word-wrap: break-word;
+	}
+	/*.award-name{-o-text-overflow:ellipsis;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:100%;}	*/
+th,tr,td{
+		height: 30px;
+		border: 1px solid #abcdef;
+		text-align: center;		
+	}
+td{text-overflow: ellipsis; }
+	.oddRow1{background: #09f}
+	.evenRow1{background: #38a38a}
+	.currRow1{background: yellow}
+/*控制tabs*/
+#tabname li{
+	list-style-type: none;
+	border: 2px solid #abcdef;
+	border-bottom: none;
+	width: 200px;
+	display:inline;
+	    /* li 不换行，宽度根据内容自适应，通过 float 实现 */  
+    margin: 0px;
+    padding: 0px;
+    float:left;
+    background-color: #ccd;
+    margin: 0px 20px 10px 0px;
+    line-height: 50px;
+    text-align: center;
+} 
+
+#content div{
+	border: 2px solid #abcdef;
+	width: 600px;
+	/*display:inline;*/
+	/* li 不换行，宽度根据内容自适应，通过 float 实现 */  
+    margin: 0px;
+    padding: 0px;
+    /*float:left;*/
+    background-color: #d323eb;
+    /*margin: 0px 20px 10px 0px;*/
+    /*line-height: 50px;*/
+    text-align: center;
+} 
+input{
+	background: lightyellow;
+}
+.hover{
+	background: lightgrey;
+}
+.tdclass{
+}
+</style>	
+</head>
+<body>
+<h3>jQuery双击修改单元格内容测试,遍历表格中的一列数据</h3>
+表达示组合::：alert((2<4)==(5>3)==(3<=3)==(2>=2)==(2==2)==true);
+<hr>
+
+<hr>
+<div id="test"></div>         
+<button onclick="jstable(2,3,'test')">js函数创建表格</button>  
+
+<button onclick="jsedit()">用jQuery编辑创建的表格</button>
+
+<button id="submit" onclick="jssubmit()" style="display: none">修改了一个或多个值，请提交编辑</button>
+
+
+
+ <script>
+
+
+//*************JS表格输出函数************//
+function jstable(rows,cols,divName) {
+ 		// var rows = document.getElementById('rows').value;  
+        // var cols = document.getElementById('cols').value; 
+ 		var rows = rows;  
+        var cols = cols;  
+        var divName = divName;    
+var table = "<table id='MMM' border = '1px'>";  
+for(var i = 1;i<=rows;i++){  
+		table +="<tr id='tr"+i+"'>";  
+		for(var j = 1; j<=cols;j++){  
+			// alert(i+''+j);
+		table += "<td class=tdclass id='td"+i+j+"'>"
+		+i+"行"+j+"列"+
+		"</td>"; 
+				}
+				}
+		table +="</table>";  
+
+// document.write(table);  
+divName = document.getElementById(divName); 
+divName.innerHTML = table; 
+}
+
+//*************JS表格输出函数 end************//
+
+
+//************闭包计数，记录被修改的单元格
+function counter(){
+	  var mid = [];
+	  var mval = [];
+	  var result =[];
+	  this.inc = function (a,b) {
+	    // n++; 
+	    
+	    mid.push(a,b);
+	    
+	    return mid;
+	  };
+	  
+
+	}
+
+	var mcounter = new counter();
+//****************start 双击修改单元格内容*****************//
+function edittable(selector){ 
+// alert(selector);           
+	$(selector).dblclick(function(){   
+		var t = $(this).text();//获取单元文本内容		
+		var ww = $(this).width();//获取单元格宽
+		var hh = $(this).height(); //获取单元格高
+		var id = $(this).attr('id');//获取单元id
+
+		$(this).width(ww);//设置单元格宽，不然双击弹出输入框后宽度会变化
+        if(!$(this).is('.input')){  
+            $(this).addClass('input').html('<input id="change" type="text" value="'+ $(this).text() +'" style="background: lightgreen;width:'+ww+';height:'+hh+';" />').find('input').focus().blur(function(){            	
+                  
+                var thisvalue=$(this).val();   //输入后的input文本框内容
+                var thisclass = $(this).parent().attr("class");    
+                // console.log('被编辑的单元格ID=:'+id);  
+                // console.log('编辑后单元格=:'+thisvalue);  
+                // console.log('输出3:'+thisclass);  
+                 
+                //如果修改后的值与修改前的内容相等则不加样式，否则加上黄色背景,  
+                if(thisvalue == t){
+                // $(this).parent().removeClass('input'); 
+                $(this).parent().removeClass('input').html($(this).val() || 0); 
+                }else{
+                $(this).parent().removeClass('input').html($(this).val() || 0).css('background-color','pink');       	
+                $("#submit").css('display','block');//如果内容有修改才显示提交按钮
+					modifiedidItems=mcounter.inc(id,thisvalue);  //用闭包计数,把修改的单元格ID及内容添加到全局变量modifiedidItems数组中
+                }   
+            });                        
+        }    
+    
+    //*******监听回车
+    $("#change").bind("keydown",function(e){
+　　var theEvent = e || window.event;
+　　var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+　　 if (code == 13) {
+　　alert('提交回车');
+	}
+	}); 
+    }).hover(
+		    function(){    
+		        $(this).addClass('hover');    
+		    },
+		    function(){    
+		        $(this).removeClass('hover');    
+		    }
+    ); 
+};  
+//****************end 双击修改单元格内容*****************//
+
+
+
+//*************JS表格编辑************//
+function jsedit(){
+edittable('#MMM td'); 
+}
+//*************JS表格编辑end************//
+
+
+
+//**********提交修改后的表格
+function jssubmit(){
+	//点击提交编辑，先看看变量modifiedidItems有没有值
+	if(typeof(modifiedidItems)!=="undefined"){
+	var data = modifiedidItems;
+	console.log(data);//注意数组格式需要在下面的for循环中格式化，因为下标双数为ID内容，单数为值
+	for(var i=0;i<data.length;i++){
+		if(i%2==1){
+			continue;
+		}else{
+			// console.log(data[i]+'=='+data[i+1])
+			$('#'+data[i]).text(data[i+1]);
+			console.log($('#'+data[i]).css('background-color',''));
+			//处理数据库中的内容
+		}
+	}
+	}
+};
+
+
+
+ </script>
+
+
+</div>
+<div id='test'></div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+	<title>jQuery 事件</title>
+<style type="text/css">
+
+</style>
+<body>
+jQuery事件(鼠标/键盘)<br>
+鼠标事件
+<ul id='ul'>
+	<li class="current">左键单击事件,左键按下抬起时发生</li>
+	<li>左键双击事件,左键双击时发生</li>
+	<li id='msup'>mouseup事件，左中右键按下后抬起时发生</li>
+	<li id='msdn'>mousedown事件，左中右键按下时发生</li>
+</ul>
+<div id='foc'>
+	<input type="text" name="" id='inp' value='请在这里输入，获取焦点自动隐藏' style="background: yellow">
+	<span id='info' style="display:none"><font style="color: red">已获得焦点</font></span>
+</div>
+<div id='msmv' class="show" style="width: 150px;height:80px;border: solid red; background:lightblue;margin-left: 100px">mousemove事件</div>
+<label>mousemove事件相对文档的位置</label><input type="text" id='mmv' name="">
+<div id='msov' class="show" style="width: 150px;height:80px;border: solid red; background:lightgreen">mouseover和mouseout事件</div>
+<div id='msenlv' class="show" style="width: 150px;height:80px;border: solid red; background:lightblue">mouseentter和mouseleave事件</div>
+<div id='hv' class="show" style="width: 150px;height:80px;border: solid red; background:pink">hover事件</div>
+<br>
+键盘事件
+<div id='content'>
+<div id='kd' class="show">键盘Keydown事件/Keyup事件之document</div> 
+<input type="text" id='kdi' name="" value="键盘Keydown事件Keyup事件之input元素" style="width: 300px;background: purple">
+<div id='kp' class="show">键盘Keypress事件</div>
+<input type="text" id='kps' name="" value="键盘Keypress事件" style="width: 300px;background: lightgreen">
+<div>Ruby......</div>
+</div>
+<p id='1st'>节点操作之P标签1<p>
+<p>节点操作之P标签2<p>
+<p>节点操作之P标签3 <strong>strong</strong><p>
+<span>标签span</span>
+<div>标签div</div>
+<em>标签em</em>
+<a href="#">克隆点击</a>
+<em>标签em</em>
+
+<script type="text/javascript">
+//单击事件-click
+$('#ul li:first-child').click(function() {
+	// alert('AAA');
+	// alert($(this).text());
+});
+//双击事件-dblclick
+$('#ul li:first-child').next().dblclick(function() {
+	alert($(this).text());
+});
+//focusion事件
+$('#foc').focusin(function() {
+	$('#inp').val("");
+	$(this).children('span').show();
+	$(this).children('input').val("修改一下");
+});
+
+//mouseup事件
+$('#msup').mouseup(function() {
+	alert($(this).text());
+});
+//mousedown事件
+$('#msdn').mousedown(function() {
+	alert($(this).text());
+});
+//mousemove事件之document,相对文档
+$(document).mousemove(function(e) {
+	var x = e.pageX;
+	var y = e.pageY;
+	$('#mmv').val(x+','+y);
+});
+//mousemove事件之document,相对元素
+$('#msmv').mousemove(function(e) {
+	var x = e.pageX;
+	var y = e.pageY;
+	$('#msmv').text(x+','+y);
+});
+//mouseover事件
+$('#msov').mouseover(function() {
+	$(this).css('background','yellow');
+	$(this).text('movseover……');
+});
+//mouseout事件
+$('#msov').mouseout(function() {
+	$(this).css('background','');
+	$(this).text('movseout……');
+});
+
+//mouseenter事件
+$('#msenlv').mouseenter(function() {
+	$(this).css('background','yellow');
+	$(this).text('movseenter……');
+});
+//mouseleave事件
+$('#msenlv').mouseleave(function() {
+	$(this).css('background','');
+	$(this).text('movseleave……');
+});
+//document之mouseleave事件
+$(document).mouseleave(function() {
+	$('#msenlv').css('background','green');
+	$('#msenlv').text('movseleave--document……');
+});
+
+//hover事件
+$('#hv').hover(function() {
+	$(this).css('background','');
+	$(this).text('hover……');
+});
+
+
+//键盘Keydown事件
+$(document).keydown(function() {
+	$('#kd').css('background','red');
+});
+$('#kdi').keydown(function() {
+	$(this).css('background','red');
+});
+
+//键盘Keyup事件
+$(document).keyup(function() {
+	$('#kd').css('background','');
+});
+$('#kdi').keyup(function() {
+	$(this).css('background','');
+});
+
+//键盘Keypress事件
+$(document).keypress(function() {
+	$('#kp').css('background','yellow');
+	alert($("#kps").val());
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="referrer" content="same-origin" />
+<title>php函数大全</title>
+
+</head>
+<body>
+
+
+<?php
+
+$str = 'Hello!this is Kenny fr,,om KingMax, I am a project engineer.';
+
+//print_r(explode(' ',$str));
+echo '<pre>';
+//print_r(preg_split('/[\s,.?!]/',$str,-1,PREG_SPLIT_NO_EMPTY|PREG_SPLIT_OFFSET_CAPTURE|PREG_SPLIT_DELIM_CAPTURE));
+$arr = (preg_split('/[\s,.?!]/',$str,-1,PREG_SPLIT_NO_EMPTY|PREG_SPLIT_DELIM_CAPTURE));
+print_r($arr);
+//print_r(preg_split('//',$str));
+echo '</pre>';
+$str2 = implode('=',$arr);
+list($a,$b,$c) = explode('+',"AAA+BBB+CCC+DDD");
+//echo $a.'<br>';
+//echo $b.'<br>';
+//echo $c.'<br>';
+
+echo '<hr>';
+
+$result= $a ?? '变量a不存在！';
+echo $result;
+
+echo 'PHP7传参测试：<br>';
+function foo($a) {
+    $a=func_get_arg(0);
+    $a+=2;
+    echo $a;
+}
+foo(9,3,5); 
+$arr = [1,2,3,4,5];
+foreach ($arr as $val) {
+    $arr[3] = 9;
+
+    echo ($val).'<br>';// php7 全返回0
+}
+
+echo '<hr>';
+echo ($str2);
+echo '<br>';
+
+echo '<hr>';
+
+$str = "的网址和April fools day is 04/01/2002\n,Last christmas was 12/24/2001\n内容,让您的https://www.hao123.com/ 百度快照image.baidu.com张图片https://www.2345.com/ 上网..https://123.sogou.com/孩子的奇思...www.hp.com/号...www.ganso.com.cn/  -.site.baidu.com/co...html baike.baidu.com/265网址导航最www.265.com/ 程指定网站、全国硕士研究生招生www.chsi.com.cn/ 评价";
+//$reg = '/(https?|ftps?):\/\/?(www|mail|bbs|ftp|\w*)\.(.*?)\.(net|com|org|cn)([\w-\.\/\=\?\&\%]*)?/';
+
+//$reg = strtoupper('/(https?|ftps?):\/\/?(www|mail|bbs|ftp|\w*)\.(.*?)\.(net|com|org|cn)([\w-\.\/\=\?\&\%]*)?/');
+
+$reg = '/(https?|ftps?)?:?\/?\/?(www|mail|bbs|ftp)?\.(.*?)\.(net|com|org|cn)([\w-\.\/\=\?\&\%]*)?/';
+echo $str;
+preg_match_all($reg,$str,$arrm);
+echo '<pre>';
+//var_dump($arrm);
+echo '</pre>';
+ // 回调函数
+function upperstr($matches){
+	return (strtoupper('<a href="'.$matches[0].'">'.$matches[0].'</a>'));
+}
+$newstr = preg_replace_callback($reg,upperstr,$str);
+echo '<hr><br>用正则把所有网匹配出来并改为大写并加上链接：<br>';
+echo $newstr;
+echo '<hr>';
+
+$text  = "用正则把年分加1年Q：<br>April fools day is 04/01/2002\n,Last christmas was 12/24/2001<br>" ;
+echo $text;
+ // 回调函数
+function  yearplus ( $matches )
+{
+  // 通常: $matches[0]是完成的匹配
+  // $matches[1]是第一个捕获子组的匹配
+   return  $matches [ 1 ].( $matches [ 2 ]+ 1 );
+}
+echo  preg_replace_callback (
+             "|(\d{2}/\d{2}/)(\d{4})|" ,
+             "yearplus" ,
+             $text );
+echo '<hr>';
+
+
+//$reg = '#(\d{2})/(\d{2})/(\d{4})#';
+//preg_match_all($reg,$text,$tarr);
+echo '<pre>';
+//var_dump($tarr);
+echo '</pre>';
+echo '<hr>';
+
+
+$subject  =  'Aaaaaa Bbb ccc DDD Eeeee' ;
+$subjectarr = array('Aaaaaa Bbb ccc DDD Eeeee','Aaaaaa Fffff Ggggg Hhhhh');
+
+$reg = array('#[a]+#','#[b]+#');
+$reg2 = '#[b]+#';
+function  changecolor ( $matches ){
+   return (strtoupper('<a href="'.$matches[0].'"><strong><font color="red">'.$matches[0].'</font></strong></a>'));
+}
+function changecase($matches){
+   return (strtoupper($matches[0]));	
+}
+$newstr = preg_replace_callback($reg,changecolor,$subjectarr);
+var_dump($newstr);
+ echo '<br>';
+
+
+?>
+
+
+
+Abs: 取得绝对值。<br>
+Acos: 取得反余弦值。<br>
+ada_afetch: 取得资料库的传回列。<br>
+ada_autocommit: 开关自动更动功能。<br>
+ada_close: 关闭 Adabas D 连结。<br>
+ada_commit: 更动 Adabas D 资料库。<br>
+ada_connect: 连结至 Adabas D 资料库。<br>
+ada_exec: 执行 SQL 指令。<br>
+ada_fetchrow: 取得传回一列。<br>
+ada_fieldname: 取得栏位名称。<br>
+ada_fieldtype: 取得栏位资料形态。<br>
+ada_freeresult: 释出传回资料的记忆体。<br>
+ada_numfields: 取得栏位数目。<br>
+ada_numrows: 取得传回列数目。<br>
+ada_result: 取得传回资料。<br>
+ada_resultall: 传回 HTML 表格资料。<br>
+ada_rollback: 撤消当前交易。<br>
+AddSlashes: 字串加入斜线。<br>
+apache_lookup_uri: 获得所有的 URI 相关资讯。<br>
+apache_note: 获得及设定阿帕契伺服器的请求纪录。<br>
+array: 建立一个新的阵列。<br>
+array_walk: 让使用者自订函数能处理阵列中的每一个元素。<br>
+arsort: 将阵列的值由大到小排序。<br>
+Asin: 取得反正弦值。<br>
+asort: 将阵列的值由小到大排序。<br>
+aspell_check: 检查一个单字。<br>
+aspell_check-raw: 检查一个单字，即使拼错也不改变或修正。<br>
+aspell_new: 载入一个新的字典。<br>
+aspell_suggest: 检查一个单字，并提供拼字建议。<br>
+Atan: 取得反正切值。<br>
+Atan2: 计算二数的反正切值。<br>
+base64_decode: 将 BASE64 编码字串解码。<br>
+base64_encode: 将字串以 BASE64 编码。<br>
+basename: 传回不含路径的档案字串。<br>
+base_convert: 转换数字的进位方式。<br>
+bcadd: 将二个高精确度数字相加。<br>
+bccomp: 比较二个高精确度数字。<br>
+bcp: 将二个高精确度数字相除。<br>
+bcmod: 取得高精确度数字的余数。<br>
+bcmul: 将二个高精确度数字相乘。<br>
+bcpow: 求一高精确度数字次方值。<br>
+bcscale: 设定程式中所有 BC 函式库的内定小数点位数。<br>
+bcsqrt: 求一高精确度数字的平方根。<br>
+bcsub: 将二个高精确度数字相减。<br>
+bin2hex: 二进位转成十六进位。<br>
+BinDec: 二进位转成十进位。<br>
+Ceil: 计算大于指定数的最小整数。<br>
+chdir: 改变目录。<br>
+checkdate: 验证日期的正确性。<br>
+checkdnsrr: 检查指定网址的 DNS 记录。<br>
+chgrp: 改变档案所属的群组。<br>
+chmod: 改变档案的属性。<br>
+Chop: 去除连续空白。<br>
+chown: 改变档案的拥有者。<br>
+Chr: 传回序数值的字元。<br>
+chunk_split: 将字串分成小段。<br>
+clearstatcache: 清除档案状态快取。<br>
+closedir: 关闭目录 handle。<br>
+closelog: 关闭系统纪录。<br>
+connection_aborted: 若连结中断则传回 true。<br>
+connection_status: 取得连线状态。<br>
+connection_timeout: 若超过 PHP 程式执行时间则传回 true。<br>
+convert_cyr_string: 转换古斯拉夫字串成其它字串。<br>
+copy: 复制档案。<br>
+Cos: 余弦计算。<br>
+count: 计算变数或阵列中的元素个数。<br>
+crypt: 将字串用 DES 编码加密。<br>
+current: 传回阵列中目前的元素。<br>
+date: 将伺服器的时间格式化。<br>
+dbase_add_record: 加入资料到 dBase 资料表。<br>
+dbase_close: 关闭 dBase 资料表。<br>
+dbase_create: 建立 dBase 资料表。<br>
+dbase_delete_record: 删除 dBase 资料表的资料。<br>
+dbase_get_record: 取得 dBase 资料表的资料。<br>
+dbase_numfields: 取得 dBase 资料表的栏位数。<br>
+dbase_numrecords: 取得 dBase 资料表的列数。<br>
+dbase_open: 开启 dBase 资料表。<br>
+dbase_pack: 清理 dBase 资料表。<br>
+dba_close: 关闭资料库。<br>
+dba_delete: 删除指定资料。<br>
+dba_exists: 检查键是否存在。<br>
+dba_fetch: 取回指定资料。<br>
+dba_firstkey: 取回首笔键值。<br>
+dba_insert: 加入资料。<br>
+dba_nextkey: 取回下笔键值。<br>
+dba_open: 开启资料库连结。<br>
+dba_optimize: 最佳化资料库。<br>
+dba_popen: 开启并保持资料库连结。<br>
+dba_replace: 更动或加入资料。<br>
+dba_sync: 资料库同步化。<br>
+dblist: 取得 DBM 的资讯。<br>
+dbmclose: 关闭 DBM 资料库。<br>
+dbmdelete: 删除指定资料。<br>
+dbmexists: 检查键是否存在。<br>
+dbmfetch: 取回指定资料。<br>
+dbmfirstkey: 取回首笔键名。<br>
+dbminsert: 加入资料。<br>
+dbmnextkey: 取回下笔键值。<br>
+dbmopen: 开启 DBM 资料库连结。<br>
+dbmreplace: 更动或加入资料。<br>
+debugger_off: 关闭内建的 PHP 除错器。<br>
+debugger_on: 使用内建的 PHP 除错器。<br>
+DecBin: 十进位转二进位。<br>
+DecHex: 十进位转十六进位。<br>
+DecOct: 十进位转八进位。<br>
+delete: 无用的项目。<br>
+die: 输出讯息并中断 PHP 程式。<br>
+dir: 目录类别物件。<br>
+dirname: 取得路径中的目录名。<br>
+diskfreespace: 取得目录所在的剩余可用空间。<br>
+dl: 载入 PHP 扩充模组。<br>
+doubleval: 变数转成倍浮点数型态。<br>
+each: 传回阵列中下一个元素的索引及值。<br>
+easter_date: 计算复活节日期。<br>
+easter_days: 计算复活节与三月廿一日之间日期数。<br>
+echo: 输出字串。<br>
+empty: 判断变数是否已设定。<br>
+end: 将阵列的内部指标指到最后的元素。<br>
+ereg: 字串比对剖析。<br>
+eregi: 字串比对剖析，与大小写无关。<br>
+eregi_replace: 字串比对剖析并取代，与大小写无关。<br>
+ereg_replace: 字串比对剖析并取代。<br>
+error_log: 送出一个错误讯息。<br>
+error_reporting: 设定错误讯息回报的等级。<br>
+escapeshellcmd: 除去字串中的特殊符号。<br>
+eval: 将值代入字串之中。<br>
+exec: 执行外部程式。<br>
+exit: 结束 PHP 程式。<br>
+Exp: 自然对数 e 的次方值。<br>
+explode: 切开字串。<br>
+extract: 汇入阵列到符号表。<br>
+fclose: 关闭已开启的档案。<br>
+FDF_close: 关闭 FDF 文件。<br>
+FDF_create: 建立新的 FDF 文件。<br>
+FDF_get_file: 取得 /F 键的值。<br>
+FDF_get_status: 取得 /STATUS 键的值。<br>
+FDF_get_value: 取得栏位的值。<br>
+FDF_next_field_name: 下一栏位的名称。<br>
+FDF_open: 打开 FDF 文件。<br>
+FDF_save: 将 FDF 文件存档。<br>
+FDF_set_ap: 设定显示栏位。<br>
+FDF_set_file: 设定 /F 键。<br>
+FDF_set_status: 设定 /STATUS 键。<br>
+FDF_set_value: 设定栏位的值。<br>
+feof: 测试档案指标是否指到档尾。<br>
+fgetc: 取得档案指标所指的字元。<br>
+fgetcsv: 取得档案指标所指行，并剖析 CSV 栏位。<br>
+fgets: 取得档案指标所指的行。<br>
+fgetss: 取得档案指标所指的行，并去掉 HTML 语言标记。<br>
+file: 将档案全部读入阵列变数中。<br>
+fileatime: 取得档案最后的存取时间。<br>
+filectime: 取得档案最后的改变时间。<br>
+filegroup: 取得档案所属的群组。<br>
+fileinode: 取得档案的 inode 值。<br>
+filemtime: 取得档案最后的修改时间。<br>
+fileowner: 取得档案的拥有者。<br>
+fileperms: 取得档案的权限设定。<br>
+filepro: 读取 FilePro Map 档。<br>
+filepro_fieldcount: 取得栏位数目。<br>
+filepro_fieldname: 取得栏位名称。<br>
+filepro_fieldtype: 取得栏位型态。<br>
+filepro_fieldwidth: 取得栏位宽度。<br>
+filepro_retrieve: 取得指定储存格资料。<br>
+filepro_rowcount: 取得列数目。<br>
+filesize: 获得档案的大小。<br>
+filetype: 获得档案的型态。<br>
+file_exists: 检查档案是否存在。<br>
+flock: 锁住档案。<br>
+Floor: 计算小于指定数的最大整数。<br>
+flush: 清出输出缓冲区。<br>
+fopen: 开启档案或者 URL。<br>
+fpassthru: 输出所有剩余资料。<br>
+fputs: 写到档案指标。<br>
+fread: 位元组的方式读取档案。<br>
+FrenchToJD: 将法国共和历法转换成为凯撒日计数。<br>
+fseek: 移动档案指标。<br>
+fsockopen: 打开网路的 Socket 连结。<br>
+ftell: 取得档案读写指标位置。<br>
+ftp_cdup: 回上层目录。<br>
+ftp_chdir: 改变路径。<br>
+ftp_connect: 开启 FTP 连结。<br>
+ftp_delete: 将档案删除。<br>
+ftp_fget: 下载档案，并存在已开的档中。<br>
+ftp_fput: 上传已开启档案。<br>
+ftp_get: 下载档案。<br>
+ftp_login: 登入 FTP 伺服器。<br>
+ftp_mdtm: 获得指定档案的最后修改时间。<br>
+ftp_mkdir: 建新目录。<br>
+ftp_nlist: 列出指定目录中所有档案。<br>
+ftp_pasv: 切换主被动传输模式。<br>
+ftp_put: 上传档案。<br>
+ftp_pwd: 取得目前所在路径。<br>
+ftp_quit: 关闭 FTP 连线。<br>
+ftp_rawlist: 详细列出指定目录中所有档案。<br>
+ftp_rename: 将档案改名。<br>
+ftp_rmdir: 删除目录。<br>
+ftp_size: 获得指定档案的大小。<br>
+ftp_systype: 显示伺服器系统。<br>
+function_exists: 查核函式是否已定义。<br>
+fwrite: 二进位位元方式写入档案。<br>
+getallheaders: 获得所有 HTTP 变数值。<br>
+getdate: 获得时间及日期资讯。<br>
+getenv: 取得系统的环境变数
+gethostbyaddr: 传回机器名称。<br>
+gethostbyname: 传回 IP 网址。<br>
+gethostbynamel: 传回机器名称的所有 IP。<br>
+GetImageSize: 取得图片的长宽。<br>
+getlastmod: 传回该网页的最后修改时间。<br>
+getmxrr: 取得指定网址 DNS 记录之 MX 栏位。<br>
+getmyinode: 传回该网页的 inode 值。<br>
+getmypid: 传回 PHP 的行程代号。<br>
+getmyuid: 传回 PHP 的使用者代码。<br>
+getrandmax: 乱数的最大值。<br>
+getrusage: 传回系统资源使用率。<br>
+gettimeofday: 取得目前时间。<br>
+gettype: 取得变数的型态。<br>
+get_cfg_var: 取得 PHP 的设定选项值。<br>
+get_current_user: 取得 PHP 行程的拥有者名称。<br>
+get_magic_quotes_gpc: 取得 PHP 环境变数 magic_quotes_gpc 的值。<br>
+get_magic_quotes_runtime: 取得 PHP 环境变数 magic_quotes_runtime 的值。<br>
+get_meta_tags: 抽出档案所有 meta 标记的资料。<br>
+gmdate: 取得目前与 GMT 差后的时间。<br>
+gmmktime: 取得 UNIX 时间戳记的格林威治时间。<br>
+GregorianToJD: 将格里高里历法转换成为凯撒日计数。<br>
+gzclose: 关闭压缩档。<br>
+gzeof: 判断是否在压缩档尾。<br>
+gzfile: 读压缩档到阵列中。<br>
+gzgetc: 读压缩档中的字元。<br>
+gzgets: 读压缩档中的字串。<br>
+gzgetss: 读压缩档中的字串，并去掉 HTML 指令。<br>
+gzopen: 开启压缩档。<br>
+gzpassthru: 解压缩指标后全部资料。<br>
+gzputs: 资料写入压缩档。<br>
+gzread: 压缩档读出指定长度字串。<br>
+gzrewind: 重设压缩档指标。<br>
+gzseek: 设压缩档指标至指定处。<br>
+gztell: 取得压缩档指标处。<br>
+gzwrite: 资料写入压缩档。<br>
+header: 送出 HTTP 协定的标头到浏览器
+HexDec: 十六进位转十进位。<br>
+htmlentities: 将所有的字元都转成 HTML 字串。<br>
+htmlspecialchars: 将特殊字元转成 HTML 格式。<br>
+hw_Children: 取得子物件代码。<br>
+hw_ChildrenObj: 取得子物件的物件记录。<br>
+hw_Close: 关闭 Hyperwave 连线。<br>
+hw_Connect: 连上 Hyperwave 伺服器。<br>
+hw_Cp: 复制物件。<br>
+hw_Deleteobject: 删除物件。<br>
+hw_DocByAnchor: 取得指定锚的文件物件代码。<br>
+hw_DocByAnchorObj: 取得指定锚的文件物件。<br>
+hw_DocumentAttributes: 取得指定文件物件属性。<br>
+hw_DocumentBodyTag: 取得指定文件物件的文件主体标记。<br>
+hw_DocumentContent: 取得指定文件物件的内容。<br>
+hw_DocumentSetContent: 重设指定文件物件的内容。<br>
+hw_DocumentSize: 取得文件大小。<br>
+hw_EditText: 更动文字文件。<br>
+hw_Error: 取得错误代码。<br>
+hw_ErrorMsg: 取得错误讯息。<br>
+hw_Free_Document: 释放文件使用的记忆体。<br>
+hw_GetAnchors: 取得文件的连结锚。<br>
+hw_GetAnchorsObj: 取得文件的连结锚记录。<br>
+hw_GetAndLock: 取得并锁住物件。<br>
+hw_GetChildColl: 取得子物件们的 ID。<br>
+hw_GetChildCollObj: 取得子物件们的资料。<br>
+hw_GetChildDocColl: 取得全部子文件聚集。<br>
+hw_GetChildDocCollObj: 取得全部子文件聚集记录。<br>
+hw_GetObject: 取得物件。<br>
+hw_GetObjectByQuery: 搜寻物件。<br>
+hw_GetObjectByQueryColl: 搜寻聚集物件。<br>
+hw_GetObjectByQueryCollObj: 搜寻聚集物件。<br>
+hw_GetObjectByQueryObj: 搜寻物件。<br>
+hw_GetParents: 取得父物件的 ID。<br>
+hw_GetParentsObj: 取得父物件的资料。<br>
+hw_GetRemote: 取得远端文件。<br>
+hw_GetRemoteChildren: 取得远端的子文件。<br>
+hw_GetSrcByDestObj: 取得指定目的的文件内容。<br>
+hw_GetText: 取得纯文字文件。<br>
+hw_GetUsername: 目前使用者名字。<br>
+hw_Identify: 使用者身份确认。<br>
+hw_InCollections: 检查物件聚集。<br>
+hw_Info: 连线资讯。<br>
+hw_InsColl: 插入聚集。<br>
+hw_InsDoc: 插入文件。<br>
+hw_InsertDocument: 上传文件。<br>
+hw_InsertObject: 插入物件记录。<br>
+hw_Modifyobject: 修改物件记录。<br>
+hw_Mv: 移动物件。<br>
+hw_New_Document: 建立新文件。<br>
+hw_Objrec2Array: 物件记录转为阵列。<br>
+hw_OutputDocument: 输出文件。<br>
+hw_pConnect: 连上 Hyperwave 伺服器。<br>
+hw_PipeDocument: 取得文件。<br>
+hw_Root: 取得根物件代码。<br>
+hw_Unlock: 取消锁定。<br>
+hw_Who: 列出目前使用者。<br>
+ibase_bind: 连结 PHP 变数到 InterBase 参数。<br>
+ibase_close: 关闭 InterBase 伺服器连线。<br>
+ibase_connect: 开启 InterBase 伺服器连线。<br>
+ibase_execute: 执行 SQL 的指令区段。<br>
+ibase_fetch_row: 传回单列的各栏位。<br>
+ibase_free_query: 释放查询指令占用记忆体。<br>
+ibase_free_result: 释放传回占用记忆体。<br>
+ibase_pconnect: 保持 InterBase 伺服器连线。<br>
+ibase_prepare: 分析 SQL 语法。<br>
+ibase_query: 送出一个 query 字串。<br>
+ibase_timefmt: 设定时间格式。<br>
+ifxus_close_slob: 删除 slob 物件。<br>
+ifxus_create_slob: 建立 slob 物件。<br>
+ifxus_open_slob: 开启 slob 物件。<br>
+ifxus_read_slob: 读取指定数目的 slob 物件。<br>
+ifxus_seek_slob: 设定目前档案或找寻位置。<br>
+ifxus_tell_slob: 传回目前档案或找寻位置。<br>
+ifxus_write_slob: 将字串写入 slob 物件中。<br>
+ifx_affected_rows: 得到 Informix 最后操作影响的列数目。<br>
+ifx_blobinfile_mode: 设定长位元物件模式。<br>
+ifx_byteasvarchar: 设定位元组模式内定值。<br>
+ifx_close: 关闭 Informix 伺服器连线。<br>
+ifx_connect: 开启 Informix 伺服器连线。<br>
+ifx_copy_blob: 复制长位元物件。<br>
+ifx_create_blob: 建立长位元物件。<br>
+ifx_create_char: 建立字元物件。<br>
+ifx_do: 执行已准备 query 字串。<br>
+ifx_error: 取得 Informix 最后的错误。<br>
+ifx_errormsg: 取得 Informix 最后错误讯息。<br>
+ifx_fetch_row: 传回单列的各栏位。<br>
+ifx_fieldproperties: 列出 Informix 的 SQL 栏位属性。<br>
+ifx_fieldtypes: 列出 Informix 的 SQL 栏位。<br>
+ifx_free_blob: 删除长位元物件。<br>
+ifx_free_char: 删除字元物件。<br>
+ifx_free_result: 释放传回占用记忆体。<br>
+ifx_free_slob: 删除 slob 物件。<br>
+ifx_getsqlca: 取得 query 后的 sqlca 资讯。<br>
+ifx_get_blob: 取得长位元物件。<br>
+ifx_get_char: 取得字元物件。<br>
+ifx_htmltbl_result: 将 query 传回资料转成 HTML 表格。<br>
+ifx_nullformat: 设定空字元模式内定值。<br>
+ifx_num_fields: 取得传回栏位的数目。<br>
+ifx_num_rows: 取得传回列的数目。<br>
+ifx_pconnect: 开启 Informix 伺服器长期连线。<br>
+ifx_prepare: 准备 query 字串。<br>
+ifx_query: 送出一个 query 字串。<br>
+ifx_textasvarchar: 设定文字模式内定值。<br>
+ifx_update_blob: 更改长位元物件。<br>
+ifx_update_char: 更改字元物件。<br>
+ignore_user_abort: 连线中断后程式是否执行。<br>
+ImageArc: 画弧线。<br>
+ImageChar: 写出横向字元。<br>
+ImageCharUp: 写出直式字元。<br>
+ImageColorAllocate: 匹配颜色。<br>
+ImageColorAt: 取得图中指定点颜色的索引值。<br>
+ImageColorClosest: 计算色表中与指定颜色最接近者。<br>
+ImageColorExact: 计算色表上指定颜色索引值。<br>
+ImageColorResolve: 计算色表上指定或最接近颜色的索引值。<br>
+ImageColorSet: 设定色表上指定索引的颜色。<br>
+ImageColorsForIndex: 取得色表上指定索引的颜色。<br>
+ImageColorsTotal: 计算图的颜色数。<br>
+ImageColorTransparent: 指定透明背景色。<br>
+ImageCopyResized: 复制新图并调整大小。<br>
+ImageCreate: 建立新图。<br>
+ImageCreateFromGIF: 取出 GIF 图型。<br>
+ImageCreateFromPNG: 取出 PNG 图型。<br>
+ImageDashedLine: 绘虚线。<br>
+ImageDestroy: 结束图形。<br>
+ImageFill: 图形着色。<br>
+ImageFilledPolygon: 多边形区域着色。<br>
+ImageFilledRectangle: 矩形区域着色。<br>
+ImageFillToBorder: 指定颜色区域内着色。<br>
+ImageFontHeight: 取得字型的高度。<br>
+ImageFontWidth: 取得字型的宽度。<br>
+ImageGIF: 建立 GIF 图型。<br>
+ImageInterlace: 使用交错式显示与否。<br>
+ImageLine: 绘实线。<br>
+ImageLoadFont: 载入点阵字型。<br>
+ImagePNG: 建立 PNG 图型。<br>
+ImagePolygon: 绘多边形。<br>
+ImagePSBBox: 计算 PostScript 文字所占区域。<br>
+ImagePSEncodeFont: PostScript 字型转成向量字。<br>
+ImagePSFreeFont: 卸下 PostScript 字型。<br>
+ImagePSLoadFont: 载入 PostScript 字型。<br>
+ImagePSText: 写 PostScript 文字到图中。<br>
+ImageRectangle: 绘矩形。<br>
+ImageSetPixel: 绘点。<br>
+ImageString: 绘横式字串。<br>
+ImageStringUp: 绘直式字串。<br>
+ImageSX: 取得图片的宽度。<br>
+ImageSY: 取得图片的高度。<br>
+ImageTTFBBox: 计算 TTF 文字所占区域。<br>
+ImageTTFText: 写 TTF 文字到图中。<br>
+imap_8bit: 将八位元转成 qp 编码。<br>
+imap_alerts: 所有的警告讯息。<br>
+imap_append: 附加字串到指定的邮箱中。<br>
+imap_base64: 解 BASE64 编码。<br>
+imap_binary: 将八位元转成 base64 编码。<br>
+imap_body: 读信的内文。<br>
+imap_check: 传回邮箱资讯。<br>
+imap_clearflag_full: 清除信件旗标。<br>
+imap_close: 关闭 IMAP 连结。<br>
+imap_createmailbox: 建立新的信箱。<br>
+imap_delete: 标记欲删除邮件。<br>
+imap_deletemailbox: 删除既有信箱。<br>
+imap_errors: 所有的错误讯息。<br>
+imap_expunge: 删除已标记的邮件。<br>
+imap_fetchbody: 从信件内文取出指定区段。<br>
+imap_fetchheader: 取得原始标头。<br>
+imap_fetchstructure: 获取某信件的结构资讯。<br>
+imap_getmailboxes: 取得全部信件详细资讯。<br>
+imap_getsubscribed: 列出所有订阅邮箱。<br>
+imap_header: 获取某信件的标头资讯。<br>
+imap_headers: 获取全部信件的标头资讯。<br>
+imap_last_error: 最后的错误讯息。<br>
+imap_listmailbox: 获取邮箱列示。<br>
+imap_listsubscribed: 获取订阅邮箱列示。<br>
+imap_mailboxmsginfo: 取得目前邮箱的资讯。<br>
+imap_mail_copy: 复制指定信件到它处邮箱。<br>
+imap_mail_move: 移动指定信件到它处邮箱。<br>
+imap_msgno: 列出 UID 的连续信件。<br>
+imap_num_msg: 取得信件数。<br>
+imap_num_recent: 取得新进信件数。<br>
+imap_open: 开启 IMAP 连结。<br>
+imap_ping: 检查 IMAP 是否连线。<br>
+imap_qprint: 将 qp 编码转成八位元。<br>
+imap_renamemailbox: 更改邮箱名字。<br>
+imap_reopen: 重开 IMAP 连结。<br>
+imap_rfc822_parse_adrlist: 剖析电子邮件位址。<br>
+imap_rfc822_write_address: 电子邮件位址标准化。<br>
+imap_scanmailbox: 寻找信件有无特定字串。<br>
+imap_search: 搜寻指定标准的信件。<br>
+imap_setflag_full: 设定信件旗标。<br>
+imap_sort: 将信件标头排序。<br>
+imap_status: 目前的状态资讯。<br>
+imap_subscribe: 订阅邮箱。<br>
+imap_uid: 取得信件 UID。<br>
+imap_undelete: 取消删除邮件标记。<br>
+imap_unsubscribe: 取消订阅邮箱。<br>
+implode: 将阵列变成字串。<br>
+intval: 变数转成整数型态。<br>
+iptcparse: 使用 IPTC 模组解析位元资料。<br>
+isset: 判断变数是否已设定。<br>
+is_array: 判断变数型态是否为阵列型态。<br>
+is_dir: 测试档案是否为目录。<br>
+is_double: 判断变数型态是否为倍浮点数型态。<br>
+is_executable: 测试档案是否为可执行档。<br>
+is_file: 测试档案是否为正常档案。<br>
+is_float: 判断变数型态是否为浮点数型态。<br>
+is_int: 判断变数型态是否为整数型态。<br>
+is_integer: 判断变数型态是否为长整数型态。<br>
+is_link: 测试档案是否为连结档。<br>
+is_long: 判断变数型态是否为长整数型态。<br>
+is_object: 判断变数型态是否为物件型态。<br>
+is_readable: 测试档案是否可读取。<br>
+is_real: 判断变数型态是否为实数型态。<br>
+is_string: 判断变数型态是否为字串型态。<br>
+is_writeable: 测试档案是否可写入。<br>
+JDDayOfWeek: 传回日期在周几。<br>
+JDMonthName: 传回月份名。<br>
+JDToFrench: 将凯撒日计数转换成为法国共和历法。<br>
+JDToGregorian: 将凯撒日计数 (Julian Day Count) 转换成为格里高里历法 (Gregorian date)。<br>
+JDToJewish: 将凯撒日计数转换成为犹太历法。<br>
+JDToJulian: 将凯撒日计数转换成为凯撒历法。<br>
+JewishToJD: 将犹太历法转换成为凯撒日计数。<br>
+join: 将阵列变成字串。<br>
+JulianToJD: 将凯撒历法转换成为凯撒日计数。<br>
+key: 取得阵列中的索引资料。<br>
+ksort: 将阵列的元素依索引排序。<br>
+ldap_add: 增加 LDAP 名录的条目。<br>
+ldap_bind: 系住 LDAP 目录。<br>
+ldap_close: 结束 LDAP 连结。<br>
+ldap_connect: 连上 LDAP 伺服器。<br>
+ldap_count_entries: 搜寻结果的数目。<br>
+ldap_delete: 删除指定资源。<br>
+ldap_dn2ufn: 将 dn 转成易读的名字。<br>
+ldap_explode_dn: 切开 dn 的栏位。<br>
+ldap_first_attribute: 取得第一笔资源的属性。<br>
+ldap_first_entry: 取得第一笔结果代号。<br>
+ldap_free_result: 释放传回资料记忆体。<br>
+ldap_get_attributes: 取得传回资料的属性。<br>
+ldap_get_dn: 取得 DN 值。<br>
+ldap_get_entries: 取得全部传回资料。<br>
+ldap_get_values: 取得全部传回值。<br>
+ldap_list: 列出简表。<br>
+ldap_modify: 改变 LDAP 名录的属性。<br>
+ldap_mod_add: 增加 LDAP 名录的属性。<br>
+ldap_mod_del: 删除 LDAP 名录的属性。<br>
+ldap_mod_replace: 新的 LDAP 名录取代旧属性。<br>
+ldap_next_attribute: 取得传回资料的下笔属性。<br>
+ldap_next_entry: 取得下一笔结果代号。<br>
+ldap_read: 取得目前的资料属性。<br>
+ldap_search: 列出树状简表。<br>
+ldap_unbind: 结束 LDAP 连结。<br>
+leak: 泄出记忆体。<br>
+link: 建立硬式连结。<br>
+linkinfo: 取得连结资讯。<br>
+list: 列出阵列中元素的值。<br>
+Log: 自然对数值。<br>
+Log10: 10 基底的对数值。<br>
+lstat: 取得连结档相关资讯。<br>
+ltrim: 去除连续空白。<br>
+mail: 寄出电子邮件。<br>
+max: 取得最大值。<br>
+mcrypt_cbc: 使用 CBC 将资料加/解密。<br>
+mcrypt_cfb: 使用 CFB 将资料加/解密。<br>
+mcrypt_create_iv: 从随机源将向量初始化。<br>
+mcrypt_ecb: 使用 ECB 将资料加/解密。<br>
+mcrypt_get_block_size: 取得编码方式的区块大小。<br>
+mcrypt_get_cipher_name: 取得编码方式的名称。<br>
+mcrypt_get_key_size: 取得编码钥匙大小。<br>
+mcrypt_ofb: 使用 OFB 将资料加/解密。<br>
+md5: 计算字串的 MD5 杂凑。<br>
+mhash: 计算杂凑值。<br>
+mhash_count: 取得杂凑 ID 的最大值。<br>
+mhash_get_block_size: 取得杂凑方式的区块大小。<br>
+mhash_get_hash_name: 取得杂凑演算法名称。<br>
+microtime: 取得目前时间的 UNIX 时间戳记的百万分之一秒值。<br>
+min: 取得最小值。<br>
+mkdir: 建立目录。<br>
+mktime: 取得 UNIX 时间戳记。<br>
+msql: 送出 query 字串。<br>
+msql_affected_rows: 得到 mSQL 最后操作影响的列数目。<br>
+msql_close: 关闭 mSQL 资料库连线。<br>
+msql_connect: 开启 mSQL 资料库连线。<br>
+msql_createdb: 建立一个新的 mSQL 资料库。<br>
+msql_create_db: 建立一个新的 mSQL 资料库。<br>
+msql_data_seek: 移动内部传回指标。<br>
+msql_dbname: 取得目前所在资料库名称。<br>
+msql_dropdb: 删除指定的 mSQL 资料库。<br>
+msql_drop_db: 删除指定的 mSQL 资料库。<br>
+msql_error: 取得最后错误讯息。<br>
+msql_fetch_array: 传回阵列资料。<br>
+msql_fetch_field: 取得栏位资讯。<br>
+msql_fetch_object: 传回物件资料。<br>
+msql_fetch_row: 传回单列的各栏位。<br>
+msql_fieldflags: 获得栏位的旗标。<br>
+msql_fieldlen: 获得栏位的长度。<br>
+msql_fieldname: 传回指定栏位的名称。<br>
+msql_fieldtable: 获得栏位的资料表 (table) 名称。<br>
+msql_fieldtype: 获得栏位的型态。<br>
+msql_field_seek: 设定指标到传回值的某栏位。<br>
+msql_freeresult: 释放传回占用记忆体。<br>
+msql_free_result: 释放传回占用记忆体。<br>
+msql_listdbs: 列出可用资料库 (database)。<br>
+msql_listfields: 列出指定资料表的栏位 (field)。<br>
+msql_listtables: 列出指定资料库的资料表 (table)。<br>
+msql_list_dbs: 列出可用资料库 (database)。<br>
+msql_list_fields: 列出指定资料表的栏位 (field)。<br>
+msql_list_tables: 列出指定资料库的资料表 (table)。<br>
+msql_numfields: 取得传回栏位的数目。<br>
+msql_numrows: 取得传回列的数目。<br>
+msql_num_fields: 取得传回栏位的数目。<br>
+msql_num_rows: 取得传回列的数目。<br>
+msql_pconnect: 开启 mSQL 伺服器长期连线。<br>
+msql_query: 送出一个 query 字串。<br>
+msql_regcase: 将字串逐字传回大小写字元。<br>
+msql_result: 取得查询 (query) 的结果。<br>
+msql_selectdb: 选择一个资料库。<br>
+msql_select_db: 选择一个资料库。<br>
+msql_tablename: 传回指定资料表的名称。<br>
+mssql_affected_rows: 取得最后 query 影响的列数。<br>
+mssql_close: 关闭与资料库的连线。<br>
+mssql_connect: 连上资料库。<br>
+mssql_data_seek: 移动列指标。<br>
+mssql_fetch_array: 传回阵列资料。<br>
+mssql_fetch_field: 取得栏位资讯。<br>
+mssql_fetch_object: 传回物件资料。<br>
+mssql_fetch_row: 传回单列的各栏位。<br>
+mssql_field_seek: 设定指标到传回值的某栏位。<br>
+mssql_free_result: 释放传回占用记忆体。<br>
+mssql_num_fields: 取得传回栏位的数目。<br>
+mssql_num_rows: 取得传回列的数目。<br>
+mssql_pconnect: 开启 MS SQL 伺服器长期连线。<br>
+mssql_query: 送出一个 query 字串。<br>
+mssql_result: 取得查询 (query) 的结果。<br>
+mssql_select_db: 选择一个资料库。<br>
+mt_getrandmax: 乱数的最大值。<br>
+mt_rand: 取得乱数值。<br>
+mt_srand: 设定乱数种子。<br>
+mysql_affected_rows: 得到 MySQL 最后操作影响的列数目。<br>
+mysql_close: 关闭 MySQL 伺服器连线。<br>
+mysql_connect: 开启 MySQL 伺服器连线。<br>
+mysql_create_db: 建立一个 MySQL 新资料库。<br>
+mysql_data_seek: 移动内部传回指标。<br>
+mysql_db_query: 送查询字串 (query) 到 MySQL 资料库。<br>
+mysql_drop_db: 移除资料库。<br>
+mysql_errno: 传回错误讯息代码。<br>
+mysql_error: 传回错误讯息。<br>
+mysql_fetch_array: 传回阵列资料。<br>
+mysql_fetch_field: 取得栏位资讯。<br>
+mysql_fetch_lengths: 传回单列各栏资料最大长度。<br>
+mysql_fetch_object: 传回物件资料。<br>
+mysql_fetch_row: 传回单列的各栏位。<br>
+mysql_field_flags: 获得目前栏位的旗标。<br>
+mysql_field_len: 获得目前栏位的长度。<br>
+mysql_field_name: 传回指定栏位的名称。<br>
+mysql_field_seek: 设定指标到传回值的某栏位。<br>
+mysql_field_table: 获得目前栏位的资料表 (table) 名称。<br>
+mysql_field_type: 获得目前栏位的型态。<br>
+mysql_free_result: 释放传回占用记忆体。<br>
+mysql_insert_id: 传回最后一次使用 INSERT 指令的 ID。<br>
+mysql_list_dbs: 列出 MySQL 伺服器可用的资料库 (database)。<br>
+mysql_list_fields: 列出指定资料表的栏位 (field)。<br>
+mysql_list_tables: 列出指定资料库的资料表 (table)。<br>
+mysql_num_fields: 取得传回栏位的数目。<br>
+mysql_num_rows: 取得传回列的数目。<br>
+mysql_pconnect: 开启 MySQL 伺服器长期连线。<br>
+mysql_query: 送出一个 query 字串。<br>
+mysql_result: 取得查询 (query) 的结果。<br>
+mysql_select_db: 选择一个资料库。<br>
+mysql_tablename: 取得资料表名称。<br>
+next: 将阵列的内部指标向后移动。<br>
+nl2br: 将换行字元转成
+。<br>
+number_format: 格式化数字字串。<br>
+OCIBindByName: 让动态 SQL 可使用 PHP 变数。<br>
+OCIColumnIsNULL: 测试传回行是否为空的。<br>
+OCIColumnSize: 取得栏位型态的大小。<br>
+OCICommit: 将 Oracle 的交易处理付诸实行。<br>
+OCIDefineByName: 让 SELECT 指令可使用 PHP 变数。<br>
+OCIExecute: 执行 Oracle 的指令区段。<br>
+OCIFetch: 取得传回资料的一列 (row)。<br>
+OCIFetchInto: 取回 Oracle 资料放入阵列。<br>
+OCILogOff: 关闭与 Oracle 的连结。<br>
+OCILogon: 开启与 Oracle 的连结。<br>
+OCINewDescriptor: 初始新的 LOB/FILE 描述。<br>
+OCINumRows: 取得受影响栏位的数目。<br>
+OCIParse: 分析 SQL 语法。<br>
+OCIResult: 从目前列 (row) 的资料取得一栏 (column)。<br>
+OCIRollback: 撤消当前交易。<br>
+OctDec: 八进位转十进位。<br>
+odbc_autocommit: 开关自动更动功能。<br>
+odbc_binmode: 设定二进位资料处理方式。<br>
+odbc_close: 关闭 ODBC 连结。<br>
+odbc_close_all: 关闭所有 ODBC 连结。<br>
+odbc_commit: 更动 ODBC 资料库。<br>
+odbc_connect: 连结至 ODBC 资料库。<br>
+odbc_cursor: 取得游标名。<br>
+odbc_do: 执行 SQL 指令。<br>
+odbc_exec: 执行 SQL 指令。<br>
+odbc_execute: 执行预置 SQL 指令。<br>
+odbc_fetch_into: 取得传回的指定列。<br>
+odbc_fetch_row: 取得传回一列。<br>
+odbc_field_len: 取得栏位资料长度。<br>
+odbc_field_name: 取得栏位名称。<br>
+odbc_field_type: 取得栏位资料形态。<br>
+odbc_free_result: 释出传回资料的记忆体。<br>
+odbc_longreadlen: 设定传回栏的最大值。<br>
+odbc_num_fields: 取得栏位数目。<br>
+odbc_num_rows: 取得传回列数目。<br>
+odbc_pconnect: 长期连结至 ODBC 资料库。<br>
+odbc_prepare: 预置 SQL 指令。<br>
+odbc_result: 取得传回资料。<br>
+odbc_result_all: 传回 HTML 表格资料。<br>
+odbc_rollback: 撤消当前交易。<br>
+odbc_setoption: 调整 ODBC 设定。<br>
+opendir: 开启目录 handle。<br>
+openlog: 打开系统纪录。<br>
+Ora_Bind: 连结 PHP 变数到 Oracle 参数。<br>
+Ora_Close: 关闭一个 Oracle 的 cursor。<br>
+Ora_ColumnName: 得到 Oracle 传回列 (Column) 的名称。<br>
+Ora_ColumnSize: 取得栏位型态的大小。<br>
+Ora_ColumnType: 得到 Oracle 传回列 (Column) 的型态。<br>
+Ora_Commit: 将 Oracle 的交易处理付诸实行。<br>
+Ora_CommitOff: 关闭自动执行 Oracle 交易更动的功能。<br>
+Ora_CommitOn: 打开自动执行 Oracle 交易更动的功能。<br>
+Ora_Do: 快速的 SQL 查询。<br>
+Ora_Error: 获得 Oracle 错误讯息。<br>
+Ora_ErrorCode: 获得 Oracle 错误代码。<br>
+Ora_Exec: 执行 Oracle 的指令区段。<br>
+Ora_Fetch: 取得传回资料的一列 (row)。<br>
+Ora_FetchInto: 取回 Oracle 资料放入阵列。<br>
+Ora_GetColumn: 从传回列 (row) 的资料取得一栏 (column)。<br>
+Ora_Logoff: 结束与 Oracle 的连结。<br>
+Ora_Logon: 开启与 Oracle 的连结。<br>
+Ora_Numcols: 取得栏位的数目。<br>
+Ora_Open: 开启 Oracle 的 cursor。<br>
+Ora_Parse: 分析 SQL 语法。<br>
+Ora_PLogon: 开启与 Oracle 的长期连结。<br>
+Ora_Rollback: 撤消当前交易。<br>
+Ord: 传回字元的序数值。<br>
+pack: 压缩资料到位元字串之中。<br>
+parse_str: 剖析 query 字串成变数。<br>
+parse_url: 剖析 URL 字串。<br>
+passthru: 执行外部程式并不加处理输出资料。<br>
+pclose: 关闭档案。<br>
+PDF_add_annotation: 加入注解。<br>
+PDF_add_outline: 目前页面加入书签。<br>
+PDF_arc: 绘弧。<br>
+PDF_begin_page: 启始 PDF 档案页面。<br>
+PDF_circle: 绘圆。<br>
+PDF_clip: 组合所有向量。<br>
+PDF_close: 关闭 PDF 档。<br>
+PDF_closepath: 形成封闭的向量形状。<br>
+PDF_closepath_fill_stroke: 形成封闭的向量形状沿向量绘线并填满。<br>
+PDF_closepath_stroke: 形成封闭的向量形状并沿向量绘线。<br>
+PDF_close_image: 关闭图档。<br>
+PDF_continue_text: 输出文字。<br>
+PDF_curveto: 绘贝氏曲线。<br>
+PDF_endpath: 关闭目前向量。<br>
+PDF_end_page: 关闭 PDF 档案页面。<br>
+PDF_execute_image: 放置 PDF 档中图片到指定位置。<br>
+PDF_fill: 填满目前的向量。<br>
+PDF_fill_stroke: 填满目前的向量并沿向量绘线。<br>
+PDF_get_info: 传回档案资讯。<br>
+PDF_lineto: 绘直线。<br>
+PDF_moveto: 设定处理的坐标点。<br>
+PDF_open: 建立新的 PDF 档。<br>
+PDF_open_gif: 开启 GIF 图档。<br>
+PDF_open_jpeg: 开启 JPEG 图档。<br>
+PDF_open_memory_image: 开启记忆体图档。<br>
+PDF_place_image: 放置图片到 PDF 档指定位置。<br>
+PDF_put_image: 放置图片到 PDF 档。<br>
+PDF_rect: 绘长方形。<br>
+PDF_restore: 还原环境变数。<br>
+PDF_rotate: 旋转物件。<br>
+PDF_save: 储存环境变数。<br>
+PDF_scale: 缩放物件。<br>
+PDF_setdash: 设定虚线样式。<br>
+PDF_setflat: 设定平滑值。<br>
+PDF_setgray: 指定绘图的颜色为灰阶并填入。<br>
+PDF_setgray_fill: 指定填入的颜色为灰阶。<br>
+PDF_setgray_stroke: 指定绘图的颜色为灰阶。<br>
+PDF_setlinecap: 设定 linecap 参数。<br>
+PDF_setlinejoin: 设定连线参数。<br>
+PDF_setlinewidth: 设定线宽。<br>
+PDF_setmiterlimit: 设定斜边界限。<br>
+PDF_setrgbcolor: 指定绘图的颜色为彩色并填入。<br>
+PDF_setrgbcolor_fill: 指定填入的颜色为彩色。<br>
+PDF_setrgbcolor_stroke: 指定绘图的颜色为彩色。<br>
+PDF_set_char_spacing: 设定字元间距。<br>
+PDF_set_duration: 设定二页的切换时间。<br>
+PDF_set_font: 设定使用的字型及大小。<br>
+PDF_set_horiz_scaling: 设定文字水平间距。<br>
+PDF_set_info_author: 设定档案作者。<br>
+PDF_set_info_creator: 设定建档者字串。<br>
+PDF_set_info_keywords: 设定档案的关键字。<br>
+PDF_set_info_subject: 设定档案主题。<br>
+PDF_set_info_title: 设定档案标题。<br>
+PDF_set_leading: 设定行距。<br>
+PDF_set_text_matrix: 设定文字矩阵。<br>
+PDF_set_text_pos: 设定文字位置。<br>
+PDF_set_text_rendering: 设定文字表现方式。<br>
+PDF_set_text_rise: 设定文字高度。<br>
+PDF_set_transition: 设定页的转换。<br>
+PDF_set_word_spacing: 设定字间距。<br>
+PDF_show: 输出字串到 PDF 档案。<br>
+PDF_show_xy: 输出字串到指定坐标。<br>
+PDF_stringwidth: 计算字串的宽度。<br>
+PDF_stroke: 沿向量绘线。<br>
+PDF_translate: 移动原点。<br>
+pfsockopen: 打开网路的 Socket 持续连结。<br>
+pg_Close: 关闭 PostgreSQL 伺服器连线。<br>
+pg_cmdTuples: 取得被 SQL 指令影响的资料笔数。<br>
+pg_Connect: 开启 PostgreSQL 伺服器连线。<br>
+pg_DBname: 取得目前的资料库名称。<br>
+pg_ErrorMessage: 传回错误讯息。<br>
+pg_Exec: 执行 query 指令。<br>
+pg_Fetch_Array: 传回阵列资料。<br>
+pg_Fetch_Object: 传回物件资料。<br>
+pg_Fetch_Row: 传回单列的各栏位。<br>
+pg_FieldIsNull: 检查栏位是否有资料。<br>
+pg_FieldName: 传回指定栏位的名称。<br>
+pg_FieldNum: 取得指定栏位的行数。<br>
+pg_FieldPrtLen: 计算可列示的长度。<br>
+pg_FieldSize: 计算指定栏位的长度。<br>
+pg_FieldType: 获得目前栏位的型态。<br>
+pg_FreeResult: 释放传回占用记忆体。<br>
+pg_GetLastOid: 取得最后的物件代码。<br>
+pg_Host: 取得连线机器名称。<br>
+pg_loclose: 关闭大型物件。<br>
+pg_locreate: 建立大型物件。<br>
+pg_loopen: 开启大型物件。<br>
+pg_loread: 读取大型物件。<br>
+pg_loreadall: 读取大型物件并输出。<br>
+pg_lounlink: 删除大型物件。<br>
+pg_lowrite: 读取大型物件。<br>
+pg_NumFields: 取得传回栏位的数目。<br>
+pg_NumRows: 取得传回列的数目。<br>
+pg_Options: 取得连线机器选项。<br>
+pg_pConnect: 开启 PostgreSQL 伺服器长期连线。<br>
+pg_Port: 取得连线机器埠号。<br>
+pg_Result: 取得查询 (query) 的结果。<br>
+pg_tty: 取得连线机器终端机。<br>
+phpinfo: 传回 PHP 所有相关资讯。<br>
+phpversion: 传回 PHP 版本讯息。<br>
+pi: 圆周率。<br>
+popen: 开启档案。<br>
+pos: 传回阵列目前的元素。<br>
+pow: 次方。<br>
+preg_match: 字串比对剖析。<br>
+preg_match_all: 字串整体比对剖析。<br>
+preg_replace: 字串比对剖析并取代。<br>
+preg_split: 将字串依指定的规则切开。<br>
+prev: 将阵列的内部指标往前移动。<br>
+print: 输出字串。<br>
+printf: 输出格式化字串。<br>
+putenv: 设定系统环境变数。<br>
+quoted_printable_decode: 将 qp 编码字串转成 8 位元字串。<br>
+QuoteMeta: 加入引用符号。<br>
+rand: 取得乱数值。<br>
+range: 建立一个整数范围的阵列。<br>
+rawurldecode: 从 URL 专用格式字串还原成普通字串。<br>
+rawurlencode: 将字串编码成 URL 专用格式。<br>
+readdir: 读取目录 handle。<br>
+readfile: 输出档案。<br>
+readgzfile: 读出压缩档。<br>
+readlink: 传回符号连结 (symbolic link) 目标档。<br>
+recode_file: 记录档案或档案请求到记录中。<br>
+recode_string: 记录字串到记录中。<br>
+register_shutdown_function: 定义 PHP 程式执行完成后执行的函式。<br>
+rename: 更改档名。<br>
+reset: 将阵列的指标指到阵列第一个元素。<br>
+rewind: 重置开档的读写位置指标。<br>
+rewinddir: 重设目录 handle。<br>
+rmdir: 删除目录。<br>
+round: 四舍五入。<br>
+rsort: 将阵列的值由大到小排序。<br>
+sem_acquire: 捕获信号。<br>
+sem_get: 取得信号代码。<br>
+sem_release: 释出信号。<br>
+serialize: 储存资料到系统中。<br>
+session_decode: Session 资料解码。<br>
+session_destroy: 结束 session。<br>
+session_encode: Session 资料编码。<br>
+session_id: 存取目前 session 代号。<br>
+session_is_registered: 检查变数是否注册。<br>
+session_module_name: 存取目前 session 模组。<br>
+session_name: 存取目前 session 名称。<br>
+session_register: 注册新的变数。<br>
+session_save_path: 存取目前 session 路径。<br>
+session_start: 初始 session。<br>
+session_unregister: 删除已注册变数。<br>
+setcookie: 送出 Cookie 资讯到浏览器。<br>
+setlocale: 设定地域化资讯。<br>
+settype: 设定变数型态。<br>
+set_file_buffer: 设定档案缓冲区大小。<br>
+set_magic_quotes_runtime: 设定 magic_quotes_runtime 值。<br>
+set_socket_blocking: 切换搁置与无搁置模式。<br>
+set_time_limit: 设定该页最久执行时间。<br>
+shm_attach: 开启建立共享记忆体区段。<br>
+shm_detach: 中止共享记忆体区段连结。<br>
+shm_get_var: 取得记忆体区段中指定的变数。<br>
+shm_put_var: 加入或更新记忆体区段中的变数。<br>
+shm_remove: 清除记忆体区段。<br>
+shm_remove_var: 删除记忆体区段中指定的变数。<br>
+shuffle: 将阵列的顺序弄混。<br>
+similar_text: 计算字串相似度。<br>
+Sin: 正弦计算。<br>
+sizeof: 获知阵列的大小。<br>
+sleep: 暂停执行。<br>
+snmpget: 取得指定物件识别码。<br>
+snmpwalk: 取得所有物件。<br>
+snmpwalkoid: 取得网路本体树状资讯。<br>
+snmp_get_quick_print: 取得 UCD 函式库中的 quick_print 值。<br>
+snmp_set_quick_print: 设定 UCD 函式库中的 quick_print 值。<br>
+solid_close: 关闭 solid 连结。<br>
+solid_connect: 连结至 solid 资料库。<br>
+solid_exec: 执行 SQL 指令。<br>
+solid_fetchrow: 取得传回一列。<br>
+solid_fieldname: 取得栏位名称。<br>
+solid_fieldnum: 取得栏位数目。<br>
+solid_freeresult: 释出传回资料的记忆体。<br>
+solid_numfields: 取得栏位数目。<br>
+solid_numrows: 取得传回列数目。<br>
+solid_result: 取得传回资料。<br>
+sort: 将阵列排序。<br>
+soundex: 计算字串的读音值
+split: 将字串依指定的规则切开。<br>
+sprintf: 将字串格式化。<br>
+sql_regcase: 将字串逐字传回大小写字元。<br>
+Sqrt: 开平方根。<br>
+srand: 设定乱数种子。<br>
+stat: 取得档案相关资讯。<br>
+strchr: 寻找第一个出现的字元。<br>
+strcmp: 字串比较。<br>
+strcspn: 不同字串的长度。<br>
+strftime: 将伺服器的时间本地格式化。<br>
+StripSlashes: 去掉反斜线字元。<br>
+strip_tags: 去掉 HTML 及 PHP 的标记。<br>
+strlen: 取得字串长度。<br>
+strpos: 寻找字串中某字元最先出现处。<br>
+strrchr: 取得某字元最后出现处起的字串。<br>
+strrev: 颠倒字串。<br>
+strrpos: 寻找字串中某字元最后出现处。<br>
+strspn: 找出某字串落在另一字串遮罩的数目。<br>
+strstr: 传回字串中某字串开始处至结束的字串。<br>
+strtok: 切开字串。<br>
+strtolower: 字串全转为小写。<br>
+strtoupper: 字串全转为大写。<br>
+strtr: 转换某些字元。<br>
+strval: 将变数转成字串型态。<br>
+str_replace: 字串取代。<br>
+substr: 取部份字串。<br>
+sybase_affected_rows: 取得最后 query 影响的列数。<br>
+sybase_close: 关闭与资料库的连线。<br>
+sybase_connect: 连上资料库。<br>
+sybase_data_seek: 移动列指标。<br>
+sybase_fetch_array: 传回阵列资料。<br>
+sybase_fetch_field: 取得栏位资讯。<br>
+sybase_fetch_object: 传回物件资料。<br>
+sybase_fetch_row: 传回单列的各栏位。<br>
+sybase_field_seek: 设定指标到传回值的某栏位。<br>
+sybase_free_result: 释放传回占用记忆体。<br>
+sybase_num_fields: 取得传回栏位的数目。<br>
+sybase_num_rows: 取得传回列的数目。<br>
+sybase_pconnect: 开启伺服器长期连线。<br>
+sybase_query: 送出一个 query 字串。<br>
+sybase_result: 取得查询 (query) 的结果。<br>
+sybase_select_db: 选择一个资料库。<br>
+symlink: 建立符号连结 (symbolic link)。<br>
+syslog: 纪录至系统纪录。<br>
+system: 执行外部程式并显示输出资料。<br>
+Tan: 正切计算。<br>
+tempnam: 建立唯一的临时档。<br>
+time: 取得目前时间的 UNIX 时间戳记。<br>
+touch: 设定最后修改时间。<br>
+trim: 截去字串首尾的空格。<br>
+uasort: 将阵列依使用者自定的函式排序。<br>
+ucfirst: 将字串第一个字元改大写。<br>
+ucwords: 将字串每个字第一个字母改大写。<br>
+uksort: 将阵列的索引依使用者自定的函式排序。<br>
+umask: 改变目前的档案属性遮罩 umask。<br>
+uniqid: 产生唯一的值。<br>
+unlink: 删除档案。<br>
+unpack: 解压缩位元字串资料。<br>
+unserialize: 取出系统资料。<br>
+unset: 删除变数。<br>
+urldecode: 还原 URL 编码字串。<br>
+urlencode: 将字串以 URL 编码。<br>
+usleep: 暂停执行。<br>
+usort: 将阵列的值依使用者自定的函式排序。<br>
+utf8_decode: 将 UTF-8 码转成 ISO-8859-1 码。<br>
+utf8_encode: 将 ISO-8859-1 码转成 UTF-8 码。<br>
+virtual: 完成阿帕契伺服器的子请求 (sub-request)。<br>
+vm_addalias: 加入新别名。<br>
+vm_adduser: 加入新使用者。<br>
+vm_delalias: 删除别名。<br>
+vm_deluser: 删除使用者。<br>
+vm_passwd: 改变使用者密码。<br>
+wddx_add_vars: 将 WDDX 封包连续化。<br>
+wddx_deserialize: 将 WDDX 封包解连续化。<br>
+wddx_packet_end: 结束的 WDDX 封包。<br>
+wddx_packet_start: 开始新的 WDDX 封包。<br>
+wddx_serialize_value: 将单一值连续化。<br>
+wddx_serialize_vars: 将多值连续化。<br>
+xml_error_string: 取得 XML 错误字串。<br>
+xml_get_current_byte_index: 取得目前剖析为第几个位元组。<br>
+xml_get_current_column_number: 获知目前剖析的第几栏位。<br>
+xml_get_current_line_number: 取得目前剖析的行号。<br>
+xml_get_error_code: 取得 XML 错误码。<br>
+xml_parse: 剖析 XML 文件。<br>
+xml_parser_create: 初始 XML 剖析器。<br>
+xml_parser_free: 释放剖析占用的记忆体。<br>
+xml_parser_get_option: 取得剖析使用的选项。<br>
+xml_parser_set_option: 设定剖析使用的选项。<br>
+xml_set_character_data_handler: 建立字元资料标头。<br>
+xml_set_default_handler: 建立内定标头。<br>
+xml_set_element_handler: 设定元素的标头。<br>
+xml_set_external_entity_ref_handler: 设定外部实体参引的标头。<br>
+xml_set_notation_decl_handler: 设定记法宣告的标头。<br>
+xml_set_object: 使 XML 剖析器用物件。<br>
+xml_set_processing_instruction_handler: 建立处理指令标头。<br>
+xml_set_unparsed_entity_decl_handler: 设定未剖析实体宣告的标头。<br>
+yp_errno: 取得先前 YP 操作的错误码。<br>
+yp_err_string: 取得先前 YP 操作的错误字串。<br>
+yp_first: 传回 map 上第一笔符合的资料。<br>
+yp_get_default_domain: 取得机器的 Domain。<br>
+yp_master: 取得 NIS 的 Master。<br>
+yp_match: 取得指定资料。<br>
+yp_next: 指定 map 的下笔资料。<br>
+yp_order: 传回 map 的序数。<br>
+PHP 函式库及函式 :Session 函式库
+本函式库共有 11 个函式
+session_start: 初始 session。<br>
+session_destroy: 结束 session。<br>
+session_name: 存取目前 session 名称。<br>
+session_module_name: 存取目前 session 模组。<br>
+session_save_path: 存取目前 session 路径。<br>
+session_id: 存取目前 session 代号。<br>
+session_register: 注册新的变数。<br>
+session_unregister: 删除已注册变数。<br>
+session_is_registered: 检查变数是否注册。<br>
+session_decode: Session 资料解码。<br>
+session_encode: Session 资料编码
+ODBC 资料库连结函式库
+本函式库共有 25 个函式
+开放资料连结 (Open Database Connectivity, ODBC) 是连结资料库的共通介面。<br>ODBC 是由微软主导的资料库连结标准，实作环境也以微软的系统最成熟。<br>在 UNIX 系统中，通常要使用其它厂商所提供的 ODBC 介面，有些 UNIX 厂商会自己提供 ODBC 介面 (如 SUN 有为 Solaris 提供 ODBC)。<br>
+ODBC 和资料库的查询采用 SQL 语言，这和大部份的资料库查询方式一样，这使得系统可以很容易和各种资料库沟通。<br>当然，透过 ODBC 介面，后端的资料库不一定要 DBMS 这种大型资料库系统，亦可以是资料表 (如 Microsoft Access)、或者是试算表 (如 Microsoft Excel)。<br>
+ 
+odbc_autocommit: 开关自动更动功能。<br>
+odbc_binmode: 设定二进位资料处理方式。<br>
+odbc_close: 关闭 ODBC 连结。<br>
+odbc_close_all: 关闭所有 ODBC 连结。<br>
+odbc_commit: 更动 ODBC 资料库。<br>
+odbc_connect: 连结至 ODBC 资料库。<br>
+odbc_cursor: 取得游标名。<br>
+odbc_do: 执行 SQL 指令。<br>
+odbc_exec: 执行 SQL 指令。<br>
+odbc_execute: 执行预置 SQL 指令。<br>
+odbc_fetch_into: 取得传回的指定列。<br>
+odbc_fetch_row: 取得传回一列。<br>
+odbc_field_name: 取得栏位名称。<br>
+odbc_field_type: 取得栏位资料形态。<br>
+odbc_field_len: 取得栏位资料长度。<br>
+odbc_free_result: 释出传回资料的记忆体。<br>
+odbc_longreadlen: 设定传回栏的最大值。<br>
+odbc_num_fields: 取得栏位数目。<br>
+odbc_pconnect: 长期连结至 ODBC 资料库。<br>
+odbc_prepare: 预置 SQL 指令。<br>
+odbc_num_rows: 取得传回列数目。<br>
+odbc_result: 取得传回资料。<br>
+odbc_result_all: 传回 HTML 表格资料。<br>
+odbc_rollback: 撤消当前交易。<br>
+odbc_setoption: 调整 ODBC 设定</code>
+	
+</div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<title>jquery表单操作,全选反选等</title>
+<style type="text/css">
+</style>
+</head> 
+<body>
+<p>jquery表单操作,全选反选等</p>
+<form>
+<div id='bt'>
+	<input type="button" id='ckAll' name="" value="全选">
+	<input type="button" id='ckRe' name="" value="反选">
+	<input type="button" id='ckNo' name="" value="全不选">
+</div>
+<div id='ckbox'>
+<input type="checkbox" name="" >A	
+<input type="checkbox" name="" >B	
+<input type="checkbox" name="" >C	
+<input type="checkbox" name="" >D	
+<input type="checkbox" name="" >E	
+</div>
+</form>
+<script> 
+	var ckAll = $('#ckAll');
+	var ckRe = $('#ckRe');
+	var ckNo = $('#ckNo');
+	var ckbox = $('#ckbox >:checkbox');
+// alert(ckbox.length);
+//全选
+ckAll.click(function(){
+	ckbox.prop('checked','checked');
+	//ckbox.attr('checked',true)
+})
+
+//全不选
+ckNo.click(function(){	
+	ckbox.prop('checked',false)
+})
+//反选
+ckRe.click(function(){
+	//alert(ckbox.length);
+	ckbox.each(function(){
+		$(this).prop('checked',!$(this).prop('checked'));
+	})
+})
+</script>
+</body>
+</html>
+

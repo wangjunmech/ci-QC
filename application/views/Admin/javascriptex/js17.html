@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<title>jquery页面搜索实例</title>
+<style type="text/css">
+table{
+	width: 600px;
+	border: 2px solid green;
+	border-collapse: collapse;
+}
+tr{
+	height: 30px;
+}
+th,td{
+	border: 1px solid #abcdef;
+	text-align: center;
+
+}
+</style>
+</head> 
+<body>
+<p>jquery页面搜索实例</p>
+<form>
+<table>
+	<tr id='thead'>
+		<th>姓名</th>
+		<th>性别</th>
+		<th>电话</th>
+	</tr>	
+	<tr>
+		<td>张三</td>
+		<td>男</td>
+		<td>13312323526</td>
+	</tr>	
+	<tr>
+		<td>李四</td>
+		<td>男</td>
+		<td>13312323538</td>
+	</tr>	
+	<tr>
+		<td>赵五</td>
+		<td>女</td>
+		<td>13312323533</td>
+	</tr>
+</table>
+</form>
+<input type="text" name="sword" id="sword" style="background: lightgreen;border-color: red">
+<input type="button" name="serc" id="serc" value="搜索">
+<hr>
+<textarea name='' id="ta" cols="30" rows="10" style="background: yellow"></textarea>
+<span>你还可以输入 <strong id='leng' style="color:red"><script>document.write(wordlength);</script></strong>个字</span>
+<br>
+<span>汉字字数： <strong id='CH' style="color:red"><script>document.write(CJK.length);</script></strong>个字</span>
+<hr>
+<?php
+echo 'printf()函数的使用：<br>';
+$number = 123.456;
+printf("有两位小数：%1\$.3f<br>没有小数：%1\$u",$number);
+?>
+<hr>
+<p>输入数字转为大字汉字：</p>
+<input type="text" id='conv' name="conv" style="background: yellow">
+<span id='convout'></span>
+
+<div>
+	<p>(&#20013;&#20851;&#26449;&#22312;&#32447; &#35199;&#23433;&#34892;&#24773;)&#19977;&#26143;910S3G-K04&#32473;&#20320;&#26497;&#33268;&#36731;&#34180;&#36873;&#25321;&#12290;&#38209;&#38109;&#21512;&#37329;&#25171;&#36896;&#30340;&#37329;&#23646;&#36731;&#34180;&#26426;&#36523;,&#21402;&#24230;&#21482;&#26377;16.9mm,&#37325;&#37327;&#20026;1440g,&#25645;&#37197;&#32548;&#26524;&#40644;&#30340;&#38739;&#20029;&#22806;&#22771;&#33394;&#24425;,&#36731;&#34180;&#26102;&#23578;,</p>
+</div>
+
+<script> 
+	var sword = $('#sowrd');
+	var serc = $('#serc');
+serc.click(function(){
+	//alert('Some text');
+	//$('table tr').filter(':contains("女")').css('background','yellow');
+	//var kword = $('input[type=text]').val();
+	var kword = $('input[name=sword]').val();
+	// var kword = sword.val();//这个选择器为什么不能获取值
+
+	//alert(kword);
+	$('table tr:not("#thead")').hide().filter(':contains("'+kword+'")').show();
+
+});
+
+
+//textarea输入框文字数字限制
+
+	var maxlength=140;
+	$('#leng').text(maxlength);
+
+$('#ta').keyup(function(event) {
+
+	/* Act on the event */
+	
+	var message=$(this).val();//输入字符
+	var CJK = message.match(/[^\x00-\xff]/g);
+	var wordlength=message.length;//输入字符的长度（不含中文）
+	var lengthleft=maxlength-wordlength;
+	//alert(wordlength);
+	//alert(lengthleft);
+		$('#leng').text(lengthleft);
+		if(lengthleft<0){
+			$('#leng').text(0);
+		}
+		var val=$(this).val().substring(0,140)
+		//alert(val);
+		$(this).val(val);
+		$('#CH').text(CJK.length);
+		
+});
+//输入汉字转为大写
+var arrs = ["零","壹","贰","叁","肆","伍","陆","柒","捌","玖"];
+function replaceReg2(reg,str){
+return str.replace(reg,function(m){return arrs[m];})
+}
+
+var reg = /\d/g;
+
+ var str1 = '13889294444';
+
+// var str2 = '12889293333';
+
+// var str3 = '23445567';
+
+//replaceReg2(reg,str1); // 壹叁捌捌玖贰玖肆肆肆肆
+$('#conv').keyup(function(event) {
+		var message=$(this).val();
+		var covopt=replaceReg2(reg,message);
+		$('#convout').text(covopt);
+
+	});
+
+
+
+//参考函数，怎么使用？？？
+function gbcount(message,used)
+{
+var lenE = message.value.length;
+var lenC = 0;
+var CJK = message.value.match(/[^\x00-\xff]/g);
+var enter = message.value.match(/\r\n/g);
+if (CJK != null) lenC += CJK.length;
+if (enter != null) lenC -= enter.length;
+        used.value = lenE + lenC;
+}
+
+
+/////////////****************正则表达示的使用
+var str = "hello world,hello world";
+// 返回匹配到的第一个位置(使用的regexp对象检索)
+console.log(str.search(/hello/)); // 0
+// 没有全局的概念 总是返回匹配到的第一个位置
+console.log(str.search(/hello/g)); //0
+
+console.log(str.search(/world/)); // 6
+
+// 也可以是检索字符串中的字符
+console.log(str.search("wo")); // 6
+
+// 如果没有检索到的话，则返回-1
+console.log(str.search(/longen/)); // -1
+
+// 我们检索的时候 可以忽略大小写来检索
+var str2 = "Hello";
+console.log(str2.search(/hello/i)); // 0
+
+var str = "hello world hello words";
+console.log(str.match("hello")); // ["hello", index: 0, input: "hello world"]
+console.log(str.match("Hello")); // null
+console.log(str.match(/hello/g)); // ["hello", index: 0, input: "hello world"]
+// 全局匹配
+var str2="1 plus 2 equal 3"
+//console.log(str2.match(/\d+/g)); //["1", "2", "3"]
+
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JS字符串操作</title>
+
+</head>
+	<script>
+
+
+//alert(str.substring(1, 4));
+
+</script>
+<body>
+<h1>JS字符串操作</h1>
+<h3>substring子字符串截取</h3>
+<script type="text/javascript">
+var str='abcdefghijklmn+=df890(在哪里)---';
+document.write('原始字符串：'+str+'<br>');
+document.write('document.write(str.substring(1));=====');
+document.write(str.substring(1));
+document.write('<br>');
+document.write('document.write(str.substring(1,4));=====');
+document.write(str.substring(1,4));
+document.write('<br>');
+document.write('document.write(str.substring(1,-4));=====');
+document.write(str.substring(1,-4));
+document.write('<br>');
+document.write('document.write(str.substring(1,-1));=====');
+document.write(str.substring(1,-1));
+document.write('<br>');
+document.write('document.write(str.substring(1,-3));=====');
+document.write(str.substring(1,-3));
+document.write('<br>');
+document.write('document.write(str.substring(-1));=====');
+document.write(str.substring(-1));
+
+
+	
+</script>
+<h3>search字符串搜索</h3>
+<script type="text/javascript">
+document.write('原始字符串：'+str+'<br>');
+document.write('<b>普通字符搜索</b><br>');
+document.write("document.write(str.search('c');======");
+let res = str.search('c');
+document.write(res);
+document.write("<br>document.write(str.search('D');======");
+let res1 = str.search('D');
+document.write(res1+'默认区分大小写，查不到返回-1');
+document.write("<br>document.write(str.search(/E/i);======");
+let res2 = str.search(/E/i);
+document.write(res2+'正则带参数i不区分大小写，');
+document.write('<br><b>正则表达示搜索</b><br>');
+document.write("<br>document.write(str.search('/[u4e00-\\u9fa5]/');======");
+// let rescn = str.search(/[u4e00-\\u9fa5]/);
+// let rescn = str.search('/[u4e00\-\\u9fa5]/');
+let cn=/[\u4e00-\u9fa5]/;
+// alert(cn.test(str));//检查字符串中是否含有中文
+let rescn = str.search(cn);
+
+document.write(rescn+'返回第一下汉字所在的位置，查不到返回-1');
+
+// alert(str.search('g'));	//返回要查找的字符串第一次出现的位置，没有返回
+</script>
+<h3>charAt字符串索引查找</h3>
+
+<script type="text/javascript">
+document.write('原始字符串：'+str+'<br>');
+
+document.write("document.write(str.charAt(0);======");
+let res3 = str.charAt(0);
+document.write(res3);
+document.write("<br>document.write(str.charAt(1);======");
+let res4 = str.charAt(1);
+document.write(res4);
+document.write("<br>document.write(str.charAt(2);======");
+let res5 = str.charAt(2);
+document.write(res5);
+document.write("<br>正常传入参数为索引下标，如果如下传入字符默认转换为0来查找<br>document.write(str.charAt('xyz');======");
+let res6 = str.charAt('xyz');
+document.write(res6);
+// alert(str.search('g'));	//返回要查找的字符串第一次出现的位置，没有返回
+</script>
+<h3>split字符串分割为数组</h3>
+<script type="text/javascript">
+var str2='abc-12-u-qw-and';
+var str3='It is very nice to see you agian!';
+document.write("<b>abc-12-u-qw-and</b>===使用横杠分割===str2.split('-')<br>");
+
+var arr=str2.split('-');
+for(let i=0;i<arr.length;i++){
+	document.write('['+i+']'+arr[i]+"<br>");
+
+}
+
+document.write("<b>It is very nice to see you agian!</b>===使用空格分割===str2.split(' ')<br>");
+var arr2=str3.split(' ');
+for(let j=0;j<arr2.length;j++){
+	document.write('['+j+']'+arr2[j]+"<br>");
+
+}
+
+</script>
+
+
+<h3>match匹配</h3>
+<h4>正则表达示的两种风格：</h4>
+<p>JS风格====== new RegExp('a','i')</p>
+<p>Perl风格==== /a/i</p>
+<p>/<.+>/gi==>.表示任意字符，+表示多个，这里匹配html标签，但这样会贪婪</p>
+<p>/<[^<>]+>/gi==>.表示<开头，>结尾，中间不能再有<符号的多个字符，这里匹配html标签，防止贪婪</p>
+<p>模式修正符:g全部查找，i不分大小写</p>
+<script type="text/javascript">
+let mstr='sdf e443 fedef  55 66gg 333322312 dff 99';
+let mre=/\d+/g;
+
+document.write('<b>'+mstr+'</b><br>');
+document.write('正则表达示：/\\d+/g<br>');
+
+document.write('匹配结果为：'+mstr.match(mre));
+let mres=mstr.match(mre);
+document.write('<br>匹配结果类型为：'+typeof(mres)+'<br>');
+document.write('匹配到结果个数：'+mres.length);
+document.write('<br>匹配到的第一个值：'+mres[0]);
+
+</script>
+<h3>replace</h3>
+
+<script type="text/javascript">
+	var str='abacdAef';
+	document.write('<br>原字符串：abacdAef<br>');
+	document.write('正则替换,把字符串中的a全部替换为@符号，不区分 大小写：str.replace(/a/gi, "@")<br>');
+	document.write(str.replace(/a/gi, "@"));
+// alert(str.replace(/a/gi, 'T'));
+</script>
+<h3>使用charAt循环查找出字符串中的数字并存放到数组</h3>
+<script type="text/javascript">
+	let striii = '12,87.76 -ddf e 89 fa887 09';
+	let resarr = [];
+	let tmp = '';//临时变量用于存放查找到的数字
+	let k = 0;
+	for(k=0;k<striii.length;k++){
+		if(striii.charAt(k)>='0' && striii.charAt(k)<='9'){
+			tmp += striii.charAt(k);
+			//如果为数字则放入时变量
+		}else{
+				if(tmp){
+					//如果找到的不为数字则看看临时变量是否有值，有值就放到数组中
+					resarr.push(tmp);
+					tmp = '';
+				}
+			}
+
+}
+	// alert('resarr');
+
+if(tmp){
+	//再把最后一个数字串放到数组中
+		resarr.push(tmp);
+		tmp = '';
+	}
+
+document.write('原始字符串'+striii+'<br>');
+document.write('循环查找结果：'+resarr+'<br>');
+document.write('循环查找结果个数：'+resarr.length);
+
+// alert(resarr);
+
+</script>
+</body>
+</html>

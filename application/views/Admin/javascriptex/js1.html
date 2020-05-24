@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript test</title>
+
+
+</head>
+<body>
+
+在本例中，我们将尝试把不同的对象转换为数字：
+<br />
+声明变量：<br>
+var test1= new Boolean(true);<br />
+var test2= new Boolean(false);<br />
+var test3= new Date();<br />
+var test4= new String("999");<br />
+var test5= new String("999 888");<br />
+输出变量：<br>
+<script type="text/javascript">
+
+var test1= new Boolean(true);
+var test2= new Boolean(false);
+var test3= new Date();
+var test4= new String("999");
+var test5= new String("999+888");
+
+document.write("document.write(Number(test1))="+Number(test1)+ "<br />");
+document.write("document.write(Number(test2))="+Number(test2)+ "<br />");
+document.write("document.write(Number(test3))="+Number(test3)+ "<br />");
+document.write("document.write(Number(test4))="+Number(test4)+ "<br />");
+document.write("document.write(Number(test5))="+Number(test5)+ "<br />");
+
+</script>
+<!-- <p>Javascript测试代码</p>
+<div>
+<p><a href="<?php echo site_url('/admin/progs/js'); ?>">Javascript</a></p>
+<div id="test-div">
+<div class="c-red">
+    <p id="test-p">JavaScript</p>
+    <p>Java</p>
+  </div>
+  <div class="c-red c-green">
+    <p>Python</p>
+    <p>Ruby</p>
+    <p>Swift</p>
+  </div>
+  <div class="c-green">
+    <p>Scheme</p>
+    <p>Haskell</p>
+    <p>=======================插入DOM</p>
+  </div>
+</div>	
+
+<p id="js" style="font-size:20;color:red">JavaScript</p>
+<div id="list">
+    <p id="java">Java</p>
+    <p id="python">Python</p>
+    <p id="scheme">Scheme</p>
+</div> -->
+
+
+<ol id="test-list">
+    <li class="lang">Scheme</li>
+    <li class="lang">JavaScript</li>
+    <li class="lang">Python</li>
+    <li class="lang">Ruby</li>
+    <li class="lang">Haskell</li>
+</ol>
+
+<script type="text/javascript">
+//for循--计算	
+var x = 0;
+var i;
+for (i=1; i<=10; i++) {
+    x = x + i;
+    //alert(i);弹出提示
+}
+x;
+
+//for循--遍历数组	
+var arr = ['Apple', 'Google', 'Microsoft'];
+var i, x;
+for (i=0; i<arr.length; i++) {
+    x = arr[i];
+    //alert(x);
+}
+
+//for循环的3个条件都是可以省略的，如果没有退出循环的判断条件，就必须使用break语句退出循环，否则就是死循环：
+var x = 0;
+for (;;) { // 将无限循环下去
+    if (x > 100) {
+        break; // 通过if判断来退出循环
+    }
+    x ++;
+}
+
+
+//for ... in循环,for循环的一个变体是for ... in循环，它可以把一个对象的所有属性依次循环出来：
+
+var o = {
+    name: 'Jack',
+    age: 20,
+    city: 'Beijing'
+};
+for (var key in o) {
+   // alert(key); // 'name', 'age', 'city'
+}
+
+//要过滤掉对象继承的属性，用hasOwnProperty()来实现：
+//循环输出对象的属性
+var o = {
+    name: 'Jack',
+    age: 20,
+    city: 'Beijing'
+};
+for (var key in o) {
+    if (o.hasOwnProperty(key)) {
+       // alert(key); // 'name', 'age', 'city'
+    }
+}
+
+//循环输出数组
+var a = ['A', 'B', 'C'];
+var s = new Set(['A', 'B', 'C']);
+var m = new Map([[1, 'x'], [2, 'y'], [3, 'z']]);
+for (var i in a) {
+   // alert(i); // '0', '1', '2'
+    //alert(a[i]); // 'A', 'B', 'C'
+}
+for (var x of m) { // 遍历Map
+    //alert(x[0] + '=' + x[1]);
+}
+//遍历上面声明的map对象m
+m.forEach(function (value, key, map) {
+    //alert(key);
+    //alert(key);
+});
+
+//while循环只有一个判断条件，条件满足，就不断循环，条件不满足时则退出循环。比如我们要计算100以内所有奇数之和，可以用while循环实现：
+var x = 0;
+var n = 99;
+while (n > 0) {
+    x = x + n;
+    n = n - 2;
+}
+//alert(x); 
+
+//最后一种循环是do { ... } while()循环，它和while循环的唯一区别在于，不是在每次循环开始的时候判断条件，而是在每次循环完成的时候判断条件：
+var n = 0;
+do {
+    n = n + 1;
+} while (n < 100);
+
+//alert(n); // 100
+
+
+//字符串，多行用`反引号
+var a=`这是一个
+多行
+字符串`;
+//alert(a);
+
+//@@@@@@@@@@@@@@@@@ Map是一组键值对的结构，具有极快的查找速度。
+
+var m = new Map([['Michael', 95], ['Bob', 75], ['Tracy', 85]]);
+//m.get('Michael');
+//alert(m.get('Michael'));//95
+
+//初始化Map需要一个二维数组，或者直接初始化一个空Map。Map具有以下方法：
+
+var m = new Map(); // 空Map
+m.set('Adam', 67); // 添加新的key-value
+m.set('Bob', 59);
+m.has('Adam'); // 是否存在key 'Adam': true
+m.get('Adam'); // 67
+m.delete('Adam'); // 删除key 'Adam'
+m.get('Adam'); // undefined
+
+//@@@@@@@@@@@@@@@@@  Set和Map类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在Set中，没有重复的key。
+//要创建一个Set，需要提供一个Array作为输入，或者直接创建一个空Set：
+var s1 = new Set(); // 空Set
+var s2 = new Set([1, 2, 3]); // 含1, 2, 3
+//重复元素在Set中自动被过滤：
+var s = new Set([1, 2, 3, 3, '3']);
+s; // Set {1, 2, 3, "3"} //注意这里数字3和字符串'3'是不同的元素。
+
+
+
+//通过add(key)方法可以添加元素到Set中，可以重复添加，但不会有效果：
+
+// >>> s.add(4)
+// >>> s
+// {1, 2, 3, 4}
+// >>> s.add(4)
+// >>> s
+// {1, 2, 3, 4}
+
+//通过delete(key)方法可以删除元素：
+
+var s = new Set([1, 2, 3]);
+s; // Set {1, 2, 3}
+s.delete(3);
+s; // Set {1, 2}
+
+//遍历Array可以采用下标循环，遍历Map和Set就无法使用下标。为了统一集合类型，ES6标准引入了新的iterable(迭代器)类型，Array、Map和Set都属于iterable类型。
+//具有iterable类型的集合可以通过新的for ... of循环来遍历。
+
+//for ... of循环是ES6引入的新的语法，请测试你的浏览器是否支持：
+
+//'use strict';
+var a = [1, 2, 3];
+for (var x of a) {
+}
+//alert('你的浏览器支持for ... of');
+
+//@@@@@@@@@@ 定义函数方式1
+function abs(x) {
+    if (x >= 0) {
+        return x;
+    } else {
+        return -x;
+    }
+}
+//调用函数
+//alert(abs(-10));
+
+
+// 上述abs()函数的定义如下：
+//     function指出这是一个函数定义；
+//     abs是函数的名称；
+//     (x)括号内列出函数的参数，多个参数以,分隔；
+//     { ... }之间的代码是函数体，可以包含若干语句，甚至可以没有任何语句。
+
+//@@@@@@@@@@ 定义函数方式2
+var abs = function (x) {
+    if (x >= 0) {
+        return x;
+    } else {
+        return -x;
+    }
+};
+
+//JavaScript还有一个免费赠送的关键字arguments，它只在函数内部起作用,且永远指向当前函数的调用者传入的所有参数。arguments类似Array但它不是一个Array：
+function foo(x) {
+    //alert(x); // 10
+    for (var i=0; i<arguments.length; i++) {
+        alert(arguments[i]); // 10, 20, 30
+    }
+}
+//调用函数
+//foo(10, 20, 30);
+
+//rest参数，用来接收传入参数多于形参数的参数，由于JavaScript函数允许接收任意个参数，于是我们就不得不用arguments来获取所有参数：
+
+function foo1(a, b) {
+    var i, rest = [];
+    if (arguments.length > 2) {
+        for (i = 2; i<arguments.length; i++) {
+            rest.push(arguments[i]);
+        }
+    }
+    console.log('a = ' + a);
+    console.log('b = ' + b);
+    console.log(rest);
+}
+//foo1(1, 2, 3, 4, 5);
+//rest的另一种更新的标准写法
+function foo2(a, b, ...rest) {
+    console.log('a = ' + a);
+    console.log('b = ' + b);
+    console.log(rest);
+}
+
+foo2( 2, 3, 4, 5);
+// 结果:
+// a = 1
+// b = 2
+// Array [ 3, 4, 5 ]
+
+foo(1);
+// 结果:
+// a = 1
+// b = undefined
+// Array []
+
+
+//函数嵌套
+function foo3() {
+    var x = 1;
+    function bar() {
+        var y = x + 1; // bar可以访问foo的变量x!
+    }
+    //var z = y + 1; // ReferenceError! foo不可以访问bar的变量y!
+}
+//内外变量重名问题，这说明JavaScript的函数在查找变量时从自身函数定义开始，从“内”向“外”查找。如果内部函数定义了与外部函数重名的变量，则内部函数的变量将“屏蔽”外部函数的变量。
+function foo() {
+    var x = 1;
+    function bar() {
+        //var x = 'A';
+        var y=2;
+        //alert('x+y in bar() = ' + (x+y)); // 这里可以访问foo中的变量x
+    }
+    //alert('x in foo() = ' + x); // 1
+    bar();
+}
+
+'use strict';
+
+function foo() {
+	//var y = 'Bob';//声明在运算前
+    var x = 'Hello, ' + y;
+    var y = 'Bob';//声明在运算后后会显示Hello undefined
+    //alert(x);
+    
+}
+
+//对象与方法，对象xiaoming，方法age
+var xiaoming = {
+    name: '小明',
+    birth: 1990,
+    age: function () {
+        var y = new Date().getFullYear();
+        return y - this.birth;
+    }
+};
+//alert(xiaoming.age()); 
+console.log("%d年%d月%d日",2011,3,26);//返回年月日
+
+//JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
+//一个最简单的高阶函数：
+
+function add(x, y, f) {
+    return f(x) + f(y);
+}
+add(-5, 6, Math.abs)
+//计算过程说明
+// x = -5;
+// y = 6;
+// f = Math.abs;
+// f(x) + f(y) ==> Math.abs(-5) + Math.abs(6) ==> 11;
+// return 11;
+//当我们调用add(-5, 6, Math.abs)时，参数x，y和f分别接收-5，6和函数Math.abs，根据函数定义，我们可以推导计算过程为：
+
+/////map的用法,可以方便地对一组数据做同样的操作
+function pow(x) {
+    return x * x;
+}
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11];
+arr2=arr.map(pow); // [1, 4, 9, 16, 25, 36, 49, 64, 81]
+//alert(arr2.length);
+
+var x;
+for(x=0;x<arr2.length;x++){
+//alert(arr2[x]);
+}
+
+var arr = [1, 3, 5, 7, 9];
+arr.reduce(function (x, y) {
+    return x + y;
+}); // 25
+
+'use strict';
+
+
+//**************************************//
+//var height = parseFloat(prompt('请输入身高(m):'));
+//var weight = parseFloat(prompt('请输入体重(kg):'));
+// var bmi = weight/(height*height);
+// if (bmi >32) {
+//     alert('严重肥胖');
+// } else if (bmi > 28) {
+//     alert('肥胖');
+// }else if (bmi > 25) {
+//     alert('过重');
+// }else if (bmi >18.5) {
+//     alert('正常');
+// } else {
+//     alert('过轻');
+// }
+
+
+//用rest做累加参数的和的示例
+
+var i, args = [];
+for (i=1; i<=100; i++) {
+    args.push(i);
+}
+console.log(args.length);
+console.log('AAAAAAAAAA');
+
+function addall(...rest) {
+     //console.log(rest[0].length);
+     if (rest==0) {res=0;}else{
+       if(rest[0] instanceof Array){
+     	//alert ('参数为数组');
+     	var arr=rest[0];
+     }else{
+     	//alert ('参数为散列');
+     	var arr=rest;
+     }
+     
+     var res=0;
+     for(var n=0; n<arr.length; n++){
+     	 res += arr[n];
+     }
+     }
+alert(res) ;
+}
+
+// addall('');
+// addall(args);
+// addall(1,2,3,4);
+
+//********** reduce的用法,累加参数
+var arr = [3,1,2];
+var result=arr.reduce(function (x, y) {
+    return x + y;
+
+}); // 25
+console.log(result);
+
+//********** reduce的用法,累积相乘
+// var product=arr.reduce(function (x, y) {
+//     return x * y;
+// });
+//alert(product);
+
+
+//********** reduce的用法,写入函数product,累积相乘
+// function product(...rest){
+// var arr = rest[0];
+// console.log(arr);
+// var res=arr.reduce(function (x, y) {
+//     return x * y;
+// });
+// return res;
+// }
+
+
+function product(arr){
+console.log(arr);
+var res=arr.reduce(function (x, y) {
+    return x * y;
+});
+return res;
+}
+console.log(product([1, 2, 3, 4]));
+
+
+'use strict';
+console.log('BBBBBBBBBBBB');
+//字符串拼接使用+
+console.log(5+3+'hello'+5+3+'world');
+
+//  **********写一个将字符串转为数字的函数
+// function stringtoint(cs){
+// var l=(cs.length);
+//     for(var i=0;i<l;i++){
+//        //var aaa[i]=cs.substring(i);
+//         alert(cs[i]*2);
+//     }
+//     return aaa;
+// }
+
+// var sss=stringtoint('51782');
+// console.log(sss);
+
+/************//**********/
+
+// alert('弹出信息');
+// var conf=confirm('弹出确认！');
+// alert(conf);
+// // location.href='http://www.baidu.com';
+// alert(window.document);
+// alert(window.location);
+
+</script>
+
+<script>
+console.log(window.location);
+</script>
+<!-- 
+PHP传递参数给JS
+<?php
+$str='PHP代码中的文本';
+$url='http://www.qualicrown.com';
+echo $str;
+echo "<script> var para=\"$str\";</script>";
+?>
+<script> alert(para);</script>
+ -->
+<style>
+    #t1{
+    width: 300px;
+    height: 200px;
+    background-color: lightpink;
+        }
+    #t2{
+    width: 300px;
+    height: 200px;
+    background-color: lightgreen;
+        }
+</style>
+</div>
+
+
+<div id="t1" name='aa' onclick="change();">T1</div>
+<div id="t2">T2</div>
+<script>
+// function change(){
+//     var div=document.getElementById('t1');
+//      if(div.id='t1'){
+//      div.id='t2';}else{
+//         div.id='t1';
+//      }
+
+// }
+function ShowObjProperty(Obj) 
+
+{ 
+
+var PropertyList=''; 
+
+var PropertyCount=0; 
+
+for(i in Obj){ 
+
+if(Obj.i !=null) 
+
+PropertyList=PropertyList+i+'属性：'+Obj.i+'\r\n'; 
+
+else 
+
+PropertyList=PropertyList+i+'方法\r\n'; 
+
+} 
+
+alert(PropertyList); 
+
+}
+
+
+function change(){
+    var div=document.getElementsByTagName('aa');
+    alert(div.name);
+    alert(div.id);
+    ShowObjProperty(div);
+    // if(div.id=='t1'){
+    //     div.id='t2';
+    // }
+    if (div.id=='t2'){
+        div.id='t1';
+    }
+    //alert(div.id);
+    console.log(div);
+    if(div.id='t1'){div.id='t2';}
+}
+
+
+
+//setInterval('clock()',1000)
+
+</script>
+<input type="text" name="ti" id="ti0">
+<input type="submit" name="ti" id='ti' value="">
+
+
+<script type="text/javascript">
+    
+
+
+// function ck(){
+//     var date = new Date();
+   
+//     var inp = document.getElementById('ti');
+//      //alert(inp);
+//     var s = date.getSeconds();
+//     inp.value = s;
+// }
+// ck();
+// setInterval('ck()',1000);
+
+// function pow(x){
+//     return x * x;
+// }
+
+// var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// var plusarr=arr.map(pow); // [1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+// console.log(plusarr);
+
+
+// function product (arr){
+// return arr.reduce(function(x,y){
+//     return x * y;
+// }); 
+// }
+
+// // 测试:
+// if (product([1, 2, 3, 4]) === 24 && product([0, 1, 2]) === 0 && product([99, 88, 77, 66]) === 44274384) {
+//     alert('测试通过!');
+// }
+// else {
+//     alert('测试失败!');
+// }
+// var arr1=([1,2,3,4])
+// console.log(product(arr));
+// console.log(arr1);
+// console.log(product(arr1));
+
+// var arr = [1, 3, 5, 7, 9];
+// function sumarr (arr){
+// var sumarr=arr.reduce(function (x, y) {
+//     return x + y;
+// }); // 25
+// return sumarr;
+// }
+// console.log(sumarr(arr1));
+
+// function sumarr(arr){
+// var s=arr.reduce(function (x, y) {
+//     return x + y;
+// }); // 25
+// return s;
+// ｝
+// console.log(sumarr(arr1));
+
+// var arr = [0, 3, 5, 7, 9];
+// function arrtoint(arr){
+// var arrtoint=arr.reduce(function (x, y) {
+//     return x * 10 + y;
+// }); // 13579
+// return arrtoint;
+// }
+// console.log(arrtoint(arr));
+// console.log(typeof(arrtoint(arr)));
+
+//var str='123450003';
+// console.log(str.length);
+
+// var n=0;
+// var arr;
+// for(var i=0;i<str.length;i++){
+//     arr[n]= (str[i]);
+//     n++;
+// }
+// // console.log(arr);
+// var arrm=arr.map(Number)
+// // console.log(arrm);
+// var res=arrm.reduce(function (x, y) {
+//     return x * 10 + y;
+// })
+// console.log(res);
+
+
+// if(str.indexOf("0") > 0){   
+//     alert('Cts中包含字符串';);   
+// } ; 
+
+console.log('AAAAAAAA');
+// function str2num(str){
+//     if(str==='0'){return 0;}
+//     var n=0;
+//     var arr=[];
+//     var numstr = "0123456789";  
+   
+//     for(var i=0;i<str.length;i++){
+//         if(numstr.indexOf(str[i])<0){
+//         //arr[n]= 0;    
+//             }else{
+//         arr[n]= (str[i]);
+//             }
+//         n++;
+//         }
+//   var res=arr.reduce(function(x, y) {
+//     return x*10 + y*1;
+//     })
+//    return res;
+// }
+/**************
+var str ='hyhyhy';
+//console.log(str.toUpperCase());
+// var res=str2num(str);
+// console.log(res);
+// console.log(typeof(res));
+
+ //console.log(str.toUpperCase());
+// console.log(str.toLowerCase());
+var names=['adam', 'LISA', 'barT','ALICE','ken']
+var names2=['BOB', 'MONICA', 'sara','emily','gary']
+
+//console.log(norname(str));
+function normalizenames(arr){
+        function norname(arr){
+        var arrm=[];
+        var L=arr.length;
+        arrm=arr[0].toUpperCase();
+        var i=1;
+        for(i=1;i<L;i++){
+        arrm+=arr[i].toLowerCase();
+        }
+         return arrm;  
+    }
+return arr.map(norname);
+}
+/***********************
+console.log(parseInt("77", 8));
+'use strict';
+var arr = ['1', '2', '3'];
+var r;
+//r = arr.map(parseInt);
+r = arr.map(Number);
+alert('[' + r[0] + ', ' + r[1] + ', ' + r[2] + ']');
+
+/***********************
+
+var arr = [1, 2, 4, 5, 6, 9, 10, 15];
+var r = arr.filter(function (x) {
+    return x % 2 !== 0;
+});
+r; // [1, 5, 9, 15]
+
+/***********************
+var arr = ['A', '', 'B', null, undefined, 'C', '  '];
+var r = arr.filter(function (s) {
+    return s && s.trim(); // 注意：IE9以下的版本没有trim()方法
+});
+r; // ['A', 'B', 'C']
+
+/***********************/
+// 'use strict';
+// var  r,
+//     arr = ['apple', 'strawberry', 'banana', 'pear', 'apple', 'orange', 'orange', 'strawberry'];
+// r = arr.filter(function (element, index, self) {
+//     return self.indexOf(element) === index;
+// });
+// alert(r.toString());
+/***********************
+'use strict';
+function get_primes(arr) {
+     return arr.filter(function (element, index, self) {
+     if(element <2) {
+         return false;
+     }else{
+         for(var i = 2; i <=Math.sqrt(element); i++) {
+             if(element%i === 0) {
+                 return false;
+             }
+         }
+         return true;
+     }
+ })
+}
+
+
+// 测试:
+var
+    x,
+    r,
+    arr = [];
+for (x = 1; x < 100; x++) {
+    arr.push(x);
+}
+r = get_primes(arr);
+if (r.toString() === [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97].toString()) {
+    alert('测试通过!');
+} else {
+    alert('测试失败: ' + r.toString());
+}
+var arr=[2, 3,4, 5, 6,7, 11, 12,13, ,6,17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+console.log(get_primes(arr));
+/***********************
+
+var a,b,c,d,
+a=1;
+b=2; c=3;d=4;
+console.log(a,b,c,d);
+alert(a+b+c+d);
+/***********************
+console.log('下面是generator生成器实例');
+function* fib(max) {
+    var
+        t,
+        a = 0,
+        b = 1,
+        n = 1;
+    while (n < max) {
+        yield a;
+        t = a + b;
+        a = b;
+        b = t;
+        n ++;
+    }
+    return a;
+}
+console.log('第一种调用方式：');
+f=fib(15);
+console.log(f.next());
+console.log(f.next());
+console.log(f.next());
+console.log(f.next());
+console.log(f.next());
+console.log(f.next());
+console.log(f.next());
+console.log(f.next());
+// console.log(f.next());
+// console.log(f.next());
+// console.log(f.next());
+// console.log(f.next());
+// console.log(f.next());
+// console.log(f.next());
+// console.log(f.next());
+// console.log(f.next());
+// console.log(f.next());
+// console.log(f.next());
+
+// console.log('第二种调用方式：');
+// for (var x of fib(5)) {
+//     console.log(x); // 依次输出0, 1, 1, 2, 3
+//     console.log(x); 
+//     console.log(x); 
+// }
+
+// console.log('自增id测试：');
+// function* cid(max) {
+//     var
+//         t,
+//         a = 0,
+//         n = 1;
+//     while (n < max) {
+//         yield a;
+//         t = a + 1;
+//         a = t;
+//         n ++;
+//     }
+//     return a;
+// }
+// t=cid(5);
+// console.log(t.next());
+// console.log(t.next());
+// console.log(t.next());
+// console.log(t.next());
+// console.log(t.next());
+// console.log(t.next());
+// console.log(t.next());
+// console.log(t.next());
+
+// console.log('自增id测试2：');
+// function* cid2() {
+//    var id = 0;
+//    if(false){yield id++;}
+//     while (true) {
+//         yield id++;
+//     }
+//     return true;
+// }
+// s=cid2();
+// console.log(s.next());
+// console.log(s.next());
+// console.log(s.next());
+// console.log(s.next());
+// console.log(s.next());
+// console.log(s.next());
+// console.log(s.next());
+// console.log(s.next());
+// console.log(s.next());
+// console.log(s.next());
+/***********************/
+// if (Date.now) {
+//     alert(Date.now()); // 老版本IE没有now()方法
+// } else {
+//     alert(new Date().getTime());
+// }
+// var t= new Date();
+// // alert(t);
+// console.log(t);
+// //document.write (t);
+// console.log(t.getFullYear());
+// console.log(t.toLocaleString());
+// console.log(t.toUTCString());
+// var c= Date.now();
+// console.log(c);
+// console.log(c.toLocaleString());
+//console.log(c.toUTCString());
+//document.write (t.toUTCString())
+//document.write ('WWWWWWWWW')
+/***********************/
+
+/*原型继承*/
+
+// function Student(name) {
+//     this.name = name;
+//     this.hello = function () {
+//         alert('Hello, ' + this.name + '!');
+//     }
+// }
+
+// var xiaoming = new Student('小明');
+// xiaoming.name; // '小明'
+// xiaoming.hello(); // Hello, 小明!
+
+// var jun = new Student('軍车');
+// jun.name; // '小明'
+// jun.hello(); // Hello, 小明!
+
+
+// function PrimaryStudent(props) {
+//     Student.call(this, props);
+//     this.grade = props.grade || 1;
+// }
+
+// function inherits(Child, Parent) {
+//     var F = function () {};
+//     F.prototype = Parent.prototype;
+//     Child.prototype = new F();
+//     Child.prototype.constructor = Child;
+// }
+
+// inherits(PrimaryStudent, Student);
+// PrimaryStudent.prototype.getGrade = function () {
+//     return this.grade;
+// }
+
+// var huahua = new PrimaryStudent('花花');
+// // alert(huahua.name);
+// // alert(huahua.grade);
+// alert(huahua.hello());
+// class Student {
+//     constructor(name) {
+//         this.name = name;
+//     }
+
+//     hello() {
+//         alert('Hello, ' + this.name + '!');
+//     }
+// }
+
+// var xiaoming = new Student('小明');
+// xiaoming.hello();
+
+// class PrimaryStudent extends Student {
+//     constructor(name, grade) {
+//         super(name); // 记得用super调用父类的构造方法!
+//         this.grade = grade;
+//     }
+
+//     myGrade() {
+//         alert('I am at grade ' + this.grade);
+//     }
+// }
+
+// 浏览器对象
+// 阅读: 96122
+
+// JavaScript可以获取浏览器提供的很多对象，并进行操作。
+// window
+
+// window对象不但充当全局作用域，而且表示浏览器窗口。
+
+// window对象有innerWidth和innerHeight属性，可以获取浏览器窗口的内部宽度和高度。内部宽高是指除去菜单栏、工具栏、边框等占位元素后，用于显示网页的净宽高。
+// 可以调整浏览器窗口大小试试:
+
+// if(window.innerWidth>800){
+// alert('window inner size: ' + window.innerWidth + ' x ' + window.innerHeight);
+// }
+
+
+// alert('appName = ' + navigator.appName + '\n' +
+//       'appVersion = ' + navigator.appVersion + '\n' +
+//       'language = ' + navigator.language + '\n' +
+//       'platform = ' + navigator.platform + '\n' +
+//       'userAgent = ' + navigator.userAgent);
+// alert('Screen size = ' + screen.width + ' x ' + screen.height);
+
+document.write(location.protocol+'<br>');// 'http'
+document.write(location.host+'<br>');// 'www.example.com'
+document.write(location.port+'<br>');// '8080'
+document.write(location.pathname+'<br>');// '/path/index.html'
+document.write(location.search+'<br>');// '?a=1&b=2'
+document.write(location.hash+'<br>');// 'TOP'
+// 要加载一个新页面，可以调用location.assign()。如果要重新加载当前页面，调用location.reload()方法非常方便。
+
+// 'use strict';
+// if (confirm('重新加载当前页' + location.href + '?')) {
+//     location.reload();
+// } else {
+//     location.assign('/discuss'); // 设置一个新的URL地址
+// }
+// document
+
+// document对象表示当前页面。由于HTML在浏览器中以DOM形式表示为树形结构，document对象就是整个DOM树的根节点。
+
+// document的title属性是从HTML文档中的<title>xxx</title>读取的，但是可以动态改变：
+
+//设置浏览器的title属性
+// document.title = '努力学习JavaScript!';
+// document对象还有一个cookie属性，可以获取当前页面的Cookie。
+
+//获取cookie信息怎么获取不到？
+// alert(document.cookie);; // 'v=123; remember=true; prefer=zh'
+
+// 选择<p>JavaScript</p>:
+// var js = document.getElementById('test-p');
+// // alert(js.);
+// alert(js.innerText);
+// // 选择<p>Python</p>,<p>Ruby</p>,<p>Swift</p>:
+// console.log('==========');
+// var arr = document.getElementsByClassName('c-red c-green')[0].getElementsByTagName('p');
+
+//  console.log(arr[0].innerText);
+//  console.log(arr[1].innerText);
+//  console.log(arr[2].innerText);
+
+// // 选择<p>Haskell</p>:
+// console.log('==========');
+// var haskell = document.getElementsByClassName('c-green')[1];
+// var ha = haskell.lastElementChild;
+// console.log(ha);
+// alert(ha.innerText);
+// //更新DOM
+// ha.innerHTML='AAA';
+// var ttt1= ha.innerText='bbb';//innerText不返回隐藏元素的文本
+// alert(ttt1);
+// var ttt= ha.textContent='CCCC';//而textContent返回所有文本
+// alert(ttt);
+
+// if (!js || js.innerText !== 'JavaScript') {
+//     alert('选择JavaScript失败!');
+// } else if (!arr || arr.length !== 3 || !arr[0] || !arr[1] || !arr[2] || arr[0].innerText !== 'Python' || arr[1].innerText !== 'Ruby' || arr[2].innerText !== 'Swift') {
+//     alert('选择Python,Ruby,Swift失败!');
+// } else if (!haskell || haskell.innerText !== 'Haskell') {
+//     alert('选择Haskell失败!');
+// } else {
+//     alert('测试通过!');
+// }
+
+//把<p id="js">JavaScript</p>添加到<div id="list">的最后一项：
+// var
+//     js = document.getElementById('js'),
+//     list = document.getElementById('list');
+// list.appendChild(js);
+// var
+//     list = document.getElementById('list'),
+//     haskell = document.createElement('p');
+// haskell.id = 'haskell';
+// haskell.innerText = 'Haskell';
+// list.appendChild(haskell);
+
+// var d = document.createElement('style');
+// d.setAttribute('type', 'text/css');
+// d.innerHTML = 'p { color: red }';
+// document.getElementsByTagName('head')[0].appendChild(d);
+// var
+//     list = document.getElementById('list'),
+//     ref = document.getElementById('python'),
+//     haskell = document.createElement('p');
+// haskell.id = 'haskell';
+// haskell.innerText = 'Haskell';
+// list.insertBefore(haskell, ref);
+
+// var list = document.getElementById('test-list');
+// console.log(list);
+
+
+'use strict';
+var
+    i, c, arr=[],x1,x2
+    // arr,
+    list = document.getElementById('test-list');
+for (i = 0; i < list.children.length; i++) {
+    c = list.children[i]; // 拿到第i个子节点
+    arr[i]=c.innerText;
+}
+arr.sort(function (s1, s2) {
+    x1 = s1.toUpperCase();
+    x2 = s2.toUpperCase();
+    if (x1 < x2) {
+        return -1;
+    }
+    if (x1 > x2) {
+        return 1;
+    }
+    return 0;
+});
+console.log(arr);
+// for (i = 0; i < list.children.length; i++) {
+//     list.appendChild(arr[i]); // 拿到第i个子节点
+//     }
+
+list = document.getElementById('test-list');
+list=list.children;
+console.log(list);
+for(i=0;i<arr.length;i++){
+list[i].innerHTML=arr[i];
+}
+
+list = document.getElementById('test-list');
+list.removeChild(list.children[0]);
+list.removeChild(list.children[0]);
+list.removeChild(list.children[0]);
+list.removeChild(list.children[0]);
+</script>
+</body>
+</html>

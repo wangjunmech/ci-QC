@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浅谈css的伪元素::after和::before</title>
+</head>
+<body>
+	<style>
+    ul{
+        list-style: none;
+    }
+    li{
+        display: inline;
+    }
+</style>
+<nav>
+    <ul>
+        <li>HTML 5</li>
+        <li>|</li>
+        <li>CSS3</li>
+        <li>|</li>
+        <li>JavaScript</li>
+    </ul>
+</nav>
+
+<style>
+    ul{
+        list-style: none;
+    }
+    li{
+        display: inline;
+    }
+    li:not(:last-child)::after{
+        content: "|";
+    }
+</style>
+<nav>
+    <ul>
+        <li>HTML 5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+    </ul>
+</nav>
+</body>
+</html>

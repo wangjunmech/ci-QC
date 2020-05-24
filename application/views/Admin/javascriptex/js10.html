@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+	<title>jQuery表单事件,浏览器事件</title>
+<style type="text/css">
+
+</style>
+<body>
+jQuery表单事件——&浏览器事件<br>
+
+<script type="text/javascript">
+//input 获得焦点背景变绿----focus
+$(document).ready(function(){  
+  $("#inp").focus(function(event){   
+    $(this).css('background','green') ;
+  });  
+});  
+//input 失去焦点背景变无----blur
+$(document).ready(function(){  
+  $("#inp").blur(function(event){   
+    $(this).css('background','') ;
+  });  
+});
+
+//input 表单变化事件----change
+$(document).ready(function(){  
+  $("#f").change(function(event){   
+    $("#fspan").text('有选择了文件！');
+  });  
+});
+
+//选取事件----select
+  $("#ss").select(function(event){   
+    alert($("#ss").text());
+  });  
+//选取事件----select
+$(document).ready(function(){ 
+  $("#ss").select(function(e){   
+    alert($("#ss").val());
+    alert('打印select对象：'+e);
+    //********
+      $.each(e,function(key,val){
+      if($.isPlainObject(val) || $.isArray(val)){
+          subObj(val);
+      }else{
+          alert(key+'='+val);
+      }
+  });
+  });  	
+});
+
+</script>
+
+
+1. 获得焦点事件----focus<br>
+2. 失去焦点事件----blur<br>
+<input type="text" name="" id='inp' value="111111">
+<br>
+3. 表单变化事件----change<br>
+<input type="file" name="" id='f'>
+<span id='fspan'></span>
+<br>
+4. 选取事件----select<br>
+<input type="text" name="" id='ss' value="ABCDEFGHIJKLMNOPQ">
+<br>
+5. 提交事件----submit<br>
+<form action="#" id='form1'>
+	<input type="text" name="" value="AAAAAAAAAAa">
+	<input type="password" name="" value="BBBBBBBBBBBbbbb">
+	<input type="submit" name="" value="提交看看">
+</form>
+
+6. 鼠标经过事件----hover（fn1,fn2）<br>
+<p id='hv'>Hover事件是鼠标经过和离开触发的事件,鼠标经过此文本时背景变绿，离开背景消失</p>
+
+7. 触发器模拟事件----trigger()<br>
+<p id='tg1'>点击事件模拟</p>
+<p id='tg2'>双击事件模拟</p>
+<br>
+8 .触发器模拟事件之----triggerHandler(),阻止事件冒泡。<br>
+例如：P元素内包含A元素，点击A元素同时会触发P元素的事件， 用trigger时就是这样，但如果用triggerHandler()就不会触发P元素的事件。
+
+<p id='pp' style="background: lightblue;width: 300px;height:50px">
+	<a href="#" id='pa' style="background: pink;width: 100px;height:30px">点击A标签</a>
+</p>
+
+<br>
+<p id='t'>填充文本<br></p>
+<script type="text/javascript">
+for(var i=1; i<20;i++){
+document.write('填充文本<br>');
+}
+
+//提交事件
+$('#form1').submit(function() {
+alert('成功提交');
+});
+
+
+//浏览器事件------resize
+$(window).resize(function(e) {
+	alert('调整窗口大小');
+	});
+
+//浏览器事件------scroll
+$(window).scroll(function(e) {
+	console.log('浏览器事件------scroll')
+	$('body').append('滚动条事件<br>')
+	//alert(e);
+	});
+
+//hover事件
+$('#hv').hover(function() {
+  $(this).css('background','green');
+}, function() {
+  $(this).css('background','none');
+});
+
+//触发器模拟事件----trigger()
+$('#tg1').click(function(){
+	alert('如果用trigger模拟，不用点击也能发生，单击事件');
+});
+
+$('#tg1').trigger('click');
+
+$('#tg2').dblclick(function(){
+	alert('如果用trigger模拟，不用点击也能发生双击事件');
+});
+
+$('#tg2').trigger('dblclick');
+
+//触发器模拟事件----trigger()
+$('#pa').click(function(){
+	alert('点击了A标签，triggerHandler(),阻止事件冒泡');
+});
+$('#pp').click(function(){
+	alert('点击了P标签');
+});
+$('#pa').triggerHandler('click');
+</script>
+
+
+</body>
+</html>

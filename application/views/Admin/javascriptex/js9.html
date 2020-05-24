@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+	<title>jQuery获取键盘按键的值</title>
+<style type="text/css">
+
+</style>
+<body>
+jQuery事件(获取键盘按键的值)<br>
+
+<script type="text/javascript">
+//在input输入框中输入按下按键时在div中显示相应的键值
+ $(document).ready(function(){  
+  $("#inp").keydown(function(event){   
+    $("#showcode").text("Key: " + event.which);  
+  });  
+});  
+
+//文本域中输入时同步的区别
+ $(document).ready(function() {  
+    $('#t1').on('keyup', function() {  
+        $('#v1').text($(this).val());  
+    });  
+    $('#t2').on('keydown', function() {  
+        $('#v2').text($(this).val());  
+    });  
+    $('#t3').on('keypress', function() {  
+        $('#v3').text($(this).val());  
+    });  
+});  
+</script>
+
+
+ 请随意键入一些字符：<input type="text" id='inp'/>  
+<p>当您在上面的框中键入文本时，下面的 div 会显示键位序号。</p>  
+<div id='showcode' style="background: red;width: 150;height: 20"></div> 
+<br>
+Keydown/keyup/keypress的区别示例：
+<br>
+keyup更新
+<textarea id="t1" style="background: lightgreen"></textarea>  
+<div id="v1">  
+</div>  
+<br>
+keydown更新
+<textarea id="t2" style="background: lightgreen"></textarea>  
+<div id="v2">  
+</div>  
+<br>
+keypress更新
+<textarea id="t3" style="background: lightgreen"></textarea>  
+<div id="v3">  
+</div>  
+<div id='question' style="background: red;width: 450;height: 20">如何才能知道输入的提大写还是小写？？？</div> 
+
+
+
+
+</body>
+</html>

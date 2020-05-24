@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+	<title>jQuery 操作DOM节点（创建，插入，删除）</title>
+<style type="text/css">
+	p{	background-color: lightblue;}
+</style>
+<body>
+jQuery 操作DOM节点（创建，插入，删除）
+<ul id='ul'>
+	<li class="current">PHP</li>
+	<li>Python</li>
+	<li>Ruby</li>
+</ul>
+<br>
+<div id='content'>
+<div class="show">PHP......</div>
+<div>Python......</div>
+<div>Ruby......</div>
+</div>
+<p id='1st'>节点操作之P标签1<p>
+<p>节点操作之P标签2<p>
+<p>节点操作之P标签3<p>
+<span>标签span</span>
+<div>标签div</div>
+<em>标签em</em>
+<a href="#">克隆点击</a>
+<em>标签em</em>
+<script type="text/javascript">
+//******增加节点的方法
+var newtab='<li>JAVA</li>';
+var newtab1='<li>ASP</li>';
+var newtab2='<li>Swift</li>';
+var newdiv='<div>JAVA</div>';
+var newdiv1='<div>ASP</div>';
+var newdiv2='<div>Swift</div>';
+$('ul').append(newtab,newtab1,newtab2);
+$('#content').append(newdiv,newdiv1,newdiv2);
+var strong = $('<strong>插入的新标签</strong>')
+//apend和apendTo区分
+//$('p').first().append(strong);
+//strong.appendTo($('p').first())
+//$('p').first().prepend(strong);
+//strong.prependTo($('p').first())
+
+//$('p').last().after(strong);
+//strong.insertAfter($('p').last());
+//$('p').last().before(strong);
+//strong.insertBefore($('p').last());
+
+//end******增加节点的方法
+
+//******操作节点的方法
+$('p').first().css('background-color','red');
+$('p').css('background-color','lightgreen');
+$('em').wrap('<WRAP></WRAP>');
+
+$('p').first().remove();//删除第一个p元素
+$('em').empty();//把em标签的内容清空
+$('em').html('EEEEEMMMMMMMMMM');//向em标签中放入内容
+$('em').unwrap();//删除em的父元素标签
+
+//end******操作节点的方法
+
+//******克隆节点
+$('a').click(function(event) {
+	alert('弹出点击内容！')
+});
+
+var newA=$('a').clone(true);
+$('em').append(newA);
+//end******克隆节点
+//替换节点
+$('span').replaceWith('<p>span标签被替换为p标签</p>');
+
+//删除节点属性
+$('p').removeAttr('style');//移除p元素的style属性
+$('p').removeAttr('style');
+
+</script>
+</body>
+</html>

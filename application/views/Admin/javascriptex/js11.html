@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+	<title>jQuery事件对象</title>
+<style type="text/css">
+li{list-style-type: none}
+li:hover{
+  background: gray;
+}
+#sl{
+  background: lightblue;
+  width: 200px;
+  height: 25px;
+}
+#list{
+  background: lightgreen;
+  width: 200px;
+  display: none;
+}
+</style>
+<body>
+jQuery事件对象<br>
+
+<script type="text/javascript">
+//pageX和pageY
+$(document).click(function(e) {
+  var t=0;
+  var x = e.pageX;
+  var y = e.pageY;
+  $('body').append(t+'====X位置='+x+'Y位置='+y+"<br>");
+  t +=1;
+});
+
+
+//preventDefault()阻止浏览器的默认事件行为
+
+</script>
+
+
+1. pageX和pageY,原生JS中点击位置只能获得可视区的位置，而在jQuery中，已经把scroll-Top的位置加上来了。
+<br>
+2. preventDefault()阻止浏览器的默认事件行为,例如下面的表单默认提交到百度，给它阻止掉<br>
+<form id='f1' action="https://www.baidu.com">
+  <input type="text" name="a" value="usernameA">
+  <input type="submit" name="" value="提交表单">
+</form>
+<br>上面的表单和下面的链接测试preventDefault()方法<br>
+<a href="https://www.baidu.com">百度链接</a>
+
+<br>
+3. 阻止冒泡<br>
+<div id='sl'>请选择：</div>
+<ul id='list'>
+  <li class="show">111</li>
+  <li>222</li>
+  <li>333</li>
+  <li>444</li>
+  <li>555</li>
+  <li>666</li>
+  <li>777</li>
+  <li>888</li>
+</ul>
+
+<script type="text/javascript">
+//阻止表单提交
+$('#f1').submit(function(e){
+    alert('提交了表单！！！');
+    e.preventDefault();
+    //return false;//不用preventDefault也可用return false来阻止
+});
+//阻止链拉跳转
+$("a").click(function(event){
+  event.preventDefault();
+});
+
+//阻止冒泡---选择
+$('#sl').click(function(event) {
+  //$('#list').show();
+  $('#list').css('display','block');
+  event.stopPropagation();
+ });
+
+$(document).click(function(event) {
+  $('#list').hide();
+});
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="./motion.js"></script>
+	<!-- <link rel="stylesheet" href="./images/miao_style.css"> -->
+	<meta charset="UTF-8">
+	<title>学习工具----输入练习</title>
+<style type="text/css">
+
+#info{
+	position: relative;
+	width:100%;
+	float: left;
+	clear: both;
+	margin:10px;
+
+
+}
+.subinfo{
+	float: left;
+	background: yellow;
+	flex-flow: all;
+	width: auto;
+	margin-left: 10px;
+
+}
+
+.Mdiv{
+	width:100%;
+	/*background: yellow;*/
+	border: 1px solid red;
+	margin-top:20px;
+	float: left;
+
+}
+.newfont{
+	font-family: fantasy;
+	font-style: italic;
+	font-size: large;
+}
+li{
+	position: fixed;
+}
+#d1{
+	background: pink;
+	width: 200px;
+	height: 100px;
+	position: absolute;
+}
+#d2{
+	background: orange;
+	width: 100px;
+	position: absolute;
+}
+#d3{
+	background: lightblue;
+	width: 100px;
+	top:200px;
+	position: absolute;
+}
+.gr{
+	background-color: #0DE61F;
+}
+.rd{
+	background-color: yellow;
+	color:red;
+}
+.cursor{
+	background-color: lightblue;
+	color:red;
+}
+
+.c{
+	height: auto;
+	width: 100%;
+	background: lightblue;
+}
+
+.c1{
+	height: auto;
+	display: inline-block;
+	float: left;
+	width: 50%;
+	background:#aeb;
+
+}
+.c2{	
+	text-align: center;
+	margin-left: 2px;
+	background: #f90;
+}
+.c3{	
+	border:1px solid red;
+	float: left;
+	width: 99%;
+	margin: 2px
+
+}
+
+#txt{
+	width:99%
+}
+/* 定义keyframe动画，命名为blink */
+@keyframes blink{
+  0%{opacity: 1;}
+  100%{opacity: 0;} 
+}
+/* 添加兼容性前缀 */
+@-webkit-keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@-moz-keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@-ms-keyframes blink {
+    0% {opacity: 1; } 
+    100% { opacity: 0;}
+}
+@-o-keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+/* 定义blink类*/
+.blink{
+    color: #dd4814;
+    animation: blink 0.5s linear infinite;  
+    /* 其它浏览器兼容性前缀 */
+    -webkit-animation: blink 0.5s linear infinite;
+    -moz-animation: blink 0.5s linear infinite;
+    -ms-animation: blink 0.5s linear infinite;
+    -o-animation: blink 0.5s linear infinite;
+}
+
+/*如果不需要渐变闪烁效果，我们可以在keyframe动画中定义50%，50.1%的opacity的值。如下：
+
+@-webkit-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}*/
+
+
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+
+<body>
+<div style="text-align: center">
+<h1>学习工具----输入练习</h1>
+</div>
+
+
+<div id='info'>
+	<div class="subinfo">总字数: <span id='txtnum'></span></div>
+	<div class="subinfo">当前输入: <span id='curtxt'></span></div>
+	<div class="subinfo">当前字数: <span id='curnum'></span></div>
+	<div class="subinfo">错误字数: <span id='wrongnum'></span></div>	
+	<div class="subinfo">正确率: <span id='ratio'></span></div>
+	<div class="subinfo">退格使用次数: <span id='back'></span></div>
+</div>
+
+<div class='c'>
+<div class='c1'>
+	<div class='c2'>原文本</div>
+	<div id='oriTxt' class="Mdiv newfont c3"></div>
+</div>
+<div class='c1'>
+	<div class='c2'><b>请在下面输入文本</b></div>
+	<div id='res' class="Mdiv newfont c3" ></div>
+
+<textarea id='txt'></textarea>
+<button id='timerbt' style="width: 100px;height: 50px">计时开始</button>
+<span id='timersc'></span>
+
+
+</div>
+</div>
+
+<div></div>
+
+
+
+<script type="text/javascript"> 
+
+
+window.onload=function(e){
+			var info = document.getElementById('info')
+			var board = document.getElementById('oriTxt')
+			var txt = document.getElementById('txt')
+			var outboard = document.getElementById('outboard')
+			var res = document.getElementById('res')
+			var txtnum = document.getElementById('txtnum')
+			var back = document.getElementById('back')
+			var timerbt = document.getElementById('timerbt')
+			var timersc = document.getElementById('timersc')
+			var int=''
+			var flag =0;
+
+			timerbt.onclick = function(){
+				if(flag==0){
+				ftxt = '重新开始'
+				flag = 0;
+				this.innerHTML=ftxt
+				Reset()
+				}
+				window.clearInterval(int)
+				start()
+			}
+
+
+    var hour,minute,second;//时 分 秒
+    hour=minute=second=0;//初始化
+    var millisecond=0;//毫秒
+    // var int;
+    function Reset()//重置
+    {
+      window.clearInterval(int);
+      millisecond=hour=minute=second=0;
+      timersc.innerHTML=='00时00分00秒000毫秒';
+    }
+  
+    function start()//开始
+    {
+      int=setInterval(timer,100);
+    }
+  
+    function timer()//计时
+    {
+      millisecond=millisecond+100;
+      if(millisecond>=1000)
+      {
+        millisecond=0;
+        second=second+1;
+      }
+      if(second>=60)
+      {
+        second=0;
+        minute=minute+1;
+      }
+  
+      if(minute>=60)
+      {
+        minute=0;
+        hour=hour+1;
+      }
+     timersc.innerHTML=hour+'时'+minute+'分'+second+'秒'+millisecond+'毫秒';
+    }
+  
+    function stop()//暂停
+    {
+      window.clearInterval(int);
+    }
+
+			//设置原文
+			var str = 'A national identity of the English as the people or ethnic group native to England developed in the Middle Ages arguably beginning with the unification of the Kingdom of England in the 10th century,来几个中文试试, but explicitly in the 11th century after the Norman Conquest, when Englishry came to be the status of the subject indigenous population.From the eighteenth century the terms \'English\' and \'British\' began to be seen as interchangeable to many of the English.[1]While the official United Kingdom census does record ethnicity, English/Welsh/Scottish/Northern Irish/British is a single tick-box under the "White" heading for the answer to the ethnicity question asked in England and Wales (while making the distinction of white Irish).[2]Although Englishness and Britishness are used synonymously in some contexts,[3] the two terms are not identical and the relation of each to the other is complex. Englishness is often a response to different national identities within Britain such as Scottishness, Irishness, Welshness and Cornishness.[4]Sometimes Englishness is thought to be encapsulated in terms of a particular relation to sport: "fair play," for instance. Arguably, England\'s "national games" are football and, particularly, cricket. As cricket historian Dominic Malcolm argues, the link between cricket and England\'s national identity became solidified through literature. Works such as James Love\'s "Cricket: an heroic poem" and Mary Mitford\'s "our Village," along with Nyren\'s "cricketers of my Time" and Pycroft\'s "The Cricket Field," purported to identify the characteristics of cricket with the notional characteristics of English society, such as pragmatism, integrity, and independence.[5] '
+			// var str2 = "abcdefg<font color='red'>ssdfxxxx</font>"
+			// info.innerHTML=str2;
+		    board.innerHTML=str;
+			txtnum.innerHTML=str.length;
+			var strarr=[];
+			var backspace = 0;
+
+			txt.oninput=function(){
+				document.onkeydown=function(event){
+			        var event=event||window.event;
+			        // alert(event.keyCode);//弹出keyCode,判断是否使用了退格
+			        if(event.keyCode == 8){			        	
+			        backspace++;
+			        }
+					};
+			 
+			 
+				var curtxt = document.getElementById('curtxt')
+				var curnum = document.getElementById('curnum')
+				var wrongnum = document.getElementById('wrongnum')
+				var ratio = document.getElementById('ratio')
+				var Nstyle='';	
+				var Nstr = this.value;//输入字串
+				var wordsnum = this.value.length;
+				var cWord = Nstr.charAt(wordsnum-1);
+				var wnum = 0;
+				curtxt.innerHTML=cWord;
+				curnum.innerHTML = Nstr.length;
+				// current.innerHTML = cWord;
+				// outboard.innerHTML = '原字符数='+Ostr.length+', 输入字符数='+wordsnum+', 前一字符数='+prevNum;	
+				strarr = Nstr.split("");
+				for(var i=0;i<wordsnum;i++){
+					if(strarr[i] == str.charAt(i)){
+						//输入对比正确
+						Nstyle += '<span class="gr">'+strarr[i]+'</span>';
+					}else{
+						//输入对比错误
+						Nstyle += '<span class="rd">'+strarr[i]+'</span>';
+						wnum++;
+					}
+				}
+				Nstyle = Nstyle + '<span class="cursor blink"> &diams; </span>'
+
+				res.innerHTML=Nstyle;// alert(());
+				wrongnum.innerHTML=wnum;
+				wratio = wnum/wordsnum*100;
+				wratio = wratio.toFixed(2);
+				var rratio = 100-wratio;
+				ratio.innerHTML = rratio;
+				back.innerHTML = backspace;
+
+
+			}
+			var curs = document.getElementsByClassName('blink');
+			document.onclick=function(){//页面点击时自动设置焦点到输入框
+				var txt = document.getElementById('txt')
+
+				// alert('xxx')
+				console.log(txt.attributes.autofocus)
+				// txt.attribute['autofocus']=true;
+				txt.focus()//设置焦点
+				txt.attributes.autofocus=true;
+
+			}
+
+
+			console.log(strarr.join(""))
+
+		}
+		
+var key = String.fromCharCode(65);
+aliert(key)
+
+	</script>
+
+
+</body>
+</html>

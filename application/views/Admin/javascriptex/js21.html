@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+ <script src="<?php echo base_url('Public/js/jquery.table.customize.js')?>"></script>
+	<title>jQuery双击修改表格内容</title>
+<style type="text/css">
+/*控制表格*/
+	table{
+		width: 100%;
+		table-layout: fixed;
+		border: 1px solid #abcdef;
+		border-collapse: collapse;
+		table-layout: fixed;
+		word-break: break-all;
+		word-wrap: break-word;
+		
+
+	}
+	/*.award-name{-o-text-overflow:ellipsis;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:100%;}	*/
+	th,tr,td{
+		height: 30px;
+		border: 1px solid #abcdef;
+		text-align: center;		
+	}
+	td{text-overflow: ellipsis; }
+	.oddRow1{background: #09f}
+	.evenRow1{background: #38a38a}
+	.currRow1{background: yellow}
+/*控制tabs*/
+#tabname li{
+	list-style-type: none;
+	border: 2px solid #abcdef;
+	border-bottom: none;
+	width: 200px;
+	display:inline;
+	    /* li 不换行，宽度根据内容自适应，通过 float 实现 */  
+    margin: 0px;
+    padding: 0px;
+    float:left;
+    background-color: #ccd;
+    margin: 0px 20px 10px 0px;
+    line-height: 50px;
+    text-align: center;
+} 
+
+#content div{
+	border: 2px solid #abcdef;
+	width: 600px;
+	/*display:inline;*/
+	/* li 不换行，宽度根据内容自适应，通过 float 实现 */  
+    margin: 0px;
+    padding: 0px;
+    /*float:left;*/
+    background-color: #d323eb;
+    /*margin: 0px 20px 10px 0px;*/
+    /*line-height: 50px;*/
+    text-align: center;
+} 
+input{
+	background: lightyellow;
+}
+.hover{
+	background: lightgrey;
+}
+
+</style>	
+</head>
+<body>
+<h3>jQuery双击修改单元格内容测试,遍历表格中的一列数据</h3>
+表达示组合::：alert((2<4)==(5>3)==(3<=3)==(2>=2)==(2==2)==true);
+<hr>
+
+<?php 
+echo site_url('admin/javascriptex/js21');
+var_dump($_POST);
+
+
+
+?>
+
+
+<form action="<?php echo site_url('admin/javascriptex/js21')?>" method="post">
+<input type="text" name="user">
+<input type="text" name="pwd">
+<input type="text" name="cell">
+<!-- <div id="test111"></div> -->
+<hr>
+<div id="test"></div>         
+<button onclick="jstable(2,8,'test')">js函数创建表格</button>  
+
+<hr>
+<table id='table'>
+	<tr>
+		<td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td>
+	</tr>
+	<tr>
+		<td>A1</td><td>B1测试多行文本<br>B1测试多行文本<br>B1测试多行文本<br>B1测试多行文本<br>B1测试多行文本<br>B1测试多行文本<br></td><td>C1</td><td>D1</td><td>E1</td><td>F1</td>
+	</tr>
+	<tr>
+		<td>A2</td><td>B2</td><td>C2</td><td>D2</td><td>E2</td><td>F2</td>
+	</tr>
+	<tr>
+		<td>A3</td><td>B3</td><td>C3</td><td>D3</td><td>E3</td><td>F3</td>
+	</tr>
+	<tr>
+		<td>A4</td><td>B4</td><td>C4</td><td>D4</td><td>E4</td><td>F4</td>
+	</tr>
+	
+</table>
+<input type="submit" id='submit' name="submit" value="提交修改" style="display: none;">
+<input type="submit" id='submit2' name="submit2" value="提交修改测试" >
+
+</form>
+<input type="text" name="look">
+<button id='lk'>遍历一列表格的值</button>
+<div id='dv' style="background: lightgreen;width: 600;height: 60;">
+	说明：
+</div>
+
+ <script>
+//****************start 双击修改单元格内容*****************//
+$(function(){            
+	$('table td').dblclick(function(){   
+		var t=$(this).text();//获取单元文本内容		
+		var ww= $(this).width();//获取单元格宽
+		var hh= $(this).height(); //获取单元格高
+		$(this).width(ww);//设置单元格宽，不然双击弹出输入框后宽度会变化
+        if(!$(this).is('.input')){  
+            $(this).addClass('input').html('<input id="change" type="text" value="'+ $(this).text() +'" style="background: lightgreen;width:'+ww+';height:'+hh+';" />').find('input').focus().blur(function(){            	
+                var thisid = $(this).parent().siblings("th:eq(0)").text();    
+                var thisvalue=$(this).val();   //输入后的input文本框内容
+                var thisclass = $(this).parent().attr("class");    
+                console.log('输出1:'+thisid);  
+                console.log('输出2:'+thisvalue);  
+                console.log('输出3:'+thisclass);  
+                 
+                $.ajax({    
+                  type: 'POST',    
+                  url: 'update.php',    
+                  data: "thisid="+thisid+"&thisclass="+thisclass+"&thisvalue="+thisvalue    
+                });
+                //如果修改后的值与修改前的内容相等则不加样式，否则加上黄色背景    
+                if(thisvalue == t){
+                // $(this).parent().removeClass('input'); 
+                $(this).parent().removeClass('input').html($(this).val() || 0); 
+                }else{
+                $(this).parent().removeClass('input').html($(this).val() || 0).css('background-color','lightblue'); 
+                $("#submit").css('display','block');//如果内容有修改才显示提交按钮
+                }   
+            });                        
+        }    
+    }).hover(
+    function(){    
+        $(this).addClass('hover');    
+    },
+    function(){    
+        $(this).removeClass('hover');    
+    }
+    );    
+
+});  
+
+$('#submit2').click(function() {
+	// alert('提交处理！');
+	// alert($('table td').length);//获取表格单元格总数
+	alert('表格行数为：'+$('table tr').length+"    表格单元格总数为："+$('table td').length);//获取表格总行数
+	
+});
+//****************end 双击修改单元格内容*****************//
+
+
+// $('table td').click(function(){ 
+// alert($(this).text());
+//  })
+
+
+//***********查找指定列的内容
+$('input[name=look]').dblclick(function(event) {
+ alert("uu");
+});
+
+$('#lk').click(function(event) {
+  //alert($('input[name=look]').val());
+  var rownum=$('input[name=look]').val();//获取输入的值
+ 	  rownum=(Math.abs(rownum));//求绝对值
+	  	var tlines=$("#table").find("tr").length; //行数
+		var trows=$("#table").find("tr").find("td").length/tlines; //列数
+		var rowindex=rownum-1;
+		//alert(isNaN(rownum));
+		if(isNaN(rownum)){
+			alert('请输入有效数字！');
+			return false;
+		};
+		if(rownum==''||rownum==0){
+			alert('请输入要遍历的列序号，从1开始！');
+			return false;
+		}
+
+			if(rownum > trows-1){
+			alert('没有这么多列哦！！！');
+			return false;
+		}else{
+	//***********遍历表格中的一列*****************//		
+  		$("#table").find("tr").each(function (){
+　　//第二列单元格的值eq(索引)
+　　alert($(this).children('td:eq('+rowindex+')').text());
+		});
+	//***********end 遍历表格中的一列*****************//	
+};
+
+});
+//遍历一列表格的值
+  
+
+// 满足条件并改变行背景景色
+// $("#table tr:eq(0)").css('background','gray')
+$("#table tr:eq(3)").css('background','gray')
+//
+
+//alert((2<4)==(5>3)==(3<=3)==(2>=2)==(2==2)==true); //表达示组合
+
+
+//*************JS表格输出函数************//
+
+function jstable(rows,cols,divName) {
+ 		// var rows = document.getElementById('rows').value;  
+        // var cols = document.getElementById('cols').value;  
+ 		var rows = rows;  
+        var cols = cols;  
+        var divName = divName;    
+var table = "<table id='MMM' border = '1px'>";  
+for(var i = 1;i<=rows;i++){  
+		table +="<tr id='tr"+i+"'>";  
+		for(var j = 1; j<=cols;j++){  
+		table += "<td id='td"+i+j+"'>"+i+"行"+j+"列"+"</td>";  
+				}
+				}
+		table +="</table>";  
+
+// document.write(table);  
+divName = document.getElementById(divName); 
+divName.innerHTML = table; 
+}
+
+// jstable(2,3,'test111');
+//***********
+// function test(){
+// $('#MMM').dblclick(function(){
+// alert($(this).text());
+// }
+// }
+// jstable(3,3,'test');
+function jqsel(){
+// var totalcells=$('#MMM td').length;
+// alert(totalcells);
+// alert($('#MMM td').length);
+// console.log(($('#MMM td'));
+
+//*******************
+function Dictionary(){
+ this.data = new Array();
+ 
+ this.put = function(key,value){
+  this.data[key] = value;
+ };
+
+ this.get = function(key){
+  return this.data[key];
+ };
+
+ this.remove = function(key){
+  this.data[key] = null;
+ };
+ 
+ this.isEmpty = function(){
+  return this.data.length == 0;
+ };
+
+ this.size = function(){
+  return this.data.length;
+ };
+}
+var objs= $('#MMM td');
+var len = $('#MMM td').length;
+
+
+objs.each(function(){
+	// alert($(this).text());
+
+	// alert($(this).attr("id"));
+	var kname = $(this).attr("id");
+	var key = (String(kname));
+		alert(key);
+
+	var value = $(this).text();
+	var karr=[];
+	var varr=[];
+	var iarr=[];
+	iarr.push({value:key});
+	var kvarr = new Dictionary();
+	kvarr.put(kname,value);
+	// karr.push(key);
+	// varr.push(value);
+	console.log(kvarr);
+	for(var n=0;n<len;n++){
+		// tdarr.push[key:value];
+	}
+	// tdarr.push(this.key():this.value());
+})
+// console.log(karr);
+}
+
+ </script>
+<p> js函数输出表格示例：
+</p>
+    <div>  
+        <p>请输入行数:<input id="rows"></p>  
+        <p>请输入列数:<input id="cols"></p>  
+         
+    </div>  
+<div>
+	<button onclick="jqsel()">用jQuery看看能不能操作js函数创建的表格</button>
+
+</div>
+</body>
+</html>

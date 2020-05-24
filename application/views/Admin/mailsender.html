@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>批量邮件发送</title>
+
+<style type="text/css">
+input[type="text"]  
+    {  
+        background-color:#6F9;
+    }  
+	
+.a1 {
+	color: #F00;
+	}
+</style>
+
+<script>  
+
+$(function() {
+        $("#button").click(function() {
+            $("#form :input").not(":button, :submit, :reset, :hidden").val("").removeAttr("checked").remove("selected");//核心
+        });
+    })
+
+</script> 
+
+</head>
+<body>
+程序功能----用于批量发送邮件。<br>
+使用方法：<br>
+
+<br>
+
+<form id="form" action="<?php echo site_url().'/admin/progs/mailsender'; ?>" method="post" enctype="multipart/form-data" >
+		<fieldset>
+			<legend>内容填写：</legend>
+			<p><label for="path">目标邮箱地址：</label>
+			  <input type="text" name="path" id="path" value="<?php echo $_POST['path']?>"/>
+			   </p>
+<label for="da" >发送邮箱：</label>
+<input type="text" name="da" id='da' value="<?php if($_POST['da']!=''){echo $_POST['da'];}?>"/>
+</li>
+<br />
+				
+
+<br />
+			      
+                  
+ 
+		    <p>&nbsp;</p>
+			
+          <p>
+	          <label for="">&nbsp;&nbsp;</label>
+	          
+	          <input type="submit" name="btn" value="发送邮件操作"/>
+	          
+
+		</fieldset>
+
+		
+
+  <div></div>
+  <div></div>
+    <p>&nbsp;</p>
+</form>
+<span class="">
+<?php
+if($resultinfo != ''){
+	echo $resultinfo;
+}
+?>
+</span>
+</body>
+</html>

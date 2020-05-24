@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap Modal</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+   
+
+  </head>
+<body class="container">
+<h1>点击按钮弹出对话框</h1>
+<ul class="nav nav-pills"> 
+<li role="presentation" class="btn btn-warning" ><a href="javascript:;" data-toggle="modal" data-target="#myModal">添加数据</a></li></ul>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  按钮添加
+</button>
+<form action="/add" method="post">
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">添加数据窗口</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <label for="title">请在此输入要添加的内容&nbsp;</label><input type="text" class="form-control" id="title" name="title">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <input type="submit" name="" class="btn btn-primary" value="确认添加">
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+
+
+<!-- 要保护的数据 -->
+    <ul class="list-group">
+
+<% list.forEach(function(article,index){%>
+      <li class="list-group-item"><%= article.title%><a href="/del?index=<%=index%>">删除</a></li>
+
+      <%})%>
+    </ul>
+
+<!-- 要保护的数据 -->
+
+<script type="text/javascript">
+  $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+
+  </body>
+</html>

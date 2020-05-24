@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>colorpicker</title>
+</head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+ <script src="<?php echo base_url('Public/Color-Picker/js/colpick.js')?>"></script>
+<link rel="stylesheet" href="<?php echo base_url('Public/Color-Picker/css/colpick.css')?>" type="text/css"/>
+<body>
+<p>colorpicker:</p>
+<button id="picker">Show Color Picker</button>
+
+
+<script type="text/javascript">
+$('#picker').colpick({
+    layout:'hex',
+    submit:true,
+});
+</script>
+</body>
+</html>

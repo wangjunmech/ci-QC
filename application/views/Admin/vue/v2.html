@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<script src="https://unpkg.com/vue"></script>
+
+<title>Vue2.0全局API</title>
+</head>
+<body>
+<hr>
+<h1><strong>第1节：Vue.directive 自定义指令：</strong></h1>
+<p>自定义指令中传递的三个参数<br>
+el: 指令所绑定的元素，可以用来直接操作DOM。<br>
+binding:  一个对象，包含指令的很多信息。<br>
+vnode: Vue编译生成的虚拟节点。</p>
+<h3>自定义指令有五个生命周期（也叫钩子函数），分别是 bind,inserted,update,componentUpdated,unbind</h3>
+    bind:只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个绑定时执行一次的初始化动作。<br>
+    inserted:被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于document中）。<br>
+    update:被绑定于元素所在的模板更新时调用，而无论绑定值是否变化。通过比较更新前后的绑定值，可以忽略不必要的模板更新。<br>
+    componentUpdated:被绑定元素所在模板完成一次更新周期时调用。<br>
+    unbind:只调用一次，指令与元素解绑时调用。<br>
+
+
+<div id="addone" style="background: pink">
+ 
+  <p v-custstyl="color">{{num}}</p>
+  <p v-custstyl="color">{{key}}</p>
+  <button @click="addoneplus">点我加1</button>
+
+</div>
+<button onclick="unbind()">在绑定的作用域外使用按钮解绑</button>
+<script type="text/javascript">
+
+//解绑方法用原生js代码
+    function unbind(){
+      app.$destroy();
+    }
+
+//自定义指定custstyl
+// Vue.directive("custstyl",function(el,binding){
+//   //输出对象属性看看
+//   console.log(el);
+//   console.log(binding);
+//   console.log(binding.name);
+//   console.log(binding.rawName);
+//   console.log(binding.value);
+//   console.log(binding.expression);
+//   console.log(binding.modifiers);
+//   console.log(binding.def);
+//   el.style="color:"+binding.value;
+// })
+
+
+Vue.directive("custstyl",{
+    bind:function(el,binding){//被绑定
+      //var app;
+         console.log('1 - bind events');
+         el.style="color:"+binding.value;
+    },
+    inserted:function(){//绑定到节点
+          console.log('2 - inserted events');
+    },
+    update:function(){//组件更新
+          console.log('3 - update');
+    },
+    componentUpdated:function(){//组件更新完成
+          console.log('4 - componentUpdated events');
+    },
+    unbind:function(){//解绑
+          console.log('5 - unbind events');
+    }
+
+  });
+
+
+
+
+var app = new Vue({
+  el: '#addone',
+  data: {
+    num: 0,
+    key:"123",
+    color:'red',
+  },
+  methods:{
+    addoneplus:function(){
+      this.num++;
+
+    }
+  }
+})
+</script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+<hr>
+<h1><strong>第2节：Vue.extend构造器的延伸，扩展实例：</strong></h1>
+<p>Vue.extend 返回的是一个“扩展实例构造器”,也就是预设了部分选项的Vue实例构造器。经常服务于Vue.component用来生成组件，可以简单理解为当在模板中遇到该组件名称作为标签的自定义元素时，会自动调用“扩展实例构造器”来生产组件实例，并挂载到自定义元素上。
+</p>
+<p>实例创建一个扩展authorExt，然后绑定到author的自定义标签中。</p>
+ <author></author>
+<custTag id="compo"></custTag>
+
+</div>
+<script type="text/javascript">
+var authorExt = Vue.extend({
+    template:"<p><a :href='authorUrl'>{{authorName}}</a></p>",
+    data:function(){
+    return{
+          authorName:'JSPang',
+          authorUrl:'http://www.jspang.com'
+          }
+    }
+});
+new authorExt().$mount('author');//创建新实例对象并用$mount缩写以标签名绑定到DOM元素
+new authorExt().$mount('#compo');//创建新实例对象并用$mount缩写以标id名绑定到DOM元素
+
+</script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+<hr>
+<h1><strong>第3节：Vue.set全局操作：</strong></h1>
+<p>Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性或者方法。比如在vue构造器内部定义了一个count为1的数据，我们在构造器外部定义了一个方法，要每次点击按钮给值加1.就需要用到Vue.set。
+</p>
+<p>引用构造器外部数据</p>
+<pre>
+1.在构造器app外面声明outdata对象。
+2.要构造器内引用外部的数据对象outdata.
+3.三种方法改变构造器外部数据的值 
+      // <font color="green">Vue.set(outdata,"num",8)</font>
+      // <font color="green">app.num++;</font>
+      // <font color="green">outdata.num++;</font>       
+      // <font color="red">app.arr[1]='ABAB';//此方法单独使用无效，因为Vue不能监听JS数组的长度和下标</font>
+      // <font color="blue">Vue.set(app.arr,0,"8888")</font>
+4. 关键是为什么要用Vue.set方法,如上,第四条红色代码尝试去改变数组中下标为1的内容，但这样如果不和前面3条绿色中任意一条同时使用的话起不到作用。：
+//http://jspang.com/2017/03/14/vue2_02/  第3节：Vue.set全局操作//11:30秒
+
+</pre>
+
+<div id='ap'><h4>{{msg}}===={{num}}</h4>
+<p>{{color}}</p>
+<ul>
+  <li v-for="listitem in arr">{{listitem}}</li>
+</ul>
+</div>
+<button onclick="add2()">点一次加</button>
+
+</div>
+<script type="text/javascript">
+    function add2(){
+      // Vue.set(outdata,"num",8)
+       app.num++;
+      // outdata.num++;
+      //http://jspang.com/2017/03/14/vue2_02/  第3节：Vue.set全局操作//11:30秒
+      app.arr[1]='ABAB';//此方法单独使用无效，因为Vue不能监听JS数组的长度和下标
+      Vue.set(app.arr,0,"8888")
+    }
+var outdata = {
+    num:2,
+    goods:"Carpet",
+    color:"purple",
+    msg:"外部信息",
+    arr:['AAAA','BBBB','CCCC','DDDD']
+};
+
+var app = new Vue({
+  el: '#ap',
+  
+  // data:{
+  //   num: 0,
+  //   msg:"内部信息",
+  //   color:'red',
+  // },
+ data:outdata,
+
+})
+</script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+<hr>
+<h1><strong>第4节：Vue的生命周期（钩子函数）：</strong></h1>
+<p>Vue一共有10个生命周期函数，我们可以利用这些函数在vue的每个阶段都进行操作数据或者改变内容。</p>
+<p style="font-size:20px;background-color:pink">用&ltpre>&lt/pre>标签输出内容不能添加格式：
+<pre>
+
+  beforeCreate:function(){
+      console.log('1-<font color="red"><strong>beforeCreate 初始化之后</strong></font>');
+  },
+  created:function(){
+      console.log('2-<font color="red"><strong>created 创建完成</strong></font>');
+  },
+  beforeMount:function(){
+      console.log('3-<font color="red"><strong>beforeMount 挂载之前</strong></font>');
+  },
+  mounted:function(){
+      console.log('4-<font color="red"><strong>mounted 被挂载之后</strong></font>');
+  },
+  beforeUpdate:function(){
+      console.log('5-<font color="red"><strong>beforeUpdate 数据更新前</strong></font>');
+  },
+  updated:function(){
+      console.log('6-<font color="red"><strong>updated 被更新后</strong></font>');
+  },
+  activated:function(){
+      console.log('7-<font color="red"><strong>activated</strong></font>');
+  },
+  deactivated:function(){
+      console.log('8-<font color="red"><strong>deactivated</strong></font>');
+  },
+  beforeDestroy:function(){
+      console.log('9-<font color="red"><strong>beforeDestroy 销毁之前</strong></font>');
+  },
+  destroyed:function(){
+      console.log('10-<font color="red"><strong>destroyed 销毁之后</strong></font>')
+  }
+</pre>
+</p>
+
+
+<div id='lifecycle' >
+<h4 style="color:red">{{num}}</h4>
+<button @click="add5">内部函数点加5</button>
+
+<button onclick="add2()">外部函数点加2</button>
+<button onclick="destro()">调用函数的销毁按钮</button>
+<button onclick="lifeapp.$destroy();">直接绑定应用名调用destroy的销毁按钮</button>
+
+
+</div>
+<script type="text/javascript">
+    function add2(){//外部函数写在构造器外面
+       lifeapp.num+=2;
+    }
+    function destro(){
+      lifeapp.$destroy();
+    }
+
+var lifeapp = new Vue({
+  el: '#lifecycle',
+  data:{
+        num: 0,
+        msg:"内部信息",
+        color:'red',
+      },
+  methods:{
+        add5:function(){//内部函数写在methods下面
+          this.num+=5;
+        },
+      },
+  beforeCreate:function(){
+      console.log('1-beforeCreate 初始化之后');
+  },
+  created:function(){
+      console.log('2-created 创建完成');
+  },
+  beforeMount:function(){
+      console.log('3-beforeMount 挂载之前');
+  },
+  mounted:function(){
+      console.log('4-mounted 被挂载之后');
+  },
+  beforeUpdate:function(){
+      console.log('5-beforeUpdate 数据更新前');
+  },
+  updated:function(){
+      console.log('6-updated 被更新后');
+  },
+  activated:function(){
+      console.log('7-activated');
+  },
+  deactivated:function(){
+      console.log('8-deactivated');
+  },
+  beforeDestroy:function(){
+      console.log('9-beforeDestroy 销毁之前');
+  },
+  destroyed:function(){
+      console.log('10-destroyed 销毁之后')
+  }
+
+})
+
+</script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+<hr>
+<h1><strong>第5节：Template 制作模版：</strong></h1>
+<p>一、直接写在选项里的模板</p>
+<p>二、写在&lttemplate>标签里的模板</p>
+<p>三、写在&ltscript&gt标签里的模板,script的type要写为x-template,同时在脚本标签上加上id</p>
+<pre>
+</pre>
+
+<div id='greeting' >
+<h4>{{msg}}</h4>
+
+<div>{{template}}</div>
+<div id='tpl'>
+<p style="font-size:20px;background-color:lightblue">
+标签模板2写在html标签中，给标签加上id名，然后在脚本选项template中写上选择器</p>
+</div>
+
+</div>
+<script type="x-template" id='tpl2'>
+  <h4 style="color:red"><p>script脚本模板</p></h4>
+</script>
+
+
+
+<script type="text/javascript">
+
+var lifeapp6 = new Vue({
+  el: '#greeting',
+  data:{
+    msg:"hellow world!",
+  },
+ methods:{
+    add6:function(){
+      this.num++;
+    },
+    addscore:function(){
+      this.num++;
+    },
+
+  },
+// template:`<p style="font-size:20px;background-color:pink"><strong>选项模板，</strong>直接写在vue选项template中</p>`,//选项模板
+// template:'#tpl',//标签模板
+template:'#tpl2',//脚本模板
+
+})
+</script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+
+<hr>
+<h1><strong>第6节：Component 初识组件</strong></h1>
+<p>Vue.component在构造器外定义，或在选项中用components选项定义</p>
+
+
+<div id='compo1' >
+<custag001></custag001>
+<custag001></custag001>
+<custag001></custag001>
+<compolocal></compolocal>
+<compolocal></compolocal>
+</div>
+
+
+<script type="x-template" id='tpl2'>
+  <h4 style="color:red"><p>script脚本模板</p></h4>
+</script>
+
+
+
+<script type="text/javascript">
+Vue.component('custag001',{
+  template:`<div><h3><p>全局组件001(构造器外定义的组件)----custag001</p></h3></div>`,
+})
+var lifeapp6 = new Vue({
+  el: '#compo1',
+  components:{
+    'compolocal':{
+      template:`<div style="font-size:20px;background-color:pink"><h4><p>局部组件001(在构造器内定义components选项下定义的组件)----Localcustag001</p></h4></div>`,
+    }
+  }
+  
+})
+</script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+<hr>
+<h1><strong>第7节：Component 组件props 属性设置,在选项中用components选项定义带属性的组件</strong></h1>
+<h3 style="color:red;background-color:yellow"><p>8888888888</p></h3>
+
+<div id="comp01">
+<p>直接在标签中给属性赋值：</p>
+      <panda here="China" wt="50"></panda>
+<p>在构造器中给属性赋值（绑定构造器中的属性）：</p>
+      <panda :here="location" :wt="weight"></panda>
+</div>
+ 
+<script type="text/javascript">
+        var app=new Vue({
+            el:'#comp01',
+            data:{
+              location:"SC",
+              weight:80,
+            },
+            components:{
+                "panda":{
+                    template:`<div style="color:red;">Panda from {{ here }}重量 ={{ wt }} KG.</div>`,
+                    props:['here','wt'],//定义属性
+                    
+                }
+            }
+        })
+</script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+<hr>
+<h1><strong><p>第8节：Component 父子组件关系</p></strong></h1>
+<h3 style="color:red"></h3>
+<p>在构造器内声明组件monkey，在构造器外声明子组件city：</p>
+<div id="subcomptest">
+      <monkey></monkey>  
+    </div>
+    <script type="text/javascript">
+       var city={
+           template:`<div>Sichuan of China</div>`
+       }
+        var monkeycomp = {
+            template:`<div>
+                    <p> Panda from China!</p>
+                    <city></city>
+            </div>`,
+            components:{
+                "city":city
+            }
+        }
+        var app=new Vue({
+            el:'#subcomptest',
+            components:{
+                "monkey":monkeycomp
+            }
+           
+        })
+    </script>
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+
+
+<hr>
+<h1><strong><p>第9节：Component 标签</p></strong></h1>
+<h3 style="color:red"></h3>
+<p><component></component>标签是Vue框架自定义的标签，它的用途就是可以动态绑定我们的组件，根据数据的不同更换不同的组件。</p>
+
+<div id="comptag">
+
+      <component v-bind:is="whichcomp">      
+      </component> 
+  <button @click="changecp">换组件</button> 
+        
+</div>
+    <script type="text/javascript">
+       var compA={
+           template:`<div style="color:red;background-color:blue"> I am compA</div>`
+       }
+       var compB={
+           template:`<div style="color:green;background-color:black"> I am compB</div>`
+       }
+       var compC={
+           template:`<div style="color:blue;background-color:yellow"> I am compC</div>`
+       }
+
+        var app=new Vue({
+            el:'#comptag',
+            data:{
+              whichcomp:"componentC",
+            },
+            components:{
+                "componentA":compA,
+                "componentB":compB,
+                "componentC":compC
+            },
+            methods:{
+              changecp:function(){
+                if(this.whichcomp=='componentA'){
+                        this.whichcomp='componentB';
+                    }else if(this.whichcomp=='componentB'){
+                        this.whichcomp='componentC';
+                    }else{
+                        this.whichcomp='componentA';
+                    }
+               
+                    }
+                 },
+           
+        })
+    </script>
+
+
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+
+
+
+<div>
+
+
+</div>
+</body>
+</html>
+	

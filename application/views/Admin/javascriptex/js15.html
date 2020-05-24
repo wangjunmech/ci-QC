@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+
+	<title>jQuery动画show(),hide(),toggle</title>
+<style type="text/css">
+	#hideshow{
+		width: 600px;
+		height: 100px;
+		background:lightgreen; 
+	}
+  #hideshow2{
+    width: 600px;
+    height: 100px;
+    background: green;
+  }
+  #sddiv{
+    width: 600px;
+    height: 100px;
+    background: pink;
+  }
+  #custdiv{
+    width: 100px;
+    height: 100px;
+    background: #abcdef;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    
+  }
+
+ #stdiv{
+    width: 100px;
+    height: 100px;
+    background: blue;
+ } 
+
+ #dqdiv{
+    width: 100px;
+    height: 100px;
+    background: orange;
+    position: relative;
+ } 
+</style>	
+</head>
+<body>
+<p>基础动画show(),hide(),toggle</p>
+
+<input type="button" id='hide' name="" value='隐藏'>
+<input type="button" id='show' name="" value='显示'>
+<input type="button" id='toggle' name="" value='toggle=显示+隐藏'>
+<div id='hideshow'>
+隐藏、显示、切换，滑动，淡入淡出，以及动画，哇哦！
+通过 jQuery，您可以使用 hide() 和 show() 方法来隐藏和显示 HTML 元素：
+方法内参数可以写毫秒值，也有fast/slow/normal三个关键字可选
+</div>
+
+<script type="text/javascript">
+$('p').css('background','lightblue');
+// $("#hide").click(function(){
+//   	$('#hideshow').hide(1000);
+// });
+// $("#show").click(function(){
+//     $('#hideshow').show(1000);
+// });
+$("#hide").click(function(){
+    $('#hideshow').hide('slow');
+});
+$("#show").click(function(){
+    $('#hideshow').show('normal');
+});
+
+// $("#toggle").click(function(){
+//     $('#hideshow').toggle('normal');
+// });
+
+//判断元素是否为可见元素
+$("#toggle").click(function(){
+    if($('#hideshow').is(':visible')){
+      alert($('#hideshow').is(':visible'));
+      $('#hideshow').hide('slow');
+}else{
+      alert('指定元素被隐藏');
+      $('#hideshow').show('slow');
+}
+}
+);
+
+</script>
+
+<p>渐变动画fadeIn(),fadeOut(),fadeTo()</p>
+<input type="button" id='jb' name="" value='渐变动画(hide+fadeIn)'>
+<input type="button" id='ft' name="" value='fadeTo'>
+<p id='hideshow2'>
+通过 jQuery，您可以实现元素的淡入淡出效果。<br>
+jQuery 拥有下面四种 fade 方法：<br>
+
+    fadeIn()
+    fadeOut()
+    fadeToggle()
+    fadeTo()
+
+
+</p>
+<script>
+$("#jb").click(function(){
+  $('#hideshow2').hide().fadeIn(2000);
+});
+$("#hideshow2").click(function(){
+  $('#hideshow2').fadeOut(2000);
+});
+$("#ft").click(function(){
+  $('#hideshow2').hide().fadeTo(2000,0.5,function(){
+    alert('fadeTo执行完成！')
+  });
+});
+</script>
+
+<p>渐变动画slideUp(),slideDown(),slideToggle()</p>
+<input type="button" id='sdupdown' name="" value='渐变动画slideUp+slideDown'>
+<input type="button" id='sd' name="" value='渐变动画slideDown'>
+
+<p id='sddiv'>
+jQuery slideToggle() 方法可以在 slideDown() 与 slideUp() 方法之间进行切换。
+如果元素向下滑动，则 slideToggle() 可向上滑动它们。
+如果元素向上滑动，则 slideToggle() 可向下滑动它们。
+$(selector).slideToggle(speed,callback);
+可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+可选的 callback 参数是滑动完成后所执行的函数名称。
+
+</p>
+<script type="text/javascript">
+$("#sdupdown").click(function(){
+    if($('#sddiv').is(':visible')){
+      // alert($('#sddiv').is(':visible'));
+      $('#sddiv').slideUp('slow');
+}else{
+      // alert('指定元素被隐藏');
+      $('#sddiv').slideDown('slow');
+}
+}
+);
+$("#sd").click(function(){
+   $('#sddiv').slideDown('slow');
+});
+
+</script>
+
+<p>自定义动画</p>
+<input type="button" id='cust' name="" value='自定义动画'>
+<div id='custdiv'>自定义动画DIV</div>
+
+<script>
+// //左右移动
+//   $("#cust").click(function(){
+//   $('#custdiv').animate({ left: '+=200px' });
+// })  
+
+// //左右和上下移动
+//   $("#cust").click(function(){
+//   $('#custdiv').animate({ 
+//     left: '800px',
+//     top: '100px',
+//     opacity:'0.2',
+// //并且加上CSS，但动画一开始CSS就会执行，如果要动画执行完再执行CSS就需要用到回调函数，如下一个示例：
+//      },5000).css('background','red');
+// }) 
+
+  $("#cust").click(function(){
+  $('#custdiv').animate({ 
+    left: '+=100px',
+    top: '100px',
+    opacity:'0.2',
+//并且加上CSS，但动画一开始CSS就会执行，如果要动画执行完再执行CSS就需要用到回调函数，如下一个示例：
+     },1000,function(){
+      $('#custdiv').css('background','red')
+     });
+})  
+
+
+</script>
+<p>动画控制，stop()停止,语法：$(selector).stop(stopAll,goToEnd);</p>
+<input type="button" id='st' name="" value='Hover测试动画停止'>
+<div id='stdiv'>动画控制，停止</div>
+<br>
+<script>
+  $("#st").hover(function(){
+  $('#stdiv').stop(true,true).slideToggle(1000);
+})  
+</script>
+  
+<p>动画控制，dequeue();</p>
+<input type="button" id='run' name="" value='动画开始'>
+<input type="button" id='stp' name="" value='stop()测试动画'>
+<input type="button" id='dq' name="" value='dequeue()测试动画'>
+<input type="button" id='fs' name="" value='finish()测试动画'>
+<input type="button" id='dl' name="" value='delay()延迟'>
+<div id='dqdiv'>dequeue()测试动画请除队列</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<script>
+$("#run").click(function(){
+$('#dqdiv').animate({ left: '800px' },2000).delay(2000).animate({ top: '800px' },2000).animate({ left: '0px' },2000).animate({ top: '0px' },2000);
+})  
+$("#stp").click(function(){
+//stop默认参数为false,false
+$('#dqdiv').stop(true,true);
+})
+//dequeue  
+$("#dq").click(function(){
+  //stop默认参数为false,false
+$('#dqdiv').dequeue();
+})  
+$("#fs").click(function(){
+  //stop默认参数为false,false
+$('#dqdiv').finish();
+})  
+$("#dl").click(function(){
+  //stop默认参数为false,false
+$('#dqdiv').animate({ left: '400px' },2000).delay(2000).animate({ left: '800px' },2000);
+})  
+</script>
+</body>
+</html>

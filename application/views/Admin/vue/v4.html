@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="<?php echo base_url('Public/js/jquery.js')?>"></script>
+<script src="https://unpkg.com/vue"></script>
+
+<title>Vue2.0实例和内置组件</title>
+</head>
+<body>
+<hr>
+<h1>第1节：实例入门-实例属性</h1>
+<h3 style="color:red">说明：</h3>
+    <div id="app">
+        {{message}}
+    </div>
+ 
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!'
+            },
+            //在Vue中使用jQuery
+            mounted:function(){
+                $('#app').html('我是jQuery!');
+            },
+            methods:{
+                add:function(){
+                 console.log("调用了构造器内部的Add方法");
+                }
+            } ,
+
+        })
+
+        app.add();
+    </script>
+
+</script>
+
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+<hr>
+<h1>第2节：实例方法</h1>
+<h3 style="color:red">说明：</h3>
+
+
+<div id="appex2"></div>
+<p><button onclick="distro()">缷载</button></p>
+<p><button onclick="reload()">重新挂载</button></p>  
+<p><button onclick="tick()">tick测试</button></p>
+    <script type="text/javascript">
+      var jspang = Vue.extend({
+          template:`<p>{{message}}</p>`,
+          data:function(){
+              return {
+                  message:'Hello ,I am JSPang'
+              }
+          },
+          mounted:function(){
+          console.log( '创建应用，看一下Mounted的状态**********')
+          },
+          updated:function(){
+          console.log( '更新了一下挂载**********')
+          },
+          destroyed:function(){
+
+            console.log('销毁了绑定的扩展');
+            //alert('销毁了绑定的扩展');
+          },
+       })
+      var vm = new jspang().$mount("#appex2");//挂载方法;
+      function distro(){
+        vm.$destroy();
+        };
+      function reload(){
+        vm.$forceUpdate();
+       };
+      function tick(){
+        vm.message="update message info ";
+        vm.$nextTick(function(){
+            console.log('message更新完后我被调用了');
+        })
+        }
+
+
+    </script>
+
+</script>
+
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+<hr>
+<h1>第2节：实例事件</h1>
+<h3 style="color:red">说明:在外面用(实例.$on('方法名',function(){方法体}))添加方法，然后用function 调用名(){
+实例.$emit(方法名); 最后在标签外部使用调用名调用。
+}：</h3>
+
+<div id="appe3">
+<p>{{msg}}===={{num}}</p>
+  <p><button @click="plus()">加1操作</button> &nbsp <button @click="reduce()">里面加的减1操作</button></p>
+  <p><button onclick="reduceaction()">外面加的减1操作</button></p>
+  <p><button onclick="reduce1()">once只执行一次外面加的减1操作</button></p>
+   <p><button onclick="off()">关闭加一操作事件</button></p>
+</div>
+
+<script type="text/javascript">
+var appevn= new Vue({
+  el:"#appe3",
+  data:{
+    msg:'hellow world',
+    num:0
+  },
+  methods:{
+    plus:function(){
+      this.num+=1;
+    }
+  }
+});
+appevn.$once('reduceonce',function(){
+  console.log('使用$once，仅执行一次reduce方法');
+  this.num-=1;
+});
+appevn.$on('reduce',function(){
+  console.log('执行了reduce方法…………');
+  this.num-=1;
+});
+function reduceaction(){
+  appevn.$emit('reduce');
+};
+function reduce1(){
+  appevn.$emit('reduceonce');
+}
+
+//关闭事件
+function off(){
+   appevn.$off('reduce');
+   appevn.$off('appevn.plus()');
+}
+</script>
+
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+<hr>
+<h1>第4节：内置组件 -slot讲解</h1>
+<h3 style="color:red">说明:</h3>
+
+<div id="appslot">
+
+<jspang>
+<span slot="bgUrl">{{jspangData.blogUrl}}</span>
+<span slot="nName">{{jspangData.netName}}</span>
+<span slot="skl">{{jspangData.skill}}</span>
+</jspang>
+
+</div>
+
+
+<template id="tep">注意template里面必须要有一个div把所有内容包含起来：
+  <div>
+  <p>博客地址:<slot name="bgUrl"></slot></p>
+  <p>网名:<slot name="nName"></slot></p>
+  <p>技术类型:<slot name="skl"></slot></p>
+  </div>
+</template>
+
+<script type="text/javascript">
+jspangcom={
+  template:"#tep"
+}
+var appst= new Vue({
+  el:"#appslot",
+  data:{
+    msg:'hellow world',
+    num:0,
+    jspangData:{
+      blogUrl:"http://jspang.com",
+      netName:"技术胖",
+      skill:"WEB前端"
+    }
+  },
+  methods:{
+    plus:function(){
+      this.num+=1;
+    }
+  },
+  components:{
+    "jspang":jspangcom
+  }
+});
+
+</script>
+
+
+<!-- 888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+
+
+
+
+</body>
+</html>
+	
